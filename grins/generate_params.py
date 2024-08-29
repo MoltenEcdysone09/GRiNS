@@ -23,12 +23,19 @@ def parse_topos(topofile):
     Parse the given topofile and return the dataframe.
 
     Parameters:
-    topofile (str): The path to the topofile.
+        topofile (str): The path to the topofile.
 
     Returns:
-    pandas.DataFrame: The parsed dataframe.
+        topo_df (pandas.DataFrame): The parsed dataframe.
     """
     topo_df = pd.read_csv(topofile, sep=r"\s+")
+    # Check if the dataframe has the required columns
+    if topo_df.shape[1] != 3:
+        raise ValueError(
+            "The topology file should have three columns: Source, Target, and Type."
+        )
+    # Rename the columns to Source, Target, and Type
+    topo_df.columns = ["Source", "Target", "Type"]
     # Go through the source and target columns and replace non-alphanumeric characters with underscores
     topo_df["Source"] = topo_df["Source"].str.replace(r"\W", "_", regex=True)
     topo_df["Target"] = topo_df["Target"].str.replace(r"\W", "_", regex=True)
@@ -140,6 +147,16 @@ def _gen_sobol_seq(dimensions, num_points, optimise=False):
     # return min_max_val[0] + (min_max_val[1] - min_max_val[0])*samples
     return samples
 
+def _gen_uniform_seq(dimension, num_points):
+    """
+    Generate sampling of uniform random variables
+
+    Args: 
+        dimensions (int): The number of dimensions for the Uniform Random variables
+        i
+    """
+    samples = np.random.uniform(low=0, high=1, size=(num_points, dimension))
+    return samples
 
 # Function to define the ranges of the threshold values
 def get_thr_ranges(source_node, topo_df, num_params=2**12):
@@ -147,12 +164,12 @@ def get_thr_ranges(source_node, topo_df, num_params=2**12):
     Calculate the threshold ranges for a given source node based on the topology dataframe.
 
     Parameters:
-    - source_node (str): The source node for which to calculate the threshold ranges.
-    - topo_df (pandas.DataFrame): The topology dataframe containing the network information.
-    - num_params (int): The number of parameters to generate for the threshold calculation.
+        source_node (str): The source node for which to calculate the threshold ranges.
+        topo_df (pandas.DataFrame): The topology dataframe containing the network information.
+        num_params (int): The number of parameters to generate for the threshold calculation.
 
     Returns:
-    - float: The median value of the threshold ranges for the source node.
+        float: The median value of the threshold ranges for the source node.
     """
     # print(source_node)
     # Sample the median value of the node
@@ -231,8 +248,8 @@ def get_param_range_df(topo_df, num_params=2**10):
     Generate a parameter range dataframe based on the given topology dataframe.
 
     Parameters:
-    - topo_df (DataFrame): The topology dataframe containing information about the network topology.
-    - num_params (int): The number of parameters to generate for threshold calculation. Default is 2**10.
+        topo_df (DataFrame): The topology dataframe containing information about the network topology.
+        num_params (int): The number of parameters to generate for threshold calculation. Default is 2**10.
 
     Returns:
     - prange_df (DataFrame): The parameter range dataframe with columns "Parameter", "Minimum", and "Maximum".
@@ -310,10 +327,10 @@ def gen_param_df(prange_df, num_paras=2**10):
     Generate a parameter dataframe based on the given parameter range dataframe.
 
     Parameters:
-    prange_df (pd.DataFrame): The parameter range dataframe containing the minimum and maximum values for each parameter.
+        prange_df (pd.DataFrame): The parameter range dataframe containing the minimum and maximum values for each parameter.
 
     Returns:
-    pd.DataFrame: The generated parameter dataframe with sampled values for each parameter.
+        pd.DataFrame: The generated parameter dataframe with sampled values for each parameter.
     """
     # Get the parameter names list from the parameter range dataframe
     param_name_li = prange_df["Parameter"].values
@@ -339,3 +356,25 @@ def gen_param_df(prange_df, num_paras=2**10):
             )
     # Convert the matrix to a dataframe and return
     return pd.DataFrame(param_mat, columns=param_name_li)
+
+def gen_init_cond(topo_df, num_init_conds = 1000):
+    """
+    Generate the initial conditions dataframe based on the given topology dataframe.
+    
+    Parameters:
+        topo_df (pd.DataFrame): The topology dataframe containing the information about the network topology.
+        num_init_conds (int): The number of initial conditions to generate. Default is 1000.
+
+    Returns:
+        initcond_df (pd.DataFrame): The initial conditions dataframe with the initial conditions for each node.
+    """
+    param_names, target_nodes, source_nodes = gen_param_names(topo_df)
+    unique_nodes = sorted(set(source_nodes + target_nodes))
+     # Generate the sobol sequence for the initial conditions
+    initial_conds = _gen_sobol_seq(len(unique_nodes), num_init_conds)
+    # Scale the initial conditions between 1 to 100
+    initial_conds = 1 + initial_conds * (100 - 1)
+    # Convert the initial conditions to a dataframe and save in the replicate folders
+    initcond_df = pd.DataFrame(initial_conds, columns=unique_nodes, index=range(1,num_init_conds+1))
+    initcond_df.index.name = "InitCondNum"
+    return initcond_df

@@ -18,6 +18,9 @@ networkx = "^3.3"
 rustworkx = "^0.15.1"
 scipy = "^1.14.0"
 
+[tool.poetry.extras]
+cuda12 = ["jax"]
+
 [tool.poetry.scripts]
 racipe = "grins.racipe:main"
 
