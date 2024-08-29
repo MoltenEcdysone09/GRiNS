@@ -1,0 +1,76 @@
+site_name: GRiNS
+site_url: https://MoltenEcdysone09.github.io/GRiNS
+repo_url: https://github.com/MoltenEcdysone09/GRiNS
+repo_name: MoltenEcdysone09/GRiNS
+site_description: "Documentaion for GRiNS: Gene Regulatory Network Simulator"
+copyright: Copyright &copy; 2024 CSB Lab, BE Dept, IISc
+
+theme:
+  name: material
+  features:
+    - navigation.sections  # Sections are included in the navigation on the left.
+    - toc.integrate  # Table of contents is integrated on the left; does not appear separately on the right.
+    - header.autohide  # header disappears as you scroll
+  palette:
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default 
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+
+plugins:
+- search
+- mkdocstrings:
+    default_handler: python
+    handlers:
+        python:
+          setup_commands:
+            - import pytkdocs_tweaks
+            - pytkdocs_tweaks.main()
+          options:
+            show_source: false
+            show_root_heading: true
+            show_root_full_path: true
+            docstring_style: google
+            docstring_section_style: table
+            # docstring_options:
+            #   ignore_init_summary: true
+            # filters: ["!^_"]
+            # heading_level: 1
+            # inherited_members: true
+            # merge_init_into_class: true
+            parameter_headings: true
+            # preload_modules: [mkdocstrings]
+            # separate_signature: true
+            # show_signature_annotations: true
+            # show_symbol_type_heading: true
+            # show_symbol_type_toc: true
+            # signature_crossrefs: true
+            # summary: true
+            # unwrap_annotated: true
+
+nav:
+  - Home: 'index.md'
+  # - Usage: 
+  #   - 'Usage/RACIPE.md'
+  #   - 'Usage/Boolean.md'
+  # - Examples:
+  #   - 'Examples/ODE.md'
+  #   - 'Examples/Boolean.md'
+  - API:
+    - Parameters: 'api/parameters.md'
+    # - ODEs: 'api/ODEs.md'
