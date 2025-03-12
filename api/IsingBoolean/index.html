@@ -583,8 +583,8 @@ The adjacency matrix is then converted to a JAX array.</p>
 <p><span class="doc-section-title">Parameters:</span></p>
     <ul>
         <li class="doc-section-item field-body">
-<h2 id="grins.ising_bool.parse_topo_to_matrix(topofile_path)" class="doc doc-heading doc-heading-parameter">              <b><code>topofile_path</code></b>
-</h2>              (<code><span title="str">str</span></code>)
+            <b><code>topofile_path</code></b>
+              (<code><span title="str">str</span></code>)
           –
           <div class="doc-md-description">
             <p>The path to the topology file. The file should be in a format readable by pandas <code>read_csv</code> with whitespace as the delimiter.</p>
@@ -758,16 +758,16 @@ node_names : list
 <p><span class="doc-section-title">Parameters:</span></p>
     <ul>
         <li class="doc-section-item field-body">
-<h2 id="grins.ising_bool.generate_intial_conditions(num_nodes)" class="doc doc-heading doc-heading-parameter">              <b><code>num_nodes</code></b>
-</h2>              (<code><span title="int">int</span></code>)
+            <b><code>num_nodes</code></b>
+              (<code><span title="int">int</span></code>)
           –
           <div class="doc-md-description">
             <p>The number of nodes for which to generate initial conditions.</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
-<h2 id="grins.ising_bool.generate_intial_conditions(num_samples)" class="doc doc-heading doc-heading-parameter">              <b><code>num_samples</code></b>
-</h2>              (<code><span title="int">int</span></code>)
+            <b><code>num_samples</code></b>
+              (<code><span title="int">int</span></code>)
           –
           <div class="doc-md-description">
             <p>The number of samples to generate.</p>
@@ -1022,24 +1022,24 @@ topology adjacency matrix, and replacement values.</p>
 <p><span class="doc-section-title">Parameters:</span></p>
     <ul>
         <li class="doc-section-item field-body">
-<h2 id="grins.ising_bool.sync_eval_next_state(prev_state)" class="doc doc-heading doc-heading-parameter">              <b><code>prev_state</code></b>
-</h2>              (<code><span title="jax.numpy.ndarray">ndarray</span></code>)
+            <b><code>prev_state</code></b>
+              (<code><span title="jax.numpy.ndarray">ndarray</span></code>)
           –
           <div class="doc-md-description">
             <p>The previous state of the system.</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
-<h2 id="grins.ising_bool.sync_eval_next_state(topo_adj)" class="doc doc-heading doc-heading-parameter">              <b><code>topo_adj</code></b>
-</h2>              (<code><span title="jax.numpy.ndarray">ndarray</span></code>)
+            <b><code>topo_adj</code></b>
+              (<code><span title="jax.numpy.ndarray">ndarray</span></code>)
           –
           <div class="doc-md-description">
             <p>The topology adjacency matrix representing the connections between nodes in the system.</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
-<h2 id="grins.ising_bool.sync_eval_next_state(replacement_values)" class="doc doc-heading doc-heading-parameter">              <b><code>replacement_values</code></b>
-</h2>              (<code><span title="jax.numpy.ndarray">ndarray</span></code>)
+            <b><code>replacement_values</code></b>
+              (<code><span title="jax.numpy.ndarray">ndarray</span></code>)
           –
           <div class="doc-md-description">
             <p>A vector of two values used for replacement based on the computed state conditions. The values are: [value_if_negative, value_if_positive].
@@ -1162,32 +1162,32 @@ prev_state (jnp.ndarray): The previous state of the system.</p>
 <p><span class="doc-section-title">Parameters:</span></p>
     <ul>
         <li class="doc-section-item field-body">
-<h2 id="grins.ising_bool.simulate_sync_trajectory(initial_condition)" class="doc doc-heading doc-heading-parameter">              <b><code>initial_condition</code></b>
-</h2>              (<code><span title="jax.numpy.ndarray">ndarray</span></code>)
+            <b><code>initial_condition</code></b>
+              (<code><span title="jax.numpy.ndarray">ndarray</span></code>)
           –
           <div class="doc-md-description">
             <p>The initial state of the system.</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
-<h2 id="grins.ising_bool.simulate_sync_trajectory(topo_adj)" class="doc doc-heading doc-heading-parameter">              <b><code>topo_adj</code></b>
-</h2>              (<code><span title="jax.numpy.ndarray">ndarray</span></code>)
+            <b><code>topo_adj</code></b>
+              (<code><span title="jax.numpy.ndarray">ndarray</span></code>)
           –
           <div class="doc-md-description">
             <p>The topology adjacency matrix representing the connections between nodes in the system.</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
-<h2 id="grins.ising_bool.simulate_sync_trajectory(replacement_values)" class="doc doc-heading doc-heading-parameter">              <b><code>replacement_values</code></b>
-</h2>              (<code><span title="jax.numpy.ndarray">ndarray</span></code>)
+            <b><code>replacement_values</code></b>
+              (<code><span title="jax.numpy.ndarray">ndarray</span></code>)
           –
           <div class="doc-md-description">
             <p>The values used to replace the states during the simulation. It is a vector of two values in the form [value_if_negative, value_if_positive].</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
-<h2 id="grins.ising_bool.simulate_sync_trajectory(max_steps)" class="doc doc-heading doc-heading-parameter">              <b><code>max_steps</code></b>
-</h2>              (<code><span title="jax.numpy.arange">arange</span></code>)
+            <b><code>max_steps</code></b>
+              (<code><span title="jax.numpy.arange">arange</span></code>)
           –
           <div class="doc-md-description">
             <p>The range of steps to simulate. The simulation will run for each step in the range.</p>
@@ -1328,32 +1328,32 @@ prev_state (jnp.ndarray): The previous state of the system.</p>
 <p><span class="doc-section-title">Parameters:</span></p>
     <ul>
         <li class="doc-section-item field-body">
-<h2 id="grins.ising_bool.async_eval_next_state(prev_state)" class="doc doc-heading doc-heading-parameter">              <b><code>prev_state</code></b>
-</h2>              (<code><span title="jax.numpy.ndarray">ndarray</span></code>)
+            <b><code>prev_state</code></b>
+              (<code><span title="jax.numpy.ndarray">ndarray</span></code>)
           –
           <div class="doc-md-description">
             <p>The previous state vector of the system.</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
-<h2 id="grins.ising_bool.async_eval_next_state(topo_adj)" class="doc doc-heading doc-heading-parameter">              <b><code>topo_adj</code></b>
-</h2>              (<code><span title="jax.numpy.ndarray">ndarray</span></code>)
+            <b><code>topo_adj</code></b>
+              (<code><span title="jax.numpy.ndarray">ndarray</span></code>)
           –
           <div class="doc-md-description">
             <p>The adjacency matrix representing the topology of the system.</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
-<h2 id="grins.ising_bool.async_eval_next_state(replacement_values)" class="doc doc-heading doc-heading-parameter">              <b><code>replacement_values</code></b>
-</h2>              (<code><span title="jax.numpy.ndarray">ndarray</span></code>)
+            <b><code>replacement_values</code></b>
+              (<code><span title="jax.numpy.ndarray">ndarray</span></code>)
           –
           <div class="doc-md-description">
             <p>A vector of two values used for state replacement based on conditions. The values of the vector should be [value_if_negative, value_if_positive]. The value for 0 is not included as it is assumed that the state will remain the same if the node evaluates to 0 in that step.</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
-<h2 id="grins.ising_bool.async_eval_next_state(update_index)" class="doc doc-heading doc-heading-parameter">              <b><code>update_index</code></b>
-</h2>              (<code><span title="int">int</span></code>)
+            <b><code>update_index</code></b>
+              (<code><span title="int">int</span></code>)
           –
           <div class="doc-md-description">
             <p>The index of the node to update.</p>
@@ -1482,32 +1482,32 @@ prev_state (jnp.ndarray): The previous state of the system.</p>
 <p><span class="doc-section-title">Parameters:</span></p>
     <ul>
         <li class="doc-section-item field-body">
-<h2 id="grins.ising_bool.simulate_async_trajectory(initial_condition)" class="doc doc-heading doc-heading-parameter">              <b><code>initial_condition</code></b>
-</h2>              (<code><span title="jax.numpy.ndarray">ndarray</span></code>)
+            <b><code>initial_condition</code></b>
+              (<code><span title="jax.numpy.ndarray">ndarray</span></code>)
           –
           <div class="doc-md-description">
             <p>The initial condition of the system.</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
-<h2 id="grins.ising_bool.simulate_async_trajectory(topo_adj)" class="doc doc-heading doc-heading-parameter">              <b><code>topo_adj</code></b>
-</h2>              (<code><span title="jax.numpy.ndarray">ndarray</span></code>)
+            <b><code>topo_adj</code></b>
+              (<code><span title="jax.numpy.ndarray">ndarray</span></code>)
           –
           <div class="doc-md-description">
             <p>The adjacency matrix representing the topology of the system.</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
-<h2 id="grins.ising_bool.simulate_async_trajectory(replacement_values)" class="doc doc-heading doc-heading-parameter">              <b><code>replacement_values</code></b>
-</h2>              (<code><span title="jax.numpy.ndarray">ndarray</span></code>)
+            <b><code>replacement_values</code></b>
+              (<code><span title="jax.numpy.ndarray">ndarray</span></code>)
           –
           <div class="doc-md-description">
             <p>The values used to replace the states during the simulation. It is a vector of two values in the form [value_if_negative, value_if_positive].</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
-<h2 id="grins.ising_bool.simulate_async_trajectory(update_indices)" class="doc doc-heading doc-heading-parameter">              <b><code>update_indices</code></b>
-</h2>              (<code><span title="jax.numpy.ndarray">ndarray</span></code>)
+            <b><code>update_indices</code></b>
+              (<code><span title="jax.numpy.ndarray">ndarray</span></code>)
           –
           <div class="doc-md-description">
             <p>A vector of indices specifying which node to update at each step. The length of the vector should be equal to the number of steps. If not, the simulation will only run until the length of the update_indices.</p>
@@ -1646,16 +1646,16 @@ prev_state (jnp.ndarray): The previous state of the system.</p>
 <p><span class="doc-section-title">Parameters:</span></p>
     <ul>
         <li class="doc-section-item field-body">
-<h2 id="grins.ising_bool.run_simulations(topo_file)" class="doc doc-heading doc-heading-parameter">              <b><code>topo_file</code></b>
-</h2>              (<code><span title="str">str</span></code>)
+            <b><code>topo_file</code></b>
+              (<code><span title="str">str</span></code>)
           –
           <div class="doc-md-description">
             <p>The path to the topology file.</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
-<h2 id="grins.ising_bool.run_simulations(num_initial_conditions)" class="doc doc-heading doc-heading-parameter">              <b><code>num_initial_conditions</code></b>
-</h2>              (<code><span title="int">int</span></code>, default:
+            <b><code>num_initial_conditions</code></b>
+              (<code><span title="int">int</span></code>, default:
                   <code>None</code>
 )
           –
@@ -1664,8 +1664,8 @@ prev_state (jnp.ndarray): The previous state of the system.</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
-<h2 id="grins.ising_bool.run_simulations(inital_conditions)" class="doc doc-heading doc-heading-parameter">              <b><code>inital_conditions</code></b>
-</h2>              (<code><span title="jax.numpy.ndarray">ndarray</span></code>, default:
+            <b><code>inital_conditions</code></b>
+              (<code><span title="jax.numpy.ndarray">ndarray</span></code>, default:
                   <code>None</code>
 )
           –
@@ -1674,8 +1674,8 @@ prev_state (jnp.ndarray): The previous state of the system.</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
-<h2 id="grins.ising_bool.run_simulations(max_steps)" class="doc doc-heading doc-heading-parameter">              <b><code>max_steps</code></b>
-</h2>              (<code><span title="int">int</span></code>, default:
+            <b><code>max_steps</code></b>
+              (<code><span title="int">int</span></code>, default:
                   <code>None</code>
 )
           –
@@ -1684,8 +1684,8 @@ prev_state (jnp.ndarray): The previous state of the system.</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
-<h2 id="grins.ising_bool.run_simulations(batch_size)" class="doc doc-heading doc-heading-parameter">              <b><code>batch_size</code></b>
-</h2>              (<code><span title="int">int</span></code>, default:
+            <b><code>batch_size</code></b>
+              (<code><span title="int">int</span></code>, default:
                   <code>None</code>
 )
           –
@@ -1694,8 +1694,8 @@ prev_state (jnp.ndarray): The previous state of the system.</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
-<h2 id="grins.ising_bool.run_simulations(replacement_values)" class="doc doc-heading doc-heading-parameter">              <b><code>replacement_values</code></b>
-</h2>              (<code><span title="jax.numpy.ndarray">ndarray</span></code>, default:
+            <b><code>replacement_values</code></b>
+              (<code><span title="jax.numpy.ndarray">ndarray</span></code>, default:
                   <code><span title="jax.numpy.array">array</span>([0, 1])</code>
 )
           –
@@ -1704,8 +1704,8 @@ prev_state (jnp.ndarray): The previous state of the system.</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
-<h2 id="grins.ising_bool.run_simulations(mode)" class="doc doc-heading doc-heading-parameter">              <b><code>mode</code></b>
-</h2>              (<code><span title="str">str</span></code>, default:
+            <b><code>mode</code></b>
+              (<code><span title="str">str</span></code>, default:
                   <code>&#39;sync&#39;</code>
 )
           –
@@ -1714,8 +1714,8 @@ prev_state (jnp.ndarray): The previous state of the system.</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
-<h2 id="grins.ising_bool.run_simulations(packbits)" class="doc doc-heading doc-heading-parameter">              <b><code>packbits</code></b>
-</h2>              (<code><span title="bool">bool</span></code>, default:
+            <b><code>packbits</code></b>
+              (<code><span title="bool">bool</span></code>, default:
                   <code>False</code>
 )
           –
@@ -1724,8 +1724,8 @@ prev_state (jnp.ndarray): The previous state of the system.</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
-<h2 id="grins.ising_bool.run_simulations(save_dir)" class="doc doc-heading doc-heading-parameter">              <b><code>save_dir</code></b>
-</h2>              (<code><span title="str">str</span></code>, default:
+            <b><code>save_dir</code></b>
+              (<code><span title="str">str</span></code>, default:
                   <code>&#39;IsingSimulResults&#39;</code>
 )
           –
