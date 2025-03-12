@@ -578,13 +578,35 @@
         <p>Parses a topology file into an adjacency matrix.</p>
 <p>This function reads a topology file, and converts it into an adjacency matrix.
 The adjacency matrix is then converted to a JAX array.</p>
-<p>Parameters:
-    topofile_path (str): The path to the topology file. The file should be in a format
-                     readable by pandas <code>read_csv</code> with whitespace as the delimiter.</p>
-<p>Returns:
-    tuple: A tuple containing:
-        - topo_adj (jax.numpy.ndarray): The adjacency matrix as a JAX array.
-        - node_names (list): A list of node names in the order they appear in the adjacency matrix.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+<h2 id="grins.ising_bool.parse_topo_to_matrix(topofile_path)" class="doc doc-heading doc-heading-parameter">              <b><code>topofile_path</code></b>
+</h2>              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The path to the topology file. The file should be in a format readable by pandas <code>read_csv</code> with whitespace as the delimiter.</p>
+          </div>
+        </li>
+    </ul>
+
+
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><span title="tuple">tuple</span></code>
+          –
+          <div class="doc-md-description">
+            <p>A tuple containing:
+topo_adj : jax.numpy.ndarray
+    The adjacency matrix as a JAX array.
+node_names : list
+    A list of node names in the order they appear in the adjacency matrix.</p>
+          </div>
+        </li>
+    </ul>
 
 
             <details class="quote">
@@ -645,21 +667,31 @@ The adjacency matrix is then converted to a JAX array.</p>
 <span class="normal">65</span>
 <span class="normal">66</span>
 <span class="normal">67</span>
-<span class="normal">68</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">parse_topo_to_matrix</span><span class="p">(</span><span class="n">topofile_path</span><span class="p">):</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">parse_topo_to_matrix</span><span class="p">(</span><span class="n">topofile_path</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parses a topology file into an adjacency matrix.</span>
 
 <span class="sd">    This function reads a topology file, and converts it into an adjacency matrix.</span>
 <span class="sd">    The adjacency matrix is then converted to a JAX array.</span>
 
-<span class="sd">    Parameters:</span>
-<span class="sd">        topofile_path (str): The path to the topology file. The file should be in a format</span>
-<span class="sd">                         readable by pandas `read_csv` with whitespace as the delimiter.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    topofile_path : str</span>
+<span class="sd">        The path to the topology file. The file should be in a format readable by pandas `read_csv` with whitespace as the delimiter.</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        tuple: A tuple containing:</span>
-<span class="sd">            - topo_adj (jax.numpy.ndarray): The adjacency matrix as a JAX array.</span>
-<span class="sd">            - node_names (list): A list of node names in the order they appear in the adjacency matrix.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    tuple</span>
+<span class="sd">        A tuple containing:</span>
+<span class="sd">        topo_adj : jax.numpy.ndarray</span>
+<span class="sd">            The adjacency matrix as a JAX array.</span>
+<span class="sd">        node_names : list</span>
+<span class="sd">            A list of node names in the order they appear in the adjacency matrix.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Read the topo file as a pandas dataframe</span>
     <span class="n">topo_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">topofile_path</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;\s+&quot;</span><span class="p">)</span>
@@ -721,21 +753,44 @@ The adjacency matrix is then converted to a JAX array.</p>
 
         <p>Generate initial conditions for a given number of nodes and samples.</p>
 <p>This function generates initial conditions using Sobol sequences and scales the generated samples to [0, 1].</p>
-<p>Parameters:
-    num_nodes (int): The number of nodes for which to generate initial conditions.
-    num_samples (int): The number of samples to generate.</p>
-<p>Returns:
-    jax.numpy.ndarray: The generated initial conditions as a JAX array of integers</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+<h2 id="grins.ising_bool.generate_intial_conditions(num_nodes)" class="doc doc-heading doc-heading-parameter">              <b><code>num_nodes</code></b>
+</h2>              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The number of nodes for which to generate initial conditions.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.ising_bool.generate_intial_conditions(num_samples)" class="doc doc-heading doc-heading-parameter">              <b><code>num_samples</code></b>
+</h2>              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The number of samples to generate.</p>
+          </div>
+        </li>
+    </ul>
+
+
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><span title="jax.numpy.ndarray">ndarray</span></code>
+          –
+          <div class="doc-md-description">
+            <p>The generated initial conditions as a JAX array of integers.</p>
+          </div>
+        </li>
+    </ul>
 
 
             <details class="quote">
               <summary>Source code in <code>grins/ising_bool.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 72</span>
-<span class="normal"> 73</span>
-<span class="normal"> 74</span>
-<span class="normal"> 75</span>
-<span class="normal"> 76</span>
-<span class="normal"> 77</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 77</span>
 <span class="normal"> 78</span>
 <span class="normal"> 79</span>
 <span class="normal"> 80</span>
@@ -815,18 +870,45 @@ The adjacency matrix is then converted to a JAX array.</p>
 <span class="normal">154</span>
 <span class="normal">155</span>
 <span class="normal">156</span>
-<span class="normal">157</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">generate_intial_conditions</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">,</span> <span class="n">num_samples</span><span class="p">):</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">generate_intial_conditions</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">,</span> <span class="n">num_samples</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generate initial conditions for a given number of nodes and samples.</span>
 
 <span class="sd">    This function generates initial conditions using Sobol sequences and scales the generated samples to [0, 1].</span>
 
-<span class="sd">    Parameters:</span>
-<span class="sd">        num_nodes (int): The number of nodes for which to generate initial conditions.</span>
-<span class="sd">        num_samples (int): The number of samples to generate.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    num_nodes : int</span>
+<span class="sd">        The number of nodes for which to generate initial conditions.</span>
+<span class="sd">    num_samples : int</span>
+<span class="sd">        The number of samples to generate.</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        jax.numpy.ndarray: The generated initial conditions as a JAX array of integers</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    jax.numpy.ndarray</span>
+<span class="sd">        The generated initial conditions as a JAX array of integers.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># Internal function to generate sobol sequences</span>
@@ -834,13 +916,19 @@ The adjacency matrix is then converted to a JAX array.</p>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generate Sobol sequence samples.</span>
 
-<span class="sd">        Parameters:</span>
-<span class="sd">            dimensions (int): The number of dimensions for the Sobol sequence.</span>
-<span class="sd">            num_samples (int): The number of samples to generate.</span>
-<span class="sd">            optimise (bool, optional): Whether to use optimization for generation. Defaults to False.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        dimensions : int</span>
+<span class="sd">            The number of dimensions for the Sobol sequence.</span>
+<span class="sd">        num_samples : int</span>
+<span class="sd">            The number of samples to generate.</span>
+<span class="sd">        optimise : bool, optional</span>
+<span class="sd">            Whether to use optimization for generation. Defaults to False.</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            numpy.ndarray: The generated Sobol sequence samples.</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        numpy.ndarray</span>
+<span class="sd">            The generated Sobol sequence samples.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">optimise</span><span class="p">:</span>
             <span class="n">samples</span> <span class="o">=</span> <span class="n">qmc</span><span class="o">.</span><span class="n">Sobol</span><span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="n">dimensions</span><span class="p">,</span> <span class="n">scramble</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">num_samples</span><span class="p">)</span>
@@ -861,13 +949,19 @@ The adjacency matrix is then converted to a JAX array.</p>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Scale the given distribution to the required ranges.</span>
 
-<span class="sd">        Parameters:</span>
-<span class="sd">            sample (numpy.ndarray): The distribution to be scaled.</span>
-<span class="sd">            minmax_vals (tuple): The minimum and maximum values for scaling.</span>
-<span class="sd">            round_int (bool, optional): Whether to round the values to the nearest integer. Defaults to False.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        sample : numpy.ndarray</span>
+<span class="sd">            The distribution to be scaled.</span>
+<span class="sd">        minmax_vals : tuple</span>
+<span class="sd">            The minimum and maximum values for scaling.</span>
+<span class="sd">        round_int : bool, optional</span>
+<span class="sd">            Whether to round the values to the nearest integer. Defaults to False.</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            numpy.ndarray: The scaled distribution.</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        numpy.ndarray</span>
+<span class="sd">            The scaled distribution.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">min_vals</span> <span class="o">=</span> <span class="n">minmax_vals</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
         <span class="n">max_vals</span> <span class="o">=</span> <span class="n">minmax_vals</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
@@ -923,40 +1017,54 @@ The adjacency matrix is then converted to a JAX array.</p>
 
         <p>Evaluate the next state of a system synchronously based on the previous state,
 topology adjacency matrix, and replacement values.</p>
-<p>Parameters:
-    prev_state (jnp.ndarray): The previous state of the system.
-    topo_adj (jnp.ndarray): The topology adjacency matrix representing the connections between nodes in the system.
-    replacement_values (jnp.ndarray): A vector of two values used for replacement based on the computed state conditions. The values are: [value_if_negative, value_if_positive].
-    Value if 0 is not included as it is assumed that the state will remain the same if the node evaluates to 0 in that step.</p>
-<p>Returns:
-    jnp.ndarray: The new state of the system as an array of int16.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+<h2 id="grins.ising_bool.sync_eval_next_state(prev_state)" class="doc doc-heading doc-heading-parameter">              <b><code>prev_state</code></b>
+</h2>              (<code><span title="jax.numpy.ndarray">ndarray</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The previous state of the system.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.ising_bool.sync_eval_next_state(topo_adj)" class="doc doc-heading doc-heading-parameter">              <b><code>topo_adj</code></b>
+</h2>              (<code><span title="jax.numpy.ndarray">ndarray</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The topology adjacency matrix representing the connections between nodes in the system.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.ising_bool.sync_eval_next_state(replacement_values)" class="doc doc-heading doc-heading-parameter">              <b><code>replacement_values</code></b>
+</h2>              (<code><span title="jax.numpy.ndarray">ndarray</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>A vector of two values used for replacement based on the computed state conditions. The values are: [value_if_negative, value_if_positive].
+Value of 0 is not included as it is assumed that the state will remain the same if the node evaluates to 0 in that step.
+prev_state (jnp.ndarray): The previous state of the system.</p>
+          </div>
+        </li>
+    </ul>
+
+
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><span title="jax.numpy.ndarray">ndarray</span></code>
+          –
+          <div class="doc-md-description">
+            <p>The new state of the system as an array of int16.</p>
+          </div>
+        </li>
+    </ul>
 
 
             <details class="quote">
               <summary>Source code in <code>grins/ising_bool.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">160</span>
-<span class="normal">161</span>
-<span class="normal">162</span>
-<span class="normal">163</span>
-<span class="normal">164</span>
-<span class="normal">165</span>
-<span class="normal">166</span>
-<span class="normal">167</span>
-<span class="normal">168</span>
-<span class="normal">169</span>
-<span class="normal">170</span>
-<span class="normal">171</span>
-<span class="normal">172</span>
-<span class="normal">173</span>
-<span class="normal">174</span>
-<span class="normal">175</span>
-<span class="normal">176</span>
-<span class="normal">177</span>
-<span class="normal">178</span>
-<span class="normal">179</span>
-<span class="normal">180</span>
-<span class="normal">181</span>
-<span class="normal">182</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">182</span>
 <span class="normal">183</span>
 <span class="normal">184</span>
 <span class="normal">185</span>
@@ -964,7 +1072,36 @@ topology adjacency matrix, and replacement values.</p>
 <span class="normal">187</span>
 <span class="normal">188</span>
 <span class="normal">189</span>
-<span class="normal">190</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@jit</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@jit</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">sync_eval_next_state</span><span class="p">(</span>
     <span class="n">prev_state</span><span class="p">,</span>
     <span class="n">topo_adj</span><span class="p">,</span>
@@ -974,14 +1111,21 @@ topology adjacency matrix, and replacement values.</p>
 <span class="sd">    Evaluate the next state of a system synchronously based on the previous state,</span>
 <span class="sd">    topology adjacency matrix, and replacement values.</span>
 
-<span class="sd">    Parameters:</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    prev_state : jnp.ndarray</span>
+<span class="sd">        The previous state of the system.</span>
+<span class="sd">    topo_adj : jnp.ndarray</span>
+<span class="sd">        The topology adjacency matrix representing the connections between nodes in the system.</span>
+<span class="sd">    replacement_values : jnp.ndarray</span>
+<span class="sd">        A vector of two values used for replacement based on the computed state conditions. The values are: [value_if_negative, value_if_positive].</span>
+<span class="sd">        Value of 0 is not included as it is assumed that the state will remain the same if the node evaluates to 0 in that step.</span>
 <span class="sd">        prev_state (jnp.ndarray): The previous state of the system.</span>
-<span class="sd">        topo_adj (jnp.ndarray): The topology adjacency matrix representing the connections between nodes in the system.</span>
-<span class="sd">        replacement_values (jnp.ndarray): A vector of two values used for replacement based on the computed state conditions. The values are: [value_if_negative, value_if_positive].</span>
-<span class="sd">        Value if 0 is not included as it is assumed that the state will remain the same if the node evaluates to 0 in that step.</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        jnp.ndarray: The new state of the system as an array of int16.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    jnp.ndarray</span>
+<span class="sd">        The new state of the system as an array of int16.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Compute the state of the incoming links for the state</span>
     <span class="n">new_state</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">prev_state</span><span class="p">,</span> <span class="n">topo_adj</span><span class="p">)</span>
@@ -1013,47 +1157,60 @@ topology adjacency matrix, and replacement values.</p>
     <div class="doc doc-contents first">
 
         <p>Simulates a synchronous trajectory of a system based on the given initial condition, topology adjacency matrix, and replacement values.</p>
-<p>Parameters:
-    initial_condition (array-like): The initial state of the system.
-    topo_adj (array-like): The topology adjacency matrix representing the connections between nodes.
-    replacement_values (array-like): The values used to replace the states during the simulation. It is a vector of two values in the form [value_if_negative, value_if_positive].
-    max_steps (jnp.arange array): The range of steps to simulate. The simulation will run for each step in the range.</p>
-<p>Returns:
-    jnp.ndarray: A JAX array containing the states of the system at each step, with the initial condition included at the beginning. The array also includes a column for the step indices. All -1 values in the states are replaced with 0 if the replacement values are [-1, 1].</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+<h2 id="grins.ising_bool.simulate_sync_trajectory(initial_condition)" class="doc doc-heading doc-heading-parameter">              <b><code>initial_condition</code></b>
+</h2>              (<code><span title="jax.numpy.ndarray">ndarray</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The initial state of the system.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.ising_bool.simulate_sync_trajectory(topo_adj)" class="doc doc-heading doc-heading-parameter">              <b><code>topo_adj</code></b>
+</h2>              (<code><span title="jax.numpy.ndarray">ndarray</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The topology adjacency matrix representing the connections between nodes in the system.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.ising_bool.simulate_sync_trajectory(replacement_values)" class="doc doc-heading doc-heading-parameter">              <b><code>replacement_values</code></b>
+</h2>              (<code><span title="jax.numpy.ndarray">ndarray</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The values used to replace the states during the simulation. It is a vector of two values in the form [value_if_negative, value_if_positive].</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.ising_bool.simulate_sync_trajectory(max_steps)" class="doc doc-heading doc-heading-parameter">              <b><code>max_steps</code></b>
+</h2>              (<code><span title="jax.numpy.arange">arange</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The range of steps to simulate. The simulation will run for each step in the range.</p>
+          </div>
+        </li>
+    </ul>
+
+
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><span title="jax.numpy.ndarray">ndarray</span></code>
+          –
+          <div class="doc-md-description">
+            <p>A JAX array containing the states of the system at each step, with the initial condition included at the beginning. The array also includes a column for the step indices. All -1 values in the states are replaced with 0 if the replacement values are [-1, 1].</p>
+          </div>
+        </li>
+    </ul>
 
 
             <details class="quote">
               <summary>Source code in <code>grins/ising_bool.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">193</span>
-<span class="normal">194</span>
-<span class="normal">195</span>
-<span class="normal">196</span>
-<span class="normal">197</span>
-<span class="normal">198</span>
-<span class="normal">199</span>
-<span class="normal">200</span>
-<span class="normal">201</span>
-<span class="normal">202</span>
-<span class="normal">203</span>
-<span class="normal">204</span>
-<span class="normal">205</span>
-<span class="normal">206</span>
-<span class="normal">207</span>
-<span class="normal">208</span>
-<span class="normal">209</span>
-<span class="normal">210</span>
-<span class="normal">211</span>
-<span class="normal">212</span>
-<span class="normal">213</span>
-<span class="normal">214</span>
-<span class="normal">215</span>
-<span class="normal">216</span>
-<span class="normal">217</span>
-<span class="normal">218</span>
-<span class="normal">219</span>
-<span class="normal">220</span>
-<span class="normal">221</span>
-<span class="normal">222</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">222</span>
 <span class="normal">223</span>
 <span class="normal">224</span>
 <span class="normal">225</span>
@@ -1064,7 +1221,43 @@ topology adjacency matrix, and replacement values.</p>
 <span class="normal">230</span>
 <span class="normal">231</span>
 <span class="normal">232</span>
-<span class="normal">233</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@jit</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@jit</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">simulate_sync_trajectory</span><span class="p">(</span>
     <span class="n">initial_condition</span><span class="p">,</span>
     <span class="n">topo_adj</span><span class="p">,</span>
@@ -1074,14 +1267,21 @@ topology adjacency matrix, and replacement values.</p>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Simulates a synchronous trajectory of a system based on the given initial condition, topology adjacency matrix, and replacement values.</span>
 
-<span class="sd">    Parameters:</span>
-<span class="sd">        initial_condition (array-like): The initial state of the system.</span>
-<span class="sd">        topo_adj (array-like): The topology adjacency matrix representing the connections between nodes.</span>
-<span class="sd">        replacement_values (array-like): The values used to replace the states during the simulation. It is a vector of two values in the form [value_if_negative, value_if_positive].</span>
-<span class="sd">        max_steps (jnp.arange array): The range of steps to simulate. The simulation will run for each step in the range.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    initial_condition : jnp.ndarray</span>
+<span class="sd">        The initial state of the system.</span>
+<span class="sd">    topo_adj : jnp.ndarray</span>
+<span class="sd">        The topology adjacency matrix representing the connections between nodes in the system.</span>
+<span class="sd">    replacement_values : jnp.ndarray</span>
+<span class="sd">        The values used to replace the states during the simulation. It is a vector of two values in the form [value_if_negative, value_if_positive].</span>
+<span class="sd">    max_steps : jnp.arange</span>
+<span class="sd">        The range of steps to simulate. The simulation will run for each step in the range.</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        jnp.ndarray: A JAX array containing the states of the system at each step, with the initial condition included at the beginning. The array also includes a column for the step indices. All -1 values in the states are replaced with 0 if the replacement values are [-1, 1].</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    jnp.ndarray</span>
+<span class="sd">        A JAX array containing the states of the system at each step, with the initial condition included at the beginning. The array also includes a column for the step indices. All -1 values in the states are replaced with 0 if the replacement values are [-1, 1].</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># Initialize states array</span>
@@ -1123,116 +1323,61 @@ topology adjacency matrix, and replacement values.</p>
     <div class="doc doc-contents first">
 
         <p>Asynchronously evaluates the next state of a node in an Ising model.</p>
-<p>Parameters:
-    prev_state (jnp.ndarray): The previous state vector of the system.
-    topo_adj (jnp.ndarray): The adjacency matrix representing the topology of the system.
-    replacement_values (jnp.ndarray): A vector of two values used for state replacement based on conditions. The values of the vector should be [value_if_negative, value_if_positive]. The value for 0 is not included as it is assumed that the state will remain the same if the node evaluates to 0 in that step.
-    update_index (int): The index of the node to update.</p>
-<p>Returns:
-    jnp.ndarray: The new state vector after updating the specified node.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+<h2 id="grins.ising_bool.async_eval_next_state(prev_state)" class="doc doc-heading doc-heading-parameter">              <b><code>prev_state</code></b>
+</h2>              (<code><span title="jax.numpy.ndarray">ndarray</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The previous state vector of the system.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.ising_bool.async_eval_next_state(topo_adj)" class="doc doc-heading doc-heading-parameter">              <b><code>topo_adj</code></b>
+</h2>              (<code><span title="jax.numpy.ndarray">ndarray</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The adjacency matrix representing the topology of the system.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.ising_bool.async_eval_next_state(replacement_values)" class="doc doc-heading doc-heading-parameter">              <b><code>replacement_values</code></b>
+</h2>              (<code><span title="jax.numpy.ndarray">ndarray</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>A vector of two values used for state replacement based on conditions. The values of the vector should be [value_if_negative, value_if_positive]. The value for 0 is not included as it is assumed that the state will remain the same if the node evaluates to 0 in that step.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.ising_bool.async_eval_next_state(update_index)" class="doc doc-heading doc-heading-parameter">              <b><code>update_index</code></b>
+</h2>              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The index of the node to update.</p>
+          </div>
+        </li>
+    </ul>
+
+
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><span title="jax.numpy.ndarray">ndarray</span></code>
+          –
+          <div class="doc-md-description">
+            <p>The new state vector after updating the specified node.</p>
+          </div>
+        </li>
+    </ul>
 
 
             <details class="quote">
               <summary>Source code in <code>grins/ising_bool.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">236</span>
-<span class="normal">237</span>
-<span class="normal">238</span>
-<span class="normal">239</span>
-<span class="normal">240</span>
-<span class="normal">241</span>
-<span class="normal">242</span>
-<span class="normal">243</span>
-<span class="normal">244</span>
-<span class="normal">245</span>
-<span class="normal">246</span>
-<span class="normal">247</span>
-<span class="normal">248</span>
-<span class="normal">249</span>
-<span class="normal">250</span>
-<span class="normal">251</span>
-<span class="normal">252</span>
-<span class="normal">253</span>
-<span class="normal">254</span>
-<span class="normal">255</span>
-<span class="normal">256</span>
-<span class="normal">257</span>
-<span class="normal">258</span>
-<span class="normal">259</span>
-<span class="normal">260</span>
-<span class="normal">261</span>
-<span class="normal">262</span>
-<span class="normal">263</span>
-<span class="normal">264</span>
-<span class="normal">265</span>
-<span class="normal">266</span>
-<span class="normal">267</span>
-<span class="normal">268</span>
-<span class="normal">269</span>
-<span class="normal">270</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@jit</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">async_eval_next_state</span><span class="p">(</span>
-    <span class="n">prev_state</span><span class="p">,</span>
-    <span class="n">topo_adj</span><span class="p">,</span>
-    <span class="n">replacement_values</span><span class="p">,</span>  <span class="c1"># Vector of two values</span>
-    <span class="n">update_index</span><span class="p">,</span>  <span class="c1"># Index of the node to update</span>
-<span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Asynchronously evaluates the next state of a node in an Ising model.</span>
-
-<span class="sd">    Parameters:</span>
-<span class="sd">        prev_state (jnp.ndarray): The previous state vector of the system.</span>
-<span class="sd">        topo_adj (jnp.ndarray): The adjacency matrix representing the topology of the system.</span>
-<span class="sd">        replacement_values (jnp.ndarray): A vector of two values used for state replacement based on conditions. The values of the vector should be [value_if_negative, value_if_positive]. The value for 0 is not included as it is assumed that the state will remain the same if the node evaluates to 0 in that step.</span>
-<span class="sd">        update_index (int): The index of the node to update.</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        jnp.ndarray: The new state vector after updating the specified node.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># debug.print(&quot;Update index: {}&quot;, update_index)</span>
-    <span class="c1"># debug.print(&quot;Prev state: {}&quot;, prev_state)</span>
-    <span class="c1"># Compute the state update only for the selected index</span>
-    <span class="n">new_value</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">prev_state</span><span class="p">,</span> <span class="n">topo_adj</span><span class="p">[</span><span class="n">update_index</span><span class="p">])</span>  <span class="c1"># Only update one row</span>
-    <span class="c1"># debug.print(&quot;New value0: {}&quot;, new_value)</span>
-    <span class="c1"># Apply replacement values based on conditions</span>
-    <span class="n">new_value</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
-        <span class="n">new_value</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="n">replacement_values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-        <span class="n">jnp</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">new_value</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">replacement_values</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">prev_state</span><span class="p">[</span><span class="n">update_index</span><span class="p">]),</span>
-    <span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">int16</span><span class="p">)</span>
-    <span class="c1"># debug.print(&quot;New value1: {}&quot;, new_value)</span>
-    <span class="c1"># Scatter the updated value into the state vector</span>
-    <span class="n">new_state</span> <span class="o">=</span> <span class="n">prev_state</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">update_index</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">new_value</span><span class="p">)</span>
-    <span class="c1"># debug.print(&quot;New state: {}&quot;, new_state)</span>
-    <span class="k">return</span> <span class="n">new_state</span>
-</code></pre></div></td></tr></table></div>
-            </details>
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-<h1 id="grins.ising_bool.simulate_async_trajectory" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">grins</span><span class="o">.</span><span class="n">ising_bool</span><span class="o">.</span><span class="n">simulate_async_trajectory</span><span class="p">(</span><span class="n">initial_condition</span><span class="p">,</span> <span class="n">topo_adj</span><span class="p">,</span> <span class="n">replacement_values</span><span class="p">,</span> <span class="n">update_indices</span><span class="p">)</span></code>
-
-</h1>
-
-
-    <div class="doc doc-contents first">
-
-        <p>Simulates an asynchronous trajectory of a system given an initial condition and update indices.</p>
-<p>Parameters:
-    initial_condition (array-like): The initial condition of the network.
-    topo_adj (array-like): The adjacency matrix of the network.
-    replacement_values (array-like): The values used to replace the state of the nodes during updates. It is a vector of two values in the form [value_if_negative, value_if_positive].
-    update_indices (array-like): A vector of indices specifying which node to update at each step. Length of the vector should be equal to the number of steps, if not will only be run till the length of the update_indices.</p>
-<p>Returns:
-    jnp.ndarray: A 2D array where each row represents the state of the system at a given step,with the first column indicating the step number. The states are of dtype int16 and all -1 values are converted to 0 if the replacement values are [-1, 1].</p>
-
-
-            <details class="quote">
-              <summary>Source code in <code>grins/ising_bool.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">273</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">272</span>
+<span class="normal">273</span>
 <span class="normal">274</span>
 <span class="normal">275</span>
 <span class="normal">276</span>
@@ -1271,7 +1416,167 @@ topology adjacency matrix, and replacement values.</p>
 <span class="normal">309</span>
 <span class="normal">310</span>
 <span class="normal">311</span>
-<span class="normal">312</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@jit</span>
+<span class="normal">312</span>
+<span class="normal">313</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@jit</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">async_eval_next_state</span><span class="p">(</span>
+    <span class="n">prev_state</span><span class="p">,</span>
+    <span class="n">topo_adj</span><span class="p">,</span>
+    <span class="n">replacement_values</span><span class="p">,</span>  <span class="c1"># Vector of two values</span>
+    <span class="n">update_index</span><span class="p">,</span>  <span class="c1"># Index of the node to update</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Asynchronously evaluates the next state of a node in an Ising model.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    prev_state : jnp.ndarray</span>
+<span class="sd">        The previous state vector of the system.</span>
+<span class="sd">    topo_adj : jnp.ndarray</span>
+<span class="sd">        The adjacency matrix representing the topology of the system.</span>
+<span class="sd">    replacement_values : jnp.ndarray</span>
+<span class="sd">        A vector of two values used for state replacement based on conditions. The values of the vector should be [value_if_negative, value_if_positive]. The value for 0 is not included as it is assumed that the state will remain the same if the node evaluates to 0 in that step.</span>
+<span class="sd">    update_index : int</span>
+<span class="sd">        The index of the node to update.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    jnp.ndarray</span>
+<span class="sd">        The new state vector after updating the specified node.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># debug.print(&quot;Update index: {}&quot;, update_index)</span>
+    <span class="c1"># debug.print(&quot;Prev state: {}&quot;, prev_state)</span>
+    <span class="c1"># Compute the state update only for the selected index</span>
+    <span class="n">new_value</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">prev_state</span><span class="p">,</span> <span class="n">topo_adj</span><span class="p">[</span><span class="n">update_index</span><span class="p">])</span>  <span class="c1"># Only update one row</span>
+    <span class="c1"># debug.print(&quot;New value0: {}&quot;, new_value)</span>
+    <span class="c1"># Apply replacement values based on conditions</span>
+    <span class="n">new_value</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+        <span class="n">new_value</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">replacement_values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+        <span class="n">jnp</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">new_value</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">replacement_values</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">prev_state</span><span class="p">[</span><span class="n">update_index</span><span class="p">]),</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">int16</span><span class="p">)</span>
+    <span class="c1"># debug.print(&quot;New value1: {}&quot;, new_value)</span>
+    <span class="c1"># Scatter the updated value into the state vector</span>
+    <span class="n">new_state</span> <span class="o">=</span> <span class="n">prev_state</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">update_index</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">new_value</span><span class="p">)</span>
+    <span class="c1"># debug.print(&quot;New state: {}&quot;, new_state)</span>
+    <span class="k">return</span> <span class="n">new_state</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h1 id="grins.ising_bool.simulate_async_trajectory" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">grins</span><span class="o">.</span><span class="n">ising_bool</span><span class="o">.</span><span class="n">simulate_async_trajectory</span><span class="p">(</span><span class="n">initial_condition</span><span class="p">,</span> <span class="n">topo_adj</span><span class="p">,</span> <span class="n">replacement_values</span><span class="p">,</span> <span class="n">update_indices</span><span class="p">)</span></code>
+
+</h1>
+
+
+    <div class="doc doc-contents first">
+
+        <p>Simulates an asynchronous trajectory of a system given an initial condition and update indices.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+<h2 id="grins.ising_bool.simulate_async_trajectory(initial_condition)" class="doc doc-heading doc-heading-parameter">              <b><code>initial_condition</code></b>
+</h2>              (<code><span title="jax.numpy.ndarray">ndarray</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The initial condition of the system.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.ising_bool.simulate_async_trajectory(topo_adj)" class="doc doc-heading doc-heading-parameter">              <b><code>topo_adj</code></b>
+</h2>              (<code><span title="jax.numpy.ndarray">ndarray</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The adjacency matrix representing the topology of the system.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.ising_bool.simulate_async_trajectory(replacement_values)" class="doc doc-heading doc-heading-parameter">              <b><code>replacement_values</code></b>
+</h2>              (<code><span title="jax.numpy.ndarray">ndarray</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The values used to replace the states during the simulation. It is a vector of two values in the form [value_if_negative, value_if_positive].</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.ising_bool.simulate_async_trajectory(update_indices)" class="doc doc-heading doc-heading-parameter">              <b><code>update_indices</code></b>
+</h2>              (<code><span title="jax.numpy.ndarray">ndarray</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>A vector of indices specifying which node to update at each step. The length of the vector should be equal to the number of steps. If not, the simulation will only run until the length of the update_indices.</p>
+          </div>
+        </li>
+    </ul>
+
+
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><span title="jax.numpy.ndarray">ndarray</span></code>
+          –
+          <div class="doc-md-description">
+            <p>A JAX array containing the states of the system at each step, with the initial condition included at the beginning. The array also includes a column for the step indices. All -1 values in the states are replaced with 0 if the replacement values are [-1, 1].</p>
+          </div>
+        </li>
+    </ul>
+
+
+            <details class="quote">
+              <summary>Source code in <code>grins/ising_bool.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">316</span>
+<span class="normal">317</span>
+<span class="normal">318</span>
+<span class="normal">319</span>
+<span class="normal">320</span>
+<span class="normal">321</span>
+<span class="normal">322</span>
+<span class="normal">323</span>
+<span class="normal">324</span>
+<span class="normal">325</span>
+<span class="normal">326</span>
+<span class="normal">327</span>
+<span class="normal">328</span>
+<span class="normal">329</span>
+<span class="normal">330</span>
+<span class="normal">331</span>
+<span class="normal">332</span>
+<span class="normal">333</span>
+<span class="normal">334</span>
+<span class="normal">335</span>
+<span class="normal">336</span>
+<span class="normal">337</span>
+<span class="normal">338</span>
+<span class="normal">339</span>
+<span class="normal">340</span>
+<span class="normal">341</span>
+<span class="normal">342</span>
+<span class="normal">343</span>
+<span class="normal">344</span>
+<span class="normal">345</span>
+<span class="normal">346</span>
+<span class="normal">347</span>
+<span class="normal">348</span>
+<span class="normal">349</span>
+<span class="normal">350</span>
+<span class="normal">351</span>
+<span class="normal">352</span>
+<span class="normal">353</span>
+<span class="normal">354</span>
+<span class="normal">355</span>
+<span class="normal">356</span>
+<span class="normal">357</span>
+<span class="normal">358</span>
+<span class="normal">359</span>
+<span class="normal">360</span>
+<span class="normal">361</span>
+<span class="normal">362</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@jit</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">simulate_async_trajectory</span><span class="p">(</span>
     <span class="n">initial_condition</span><span class="p">,</span>
     <span class="n">topo_adj</span><span class="p">,</span>
@@ -1281,14 +1586,21 @@ topology adjacency matrix, and replacement values.</p>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Simulates an asynchronous trajectory of a system given an initial condition and update indices.</span>
 
-<span class="sd">    Parameters:</span>
-<span class="sd">        initial_condition (array-like): The initial condition of the network.</span>
-<span class="sd">        topo_adj (array-like): The adjacency matrix of the network.</span>
-<span class="sd">        replacement_values (array-like): The values used to replace the state of the nodes during updates. It is a vector of two values in the form [value_if_negative, value_if_positive].</span>
-<span class="sd">        update_indices (array-like): A vector of indices specifying which node to update at each step. Length of the vector should be equal to the number of steps, if not will only be run till the length of the update_indices.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    initial_condition : jnp.ndarray</span>
+<span class="sd">        The initial condition of the system.</span>
+<span class="sd">    topo_adj : jnp.ndarray</span>
+<span class="sd">        The adjacency matrix representing the topology of the system.</span>
+<span class="sd">    replacement_values : jnp.ndarray</span>
+<span class="sd">        The values used to replace the states during the simulation. It is a vector of two values in the form [value_if_negative, value_if_positive].</span>
+<span class="sd">    update_indices : jnp.ndarray</span>
+<span class="sd">        A vector of indices specifying which node to update at each step. The length of the vector should be equal to the number of steps. If not, the simulation will only run until the length of the update_indices.</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        jnp.ndarray: A 2D array where each row represents the state of the system at a given step,with the first column indicating the step number. The states are of dtype int16 and all -1 values are converted to 0 if the replacement values are [-1, 1].</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    jnp.ndarray</span>
+<span class="sd">        A JAX array containing the states of the system at each step, with the initial condition included at the beginning. The array also includes a column for the step indices. All -1 values in the states are replaced with 0 if the replacement values are [-1, 1].</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">step_fn</span><span class="p">(</span><span class="n">carry</span><span class="p">,</span> <span class="n">update_index</span><span class="p">):</span>
@@ -1329,21 +1641,116 @@ topology adjacency matrix, and replacement values.</p>
     <div class="doc doc-contents first">
 
         <p>Run synchronous or asynchronous simulations for a given topology.</p>
-<p>Parameters:
-    topo_file (str): Path to the topology file.
-    num_initial_conditions (int): Number of initial conditions to sample.
-    initial_conditions (jax.numpy.ndarray): Initial conditions matrix with the individual intial conditions as rows of the matrix. If provided, num_initial_conditions is ignored.
-    max_steps (int): Maximum number of steps to simulate. If not provided, it is calculated to be 10 times the number of nodes.
-    batch_size (int): Number of samples per batch.
-    replacement_values (jax.numpy.ndarray): Values used for replacement in the simulation. Default is [0, 1].
-    mode (str): Simulation mode, either "sync" or "async".
-    packbits (bool): Whether to pack the 0/1 states into bits to reduce memory usage. Uses jnp.packbits for packing.
-    save_dir (str): Directory to save the simulation results.</p>
-<p>Returns:
-    None. The simulation results are saved to a parquet file in save_dir within a subdirectory named after the topology file.</p>
-<p>Example:
-Run the synchronous simulation for a topology file:</p>
-<p>'''python</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+<h2 id="grins.ising_bool.run_simulations(topo_file)" class="doc doc-heading doc-heading-parameter">              <b><code>topo_file</code></b>
+</h2>              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The path to the topology file.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.ising_bool.run_simulations(num_initial_conditions)" class="doc doc-heading doc-heading-parameter">              <b><code>num_initial_conditions</code></b>
+</h2>              (<code><span title="int">int</span></code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>The number of initial conditions to sample. If not provided, the default is 2**10.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.ising_bool.run_simulations(inital_conditions)" class="doc doc-heading doc-heading-parameter">              <b><code>inital_conditions</code></b>
+</h2>              (<code><span title="jax.numpy.ndarray">ndarray</span></code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>The initial conditions matrix with the individual initial conditions as rows of the matrix. If provided, num_initial_conditions is ignored.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.ising_bool.run_simulations(max_steps)" class="doc doc-heading doc-heading-parameter">              <b><code>max_steps</code></b>
+</h2>              (<code><span title="int">int</span></code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>The maximum number of steps to simulate. If not provided, it is calculated to be 10 times the number of nodes.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.ising_bool.run_simulations(batch_size)" class="doc doc-heading doc-heading-parameter">              <b><code>batch_size</code></b>
+</h2>              (<code><span title="int">int</span></code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>The number of samples per batch. If not provided, the default is 2**10.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.ising_bool.run_simulations(replacement_values)" class="doc doc-heading doc-heading-parameter">              <b><code>replacement_values</code></b>
+</h2>              (<code><span title="jax.numpy.ndarray">ndarray</span></code>, default:
+                  <code><span title="jax.numpy.array">array</span>([0, 1])</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>The values used for replacement in the simulation. The default is [0, 1].</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.ising_bool.run_simulations(mode)" class="doc doc-heading doc-heading-parameter">              <b><code>mode</code></b>
+</h2>              (<code><span title="str">str</span></code>, default:
+                  <code>&#39;sync&#39;</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>The simulation mode, either "sync" or "async". The default is "sync".</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.ising_bool.run_simulations(packbits)" class="doc doc-heading doc-heading-parameter">              <b><code>packbits</code></b>
+</h2>              (<code><span title="bool">bool</span></code>, default:
+                  <code>False</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>Whether to pack the 0/1 states into bits to reduce memory usage. The default is False.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.ising_bool.run_simulations(save_dir)" class="doc doc-heading doc-heading-parameter">              <b><code>save_dir</code></b>
+</h2>              (<code><span title="str">str</span></code>, default:
+                  <code>&#39;IsingSimulResults&#39;</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>The directory to save the simulation results. The default is "IsingSimulResults".</p>
+          </div>
+        </li>
+    </ul>
+
+
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code>None</code>
+          –
+          <div class="doc-md-description">
+            <p>The simulation results are saved to a parquet file in save_dir within a subdirectory named after the topology file.</p>
+          </div>
+        </li>
+    </ul>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <p>Run the synchronous simulation for a topology file:</p>
 <blockquote>
 <blockquote>
 <blockquote>
@@ -1356,16 +1763,14 @@ Run the synchronous simulation for a topology file:</p>
 ...     mode="sync",
 ...     packbits=True,
 ...     save_dir="IsingSimulResults",
-... )
-'''</p>
+... )</p>
 </blockquote>
 </blockquote>
 </blockquote>
 <p>This will save the simulation results to a parquet file in the directory "IsingSimulResults/ER_1000_0.1/ER_1000_0.1_sync_results.parquet".</p>
 <p>Similary, the asynchronous simulation can be run by setting mode="async".</p>
-<p>If the initial conditions matrix is provided, the num_initial_conditions parameter is ignored. In this case, the initial_conditions matrix should have the individual initial conditions as rows.</p>
-<h2 id="grins.ising_bool.run_simulations--if-only-specfic-inital-conditions-are-to-be-used-the-initial-conditions-matrix-can-be-provided-with-the-individual-initial-conditions-as-rows-of-the-matrix-this-provides-control-over-simulating-specific-pre-defined-initial-conditions">If only specfic inital conditions are to be used, the initial conditions matrix can be provided with the individual initial conditions as rows of the matrix. This provides control over simulating specific pre-defined initial conditions.</h2>
-<p>'''python</p>
+<p>If the initial conditions matrix is provided, the num_initial_conditions parameter is ignored. In this case, the initial_conditions matrix should have the individual initial conditions as rows.
+If only specfic inital conditions are to be used, the initial conditions matrix can be provided with the individual initial conditions as rows of the matrix. This provides control over simulating specific pre-defined initial conditions.</p>
 <blockquote>
 <blockquote>
 <blockquote>
@@ -1379,13 +1784,11 @@ run_simulations(
 ...     mode="sync",
 ...     packbits=True,
 ...     save_dir="IsingSimulResults",
-... )
-'''</p>
+... )</p>
 </blockquote>
 </blockquote>
 </blockquote>
 <p>For cases where the replacement values are not [0, 1], the replacement values should be provided as a jax array of length 2 with the first value less than the second.</p>
-<p>'''python</p>
 <blockquote>
 <blockquote>
 <blockquote>
@@ -1399,14 +1802,12 @@ run_simulations(
 ...     mode="sync",
 ...     packbits=True,
 ...     save_dir="IsingSimulResults",
-... )
-'''</p>
+... )</p>
 </blockquote>
 </blockquote>
 </blockquote>
 <p>The results for [-1, 1] replacment values will also be converted to 0 for all the -1 or 0 values in the states and 1s will remain as 1s when saving to the file. This is important as otherwise the packbits  would not work.</p>
 <p>The packbits function used is jnp.packbits which packs the 0/1 states into bits to reduce memory usage. This is useful when the number of nodes is large and the number of steps is also large. The memory usase can be reduced by a factor of 8 by packing the states into bits. If packbits is not set to True, the states are saved as is.</p>
-<p>'''python</p>
 <blockquote>
 <blockquote>
 <blockquote>
@@ -1419,8 +1820,7 @@ run_simulations(
 ...     mode="sync",
 ...     packbits=False,
 ...     save_dir="IsingSimulResults",
-... )
-'''</p>
+... )</p>
 </blockquote>
 </blockquote>
 </blockquote>
@@ -1432,61 +1832,11 @@ If the packbits=True, the final dataframe has the following columns:
 - Byte_i: The ith byte of the packed states for the simulation.
 The Byte_i columns are created based on the number of nodes in the network. For example, if there are 100 nodes, there will be 13 columns for the packed states. They can be unpacked using jnp.unpackbits to get the unpacked state values.
 The order of the nodes for the Byte_i columns is the same as the order of the nodes in the network after parsing the topology file using the parse_topo_to_matrix function. The order of the nodes is saved in a text file in the simulation directory for easy reference. The naming convention for the text file is toponame_node_names_order.csv.</p>
-
+</details>
 
             <details class="quote">
               <summary>Source code in <code>grins/ising_bool.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">324</span>
-<span class="normal">325</span>
-<span class="normal">326</span>
-<span class="normal">327</span>
-<span class="normal">328</span>
-<span class="normal">329</span>
-<span class="normal">330</span>
-<span class="normal">331</span>
-<span class="normal">332</span>
-<span class="normal">333</span>
-<span class="normal">334</span>
-<span class="normal">335</span>
-<span class="normal">336</span>
-<span class="normal">337</span>
-<span class="normal">338</span>
-<span class="normal">339</span>
-<span class="normal">340</span>
-<span class="normal">341</span>
-<span class="normal">342</span>
-<span class="normal">343</span>
-<span class="normal">344</span>
-<span class="normal">345</span>
-<span class="normal">346</span>
-<span class="normal">347</span>
-<span class="normal">348</span>
-<span class="normal">349</span>
-<span class="normal">350</span>
-<span class="normal">351</span>
-<span class="normal">352</span>
-<span class="normal">353</span>
-<span class="normal">354</span>
-<span class="normal">355</span>
-<span class="normal">356</span>
-<span class="normal">357</span>
-<span class="normal">358</span>
-<span class="normal">359</span>
-<span class="normal">360</span>
-<span class="normal">361</span>
-<span class="normal">362</span>
-<span class="normal">363</span>
-<span class="normal">364</span>
-<span class="normal">365</span>
-<span class="normal">366</span>
-<span class="normal">367</span>
-<span class="normal">368</span>
-<span class="normal">369</span>
-<span class="normal">370</span>
-<span class="normal">371</span>
-<span class="normal">372</span>
-<span class="normal">373</span>
-<span class="normal">374</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">374</span>
 <span class="normal">375</span>
 <span class="normal">376</span>
 <span class="normal">377</span>
@@ -1648,7 +1998,62 @@ The order of the nodes for the Byte_i columns is the same as the order of the no
 <span class="normal">533</span>
 <span class="normal">534</span>
 <span class="normal">535</span>
-<span class="normal">536</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">run_simulations</span><span class="p">(</span>
+<span class="normal">536</span>
+<span class="normal">537</span>
+<span class="normal">538</span>
+<span class="normal">539</span>
+<span class="normal">540</span>
+<span class="normal">541</span>
+<span class="normal">542</span>
+<span class="normal">543</span>
+<span class="normal">544</span>
+<span class="normal">545</span>
+<span class="normal">546</span>
+<span class="normal">547</span>
+<span class="normal">548</span>
+<span class="normal">549</span>
+<span class="normal">550</span>
+<span class="normal">551</span>
+<span class="normal">552</span>
+<span class="normal">553</span>
+<span class="normal">554</span>
+<span class="normal">555</span>
+<span class="normal">556</span>
+<span class="normal">557</span>
+<span class="normal">558</span>
+<span class="normal">559</span>
+<span class="normal">560</span>
+<span class="normal">561</span>
+<span class="normal">562</span>
+<span class="normal">563</span>
+<span class="normal">564</span>
+<span class="normal">565</span>
+<span class="normal">566</span>
+<span class="normal">567</span>
+<span class="normal">568</span>
+<span class="normal">569</span>
+<span class="normal">570</span>
+<span class="normal">571</span>
+<span class="normal">572</span>
+<span class="normal">573</span>
+<span class="normal">574</span>
+<span class="normal">575</span>
+<span class="normal">576</span>
+<span class="normal">577</span>
+<span class="normal">578</span>
+<span class="normal">579</span>
+<span class="normal">580</span>
+<span class="normal">581</span>
+<span class="normal">582</span>
+<span class="normal">583</span>
+<span class="normal">584</span>
+<span class="normal">585</span>
+<span class="normal">586</span>
+<span class="normal">587</span>
+<span class="normal">588</span>
+<span class="normal">589</span>
+<span class="normal">590</span>
+<span class="normal">591</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">run_simulations</span><span class="p">(</span>
     <span class="n">topo_file</span><span class="p">,</span>
     <span class="n">num_initial_conditions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">inital_conditions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -1662,24 +2067,36 @@ The order of the nodes for the Byte_i columns is the same as the order of the no
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Run synchronous or asynchronous simulations for a given topology.</span>
 
-<span class="sd">    Parameters:</span>
-<span class="sd">        topo_file (str): Path to the topology file.</span>
-<span class="sd">        num_initial_conditions (int): Number of initial conditions to sample.</span>
-<span class="sd">        initial_conditions (jax.numpy.ndarray): Initial conditions matrix with the individual intial conditions as rows of the matrix. If provided, num_initial_conditions is ignored.</span>
-<span class="sd">        max_steps (int): Maximum number of steps to simulate. If not provided, it is calculated to be 10 times the number of nodes.</span>
-<span class="sd">        batch_size (int): Number of samples per batch.</span>
-<span class="sd">        replacement_values (jax.numpy.ndarray): Values used for replacement in the simulation. Default is [0, 1].</span>
-<span class="sd">        mode (str): Simulation mode, either &quot;sync&quot; or &quot;async&quot;.</span>
-<span class="sd">        packbits (bool): Whether to pack the 0/1 states into bits to reduce memory usage. Uses jnp.packbits for packing.</span>
-<span class="sd">        save_dir (str): Directory to save the simulation results.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    topo_file : str</span>
+<span class="sd">        The path to the topology file.</span>
+<span class="sd">    num_initial_conditions : int, optional</span>
+<span class="sd">        The number of initial conditions to sample. If not provided, the default is 2**10.</span>
+<span class="sd">    inital_conditions : jax.numpy.ndarray, optional</span>
+<span class="sd">        The initial conditions matrix with the individual initial conditions as rows of the matrix. If provided, num_initial_conditions is ignored.</span>
+<span class="sd">    max_steps : int, optional</span>
+<span class="sd">        The maximum number of steps to simulate. If not provided, it is calculated to be 10 times the number of nodes.</span>
+<span class="sd">    batch_size : int, optional</span>
+<span class="sd">        The number of samples per batch. If not provided, the default is 2**10.</span>
+<span class="sd">    replacement_values : jax.numpy.ndarray, optional</span>
+<span class="sd">        The values used for replacement in the simulation. The default is [0, 1].</span>
+<span class="sd">    mode : str, optional</span>
+<span class="sd">        The simulation mode, either &quot;sync&quot; or &quot;async&quot;. The default is &quot;sync&quot;.</span>
+<span class="sd">    packbits : bool, optional</span>
+<span class="sd">        Whether to pack the 0/1 states into bits to reduce memory usage. The default is False.</span>
+<span class="sd">    save_dir : str, optional</span>
+<span class="sd">        The directory to save the simulation results. The default is &quot;IsingSimulResults&quot;.</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        None. The simulation results are saved to a parquet file in save_dir within a subdirectory named after the topology file.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
+<span class="sd">        The simulation results are saved to a parquet file in save_dir within a subdirectory named after the topology file.</span>
 
-<span class="sd">    Example:</span>
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
 <span class="sd">    Run the synchronous simulation for a topology file:</span>
 
-<span class="sd">    &#39;&#39;&#39;python</span>
 <span class="sd">    &gt;&gt;&gt; run_simulations(</span>
 <span class="sd">    ...     topo_file=&quot;TOPOS/ER_1000_0.1.topo&quot;,</span>
 <span class="sd">    ...     num_initial_conditions=2**10,</span>
@@ -1690,16 +2107,14 @@ The order of the nodes for the Byte_i columns is the same as the order of the no
 <span class="sd">    ...     packbits=True,</span>
 <span class="sd">    ...     save_dir=&quot;IsingSimulResults&quot;,</span>
 <span class="sd">    ... )</span>
-<span class="sd">    &#39;&#39;&#39;</span>
 
 <span class="sd">    This will save the simulation results to a parquet file in the directory &quot;IsingSimulResults/ER_1000_0.1/ER_1000_0.1_sync_results.parquet&quot;.</span>
 
 <span class="sd">    Similary, the asynchronous simulation can be run by setting mode=&quot;async&quot;.</span>
 
 <span class="sd">    If the initial conditions matrix is provided, the num_initial_conditions parameter is ignored. In this case, the initial_conditions matrix should have the individual initial conditions as rows.</span>
-<span class="sd">    # If only specfic inital conditions are to be used, the initial conditions matrix can be provided with the individual initial conditions as rows of the matrix. This provides control over simulating specific pre-defined initial conditions.</span>
+<span class="sd">    If only specfic inital conditions are to be used, the initial conditions matrix can be provided with the individual initial conditions as rows of the matrix. This provides control over simulating specific pre-defined initial conditions.</span>
 
-<span class="sd">    &#39;&#39;&#39;python</span>
 <span class="sd">    &gt;&gt;&gt; initial_conditions = jnp.array([[0, 1, 0, 1], [1, 0, 1, 0], [0, 0, 1, 1]])</span>
 <span class="sd">    &gt;&gt;&gt; run_simulations(</span>
 <span class="sd">    ...     topo_file=&quot;TOPOS/ER_1000_0.1.topo&quot;,</span>
@@ -1711,11 +2126,9 @@ The order of the nodes for the Byte_i columns is the same as the order of the no
 <span class="sd">    ...     packbits=True,</span>
 <span class="sd">    ...     save_dir=&quot;IsingSimulResults&quot;,</span>
 <span class="sd">    ... )</span>
-<span class="sd">    &#39;&#39;&#39;</span>
 
 <span class="sd">    For cases where the replacement values are not [0, 1], the replacement values should be provided as a jax array of length 2 with the first value less than the second.</span>
 
-<span class="sd">    &#39;&#39;&#39;python</span>
 <span class="sd">    &gt;&gt;&gt; replacement_values = jnp.array([-1, 1]) # Replacement values are -1 for negetive and 1 for positive</span>
 <span class="sd">    &gt;&gt;&gt; run_simulations(</span>
 <span class="sd">    ...     topo_file=&quot;TOPOS/ER_1000_0.1.topo&quot;,</span>
@@ -1727,13 +2140,11 @@ The order of the nodes for the Byte_i columns is the same as the order of the no
 <span class="sd">    ...     packbits=True,</span>
 <span class="sd">    ...     save_dir=&quot;IsingSimulResults&quot;,</span>
 <span class="sd">    ... )</span>
-<span class="sd">    &#39;&#39;&#39;</span>
 
 <span class="sd">    The results for [-1, 1] replacment values will also be converted to 0 for all the -1 or 0 values in the states and 1s will remain as 1s when saving to the file. This is important as otherwise the packbits  would not work.</span>
 
 <span class="sd">    The packbits function used is jnp.packbits which packs the 0/1 states into bits to reduce memory usage. This is useful when the number of nodes is large and the number of steps is also large. The memory usase can be reduced by a factor of 8 by packing the states into bits. If packbits is not set to True, the states are saved as is.</span>
 
-<span class="sd">    &#39;&#39;&#39;python</span>
 <span class="sd">    &gt;&gt;&gt; run_simulations(</span>
 <span class="sd">    ...     topo_file=&quot;TOPOS/ER_1000_0.1.topo&quot;,</span>
 <span class="sd">    ...     num_initial_conditions=2**10,</span>
@@ -1744,7 +2155,6 @@ The order of the nodes for the Byte_i columns is the same as the order of the no
 <span class="sd">    ...     packbits=False,</span>
 <span class="sd">    ...     save_dir=&quot;IsingSimulResults&quot;,</span>
 <span class="sd">    ... )</span>
-<span class="sd">    &#39;&#39;&#39;</span>
 
 <span class="sd">    The final dataframe which is written to the parquet file has the following columns for the packbits=False case:</span>
 <span class="sd">    - Step: The step number for the simulation.</span>
