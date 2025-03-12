@@ -3598,7 +3598,8 @@ The 'state_counts' dataframe contains the counts of each state in the normalised
 </blockquote>
 </blockquote>
 </blockquote>
-<p>The normalised solution dataframe will have vlaues of the nodes bewteen 0 (lowest) and 1 (highest) and the returned 'lvl_df' will have the discrete state labels for each row in the input DataFrame.</p>
+<p>The normalized solution DataFrame contains values of the nodes between 0 (lowest) and 1 (highest).
+The returned <code>lvl_df</code> will have discrete state labels for each row in the input DataFrame.</p>
 </details>
 
             <details class="quote">
@@ -3712,7 +3713,9 @@ The 'state_counts' dataframe contains the counts of each state in the normalised
 <span class="normal">806</span>
 <span class="normal">807</span>
 <span class="normal">808</span>
-<span class="normal">809</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">discretise_solutions</span><span class="p">(</span><span class="n">norm_df</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">1.01</span><span class="p">):</span>
+<span class="normal">809</span>
+<span class="normal">810</span>
+<span class="normal">811</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">discretise_solutions</span><span class="p">(</span><span class="n">norm_df</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">1.01</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Discretises the solutions in a g/k normalized DataFrame based on histogram peaks and minima.</span>
 
@@ -3739,7 +3742,9 @@ The 'state_counts' dataframe contains the counts of each state in the normalised
 
 <span class="sd">    &gt;&gt;&gt; lvl_df = discretise_solutions(norm_df)</span>
 
-<span class="sd">    The normalised solution dataframe will have vlaues of the nodes bewteen 0 (lowest) and 1 (highest) and the returned &#39;lvl_df&#39; will have the discrete state labels for each row in the input DataFrame.</span>
+<span class="sd">    The normalized solution DataFrame contains values of the nodes between 0 (lowest) and 1 (highest).</span>
+<span class="sd">    The returned `lvl_df` will have discrete state labels for each row in the input DataFrame.</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Flatten the numeric part of the dataframe (columns 4 onwards)</span>
     <span class="n">flat</span> <span class="o">=</span> <span class="n">norm_df</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
