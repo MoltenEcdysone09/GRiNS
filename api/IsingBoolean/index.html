@@ -1,0 +1,1855 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="GRiNS: Gene Regulatory Interaction Network Simulator Documentation">
+      
+      
+      
+        <link rel="canonical" href="https://MoltenEcdysone09.github.io/GRiNS/api/IsingBoolean/">
+      
+      
+        <link rel="prev" href="../RACIPE/">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>Ising Boolean - GRiNS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ising-boolean-formalism" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="GRiNS" class="md-header__button md-logo" aria-label="GRiNS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            GRiNS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ising Boolean
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/MoltenEcdysone09/GRiNS" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    MoltenEcdysone09/GRiNS
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="GRiNS" class="md-nav__button md-logo" aria-label="GRiNS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    GRiNS
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/MoltenEcdysone09/GRiNS" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    MoltenEcdysone09/GRiNS
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Usage
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Usage
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/racipe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RACIPE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    API
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            API
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RACIPE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RACIPE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Ising Boolean
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Ising Boolean
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#grn-parsing-and-intial-condition-generation-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      GRN Parsing and Intial Condition Generation Functions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grins.ising_bool.parse_topo_to_matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      parse_topo_to_matrix
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="parse_topo_to_matrix">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grins.ising_bool.parse_topo_to_matrix(topofile_path)" class="md-nav__link">
+    <span class="md-ellipsis">
+      topofile_path
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grins.ising_bool.generate_intial_conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      generate_intial_conditions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="generate_intial_conditions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grins.ising_bool.generate_intial_conditions(num_nodes)" class="md-nav__link">
+    <span class="md-ellipsis">
+      num_nodes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.ising_bool.generate_intial_conditions(num_samples)" class="md-nav__link">
+    <span class="md-ellipsis">
+      num_samples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ising-boolean-simulation-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ising Boolean Simulation Functions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grins.ising_bool.sync_eval_next_state" class="md-nav__link">
+    <span class="md-ellipsis">
+      sync_eval_next_state
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="sync_eval_next_state">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grins.ising_bool.sync_eval_next_state(prev_state)" class="md-nav__link">
+    <span class="md-ellipsis">
+      prev_state
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.ising_bool.sync_eval_next_state(topo_adj)" class="md-nav__link">
+    <span class="md-ellipsis">
+      topo_adj
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.ising_bool.sync_eval_next_state(replacement_values)" class="md-nav__link">
+    <span class="md-ellipsis">
+      replacement_values
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grins.ising_bool.simulate_sync_trajectory" class="md-nav__link">
+    <span class="md-ellipsis">
+      simulate_sync_trajectory
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="simulate_sync_trajectory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grins.ising_bool.simulate_sync_trajectory(initial_condition)" class="md-nav__link">
+    <span class="md-ellipsis">
+      initial_condition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.ising_bool.simulate_sync_trajectory(topo_adj)" class="md-nav__link">
+    <span class="md-ellipsis">
+      topo_adj
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.ising_bool.simulate_sync_trajectory(replacement_values)" class="md-nav__link">
+    <span class="md-ellipsis">
+      replacement_values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.ising_bool.simulate_sync_trajectory(max_steps)" class="md-nav__link">
+    <span class="md-ellipsis">
+      max_steps
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grins.ising_bool.async_eval_next_state" class="md-nav__link">
+    <span class="md-ellipsis">
+      async_eval_next_state
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="async_eval_next_state">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grins.ising_bool.async_eval_next_state(prev_state)" class="md-nav__link">
+    <span class="md-ellipsis">
+      prev_state
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.ising_bool.async_eval_next_state(topo_adj)" class="md-nav__link">
+    <span class="md-ellipsis">
+      topo_adj
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.ising_bool.async_eval_next_state(replacement_values)" class="md-nav__link">
+    <span class="md-ellipsis">
+      replacement_values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.ising_bool.async_eval_next_state(update_index)" class="md-nav__link">
+    <span class="md-ellipsis">
+      update_index
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grins.ising_bool.simulate_async_trajectory" class="md-nav__link">
+    <span class="md-ellipsis">
+      simulate_async_trajectory
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="simulate_async_trajectory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grins.ising_bool.simulate_async_trajectory(initial_condition)" class="md-nav__link">
+    <span class="md-ellipsis">
+      initial_condition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.ising_bool.simulate_async_trajectory(topo_adj)" class="md-nav__link">
+    <span class="md-ellipsis">
+      topo_adj
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.ising_bool.simulate_async_trajectory(replacement_values)" class="md-nav__link">
+    <span class="md-ellipsis">
+      replacement_values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.ising_bool.simulate_async_trajectory(update_indices)" class="md-nav__link">
+    <span class="md-ellipsis">
+      update_indices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grins.ising_bool.run_simulations" class="md-nav__link">
+    <span class="md-ellipsis">
+      run_simulations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="run_simulations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grins.ising_bool.run_simulations(topo_file)" class="md-nav__link">
+    <span class="md-ellipsis">
+      topo_file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.ising_bool.run_simulations(num_initial_conditions)" class="md-nav__link">
+    <span class="md-ellipsis">
+      num_initial_conditions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.ising_bool.run_simulations(initial_conditions)" class="md-nav__link">
+    <span class="md-ellipsis">
+      initial_conditions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.ising_bool.run_simulations(max_steps)" class="md-nav__link">
+    <span class="md-ellipsis">
+      max_steps
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.ising_bool.run_simulations(batch_size)" class="md-nav__link">
+    <span class="md-ellipsis">
+      batch_size
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.ising_bool.run_simulations(replacement_values)" class="md-nav__link">
+    <span class="md-ellipsis">
+      replacement_values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.ising_bool.run_simulations(mode)" class="md-nav__link">
+    <span class="md-ellipsis">
+      mode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.ising_bool.run_simulations(packbits)" class="md-nav__link">
+    <span class="md-ellipsis">
+      packbits
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.ising_bool.run_simulations(save_dir)" class="md-nav__link">
+    <span class="md-ellipsis">
+      save_dir
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.ising_bool.run_simulations--if-only-specfic-inital-conditions-are-to-be-used-the-initial-conditions-matrix-can-be-provided-with-the-individual-initial-conditions-as-rows-of-the-matrix-this-provides-control-over-simulating-specific-pre-defined-initial-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      If only specfic inital conditions are to be used, the initial conditions matrix can be provided with the individual initial conditions as rows of the matrix. This provides control over simulating specific pre-defined initial conditions.
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="ising-boolean-formalism">Ising Boolean Formalism</h1>
+<p>Functions related to Ising simulation.</p>
+<h2 id="grn-parsing-and-intial-condition-generation-functions">GRN Parsing and Intial Condition Generation Functions</h2>
+<hr />
+
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="grins.ising_bool.parse_topo_to_matrix" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">grins</span><span class="o">.</span><span class="n">ising_bool</span><span class="o">.</span><span class="n">parse_topo_to_matrix</span><span class="p">(</span><span class="n">topofile_path</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+        <p>Parses a topology file into an adjacency matrix.</p>
+<p>This function reads a topology file, and converts it into an adjacency matrix.
+The adjacency matrix is then converted to a JAX array.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.ising_bool.parse_topo_to_matrix(topofile_path)" class="doc doc-heading doc-heading-parameter">                  <code>topofile_path</code>
+</h3>            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The path to the topology file. The file should be in a format
+             readable by pandas <code>read_csv</code> with whitespace as the delimiter.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>tuple</code></td>            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A tuple containing:
+- topo_adj (jax.numpy.ndarray): The adjacency matrix as a JAX array.
+- node_names (list): A list of node names in the order they appear in the adjacency matrix.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="grins.ising_bool.generate_intial_conditions" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">grins</span><span class="o">.</span><span class="n">ising_bool</span><span class="o">.</span><span class="n">generate_intial_conditions</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">,</span> <span class="n">num_samples</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+        <p>Generate initial conditions for a given number of nodes and samples.</p>
+<p>This function generates initial conditions using Sobol sequences and scales the generated samples to [0, 1].</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.ising_bool.generate_intial_conditions(num_nodes)" class="doc doc-heading doc-heading-parameter">                  <code>num_nodes</code>
+</h3>            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The number of nodes for which to generate initial conditions.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.ising_bool.generate_intial_conditions(num_samples)" class="doc doc-heading doc-heading-parameter">                  <code>num_samples</code>
+</h3>            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The number of samples to generate.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>jax.numpy.ndarray: The generated initial conditions as a JAX array of integers</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div><hr />
+<h2 id="ising-boolean-simulation-functions">Ising Boolean Simulation Functions</h2>
+<hr />
+
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="grins.ising_bool.sync_eval_next_state" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">grins</span><span class="o">.</span><span class="n">ising_bool</span><span class="o">.</span><span class="n">sync_eval_next_state</span><span class="p">(</span><span class="n">prev_state</span><span class="p">,</span> <span class="n">topo_adj</span><span class="p">,</span> <span class="n">replacement_values</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+        <p>Evaluate the next state of a system synchronously based on the previous state,
+topology adjacency matrix, and replacement values.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.ising_bool.sync_eval_next_state(prev_state)" class="doc doc-heading doc-heading-parameter">                  <code>prev_state</code>
+</h3>            </td>
+            <td>
+                  <code><span title="jax.numpy.ndarray">ndarray</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The previous state of the system.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.ising_bool.sync_eval_next_state(topo_adj)" class="doc doc-heading doc-heading-parameter">                  <code>topo_adj</code>
+</h3>            </td>
+            <td>
+                  <code><span title="jax.numpy.ndarray">ndarray</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The topology adjacency matrix representing the connections between nodes in the system.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.ising_bool.sync_eval_next_state(replacement_values)" class="doc doc-heading doc-heading-parameter">                  <code>replacement_values</code>
+</h3>            </td>
+            <td>
+                  <code><span title="jax.numpy.ndarray">ndarray</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A vector of two values used for replacement based on the computed state conditions. The values are: [value_if_negative, value_if_positive].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>jnp.ndarray: The new state of the system as an array of int16.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="grins.ising_bool.simulate_sync_trajectory" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">grins</span><span class="o">.</span><span class="n">ising_bool</span><span class="o">.</span><span class="n">simulate_sync_trajectory</span><span class="p">(</span><span class="n">initial_condition</span><span class="p">,</span> <span class="n">topo_adj</span><span class="p">,</span> <span class="n">replacement_values</span><span class="p">,</span> <span class="n">max_steps</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+        <p>Simulates a synchronous trajectory of a system based on the given initial condition, topology adjacency matrix, and replacement values.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.ising_bool.simulate_sync_trajectory(initial_condition)" class="doc doc-heading doc-heading-parameter">                  <code>initial_condition</code>
+</h3>            </td>
+            <td>
+                  <code><span title="array">array</span> - <span title="like">like</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The initial state of the system.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.ising_bool.simulate_sync_trajectory(topo_adj)" class="doc doc-heading doc-heading-parameter">                  <code>topo_adj</code>
+</h3>            </td>
+            <td>
+                  <code><span title="array">array</span> - <span title="like">like</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The topology adjacency matrix representing the connections between nodes.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.ising_bool.simulate_sync_trajectory(replacement_values)" class="doc doc-heading doc-heading-parameter">                  <code>replacement_values</code>
+</h3>            </td>
+            <td>
+                  <code><span title="array">array</span> - <span title="like">like</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The values used to replace the states during the simulation. It is a vector of two values in the form [value_if_negative, value_if_positive].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.ising_bool.simulate_sync_trajectory(max_steps)" class="doc doc-heading doc-heading-parameter">                  <code>max_steps</code>
+</h3>            </td>
+            <td>
+                  <code>jnp.arange array</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The range of steps to simulate. The simulation will run for each step in the range.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>jnp.ndarray: A JAX array containing the states of the system at each step, with the initial condition included at the beginning. The array also includes a column for the step indices. All -1 values in the states are replaced with 0 if the replacement values are [-1, 1].</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="grins.ising_bool.async_eval_next_state" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">grins</span><span class="o">.</span><span class="n">ising_bool</span><span class="o">.</span><span class="n">async_eval_next_state</span><span class="p">(</span><span class="n">prev_state</span><span class="p">,</span> <span class="n">topo_adj</span><span class="p">,</span> <span class="n">replacement_values</span><span class="p">,</span> <span class="n">update_index</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+        <p>Asynchronously evaluates the next state of a node in an Ising model.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.ising_bool.async_eval_next_state(prev_state)" class="doc doc-heading doc-heading-parameter">                  <code>prev_state</code>
+</h3>            </td>
+            <td>
+                  <code><span title="jax.numpy.ndarray">ndarray</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The previous state vector of the system.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.ising_bool.async_eval_next_state(topo_adj)" class="doc doc-heading doc-heading-parameter">                  <code>topo_adj</code>
+</h3>            </td>
+            <td>
+                  <code><span title="jax.numpy.ndarray">ndarray</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The adjacency matrix representing the topology of the system.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.ising_bool.async_eval_next_state(replacement_values)" class="doc doc-heading doc-heading-parameter">                  <code>replacement_values</code>
+</h3>            </td>
+            <td>
+                  <code><span title="jax.numpy.ndarray">ndarray</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A vector of two values used for state replacement based on conditions. The values of the vector should be [value_if_negative, value_if_positive]. The value for 0 is not included as it is assumed that the state will remain the same if the node evaluates to 0 in that step.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.ising_bool.async_eval_next_state(update_index)" class="doc doc-heading doc-heading-parameter">                  <code>update_index</code>
+</h3>            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The index of the node to update.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>jnp.ndarray: The new state vector after updating the specified node.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="grins.ising_bool.simulate_async_trajectory" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">grins</span><span class="o">.</span><span class="n">ising_bool</span><span class="o">.</span><span class="n">simulate_async_trajectory</span><span class="p">(</span><span class="n">initial_condition</span><span class="p">,</span> <span class="n">topo_adj</span><span class="p">,</span> <span class="n">replacement_values</span><span class="p">,</span> <span class="n">update_indices</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+        <p>Simulates an asynchronous trajectory of a system given an initial condition and update indices.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.ising_bool.simulate_async_trajectory(initial_condition)" class="doc doc-heading doc-heading-parameter">                  <code>initial_condition</code>
+</h3>            </td>
+            <td>
+                  <code><span title="array">array</span> - <span title="like">like</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The initial condition of the network.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.ising_bool.simulate_async_trajectory(topo_adj)" class="doc doc-heading doc-heading-parameter">                  <code>topo_adj</code>
+</h3>            </td>
+            <td>
+                  <code><span title="array">array</span> - <span title="like">like</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The adjacency matrix of the network.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.ising_bool.simulate_async_trajectory(replacement_values)" class="doc doc-heading doc-heading-parameter">                  <code>replacement_values</code>
+</h3>            </td>
+            <td>
+                  <code><span title="array">array</span> - <span title="like">like</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The values used to replace the state of the nodes during updates. It is a vector of two values in the form [value_if_negative, value_if_positive].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.ising_bool.simulate_async_trajectory(update_indices)" class="doc doc-heading doc-heading-parameter">                  <code>update_indices</code>
+</h3>            </td>
+            <td>
+                  <code><span title="array">array</span> - <span title="like">like</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A vector of indices specifying which node to update at each step. Length of the vector should be equal to the number of steps, if not will only be run till the length of the update_indices.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>jnp.ndarray: A 2D array where each row represents the state of the system at a given step,with the first column indicating the step number. The states are of dtype int16 and all -1 values are converted to 0 if the replacement values are [-1, 1].</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="grins.ising_bool.run_simulations" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">grins</span><span class="o">.</span><span class="n">ising_bool</span><span class="o">.</span><span class="n">run_simulations</span><span class="p">(</span><span class="n">topo_file</span><span class="p">,</span> <span class="n">num_initial_conditions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">inital_conditions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_steps</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">replacement_values</span><span class="o">=</span><span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;sync&#39;</span><span class="p">,</span> <span class="n">packbits</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_dir</span><span class="o">=</span><span class="s1">&#39;IsingSimulResults&#39;</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+        <p>Run synchronous or asynchronous simulations for a given topology.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.ising_bool.run_simulations(topo_file)" class="doc doc-heading doc-heading-parameter">                  <code>topo_file</code>
+</h3>            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Path to the topology file.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.ising_bool.run_simulations(num_initial_conditions)" class="doc doc-heading doc-heading-parameter">                  <code>num_initial_conditions</code>
+</h3>            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Number of initial conditions to sample.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.ising_bool.run_simulations(initial_conditions)" class="doc doc-heading doc-heading-parameter">                  <code>initial_conditions</code>
+</h3>            </td>
+            <td>
+                  <code><span title="jax.numpy.ndarray">ndarray</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Initial conditions matrix with the individual intial conditions as rows of the matrix. If provided, num_initial_conditions is ignored.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.ising_bool.run_simulations(max_steps)" class="doc doc-heading doc-heading-parameter">                  <code>max_steps</code>
+</h3>            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Maximum number of steps to simulate. If not provided, it is calculated to be 10 times the number of nodes.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.ising_bool.run_simulations(batch_size)" class="doc doc-heading doc-heading-parameter">                  <code>batch_size</code>
+</h3>            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Number of samples per batch.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.ising_bool.run_simulations(replacement_values)" class="doc doc-heading doc-heading-parameter">                  <code>replacement_values</code>
+</h3>            </td>
+            <td>
+                  <code><span title="jax.numpy.ndarray">ndarray</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Values used for replacement in the simulation. Default is [0, 1].</p>
+              </div>
+            </td>
+            <td>
+                  <code><span title="jax.numpy.array">array</span>([0, 1])</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.ising_bool.run_simulations(mode)" class="doc doc-heading doc-heading-parameter">                  <code>mode</code>
+</h3>            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Simulation mode, either "sync" or "async".</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;sync&#39;</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.ising_bool.run_simulations(packbits)" class="doc doc-heading doc-heading-parameter">                  <code>packbits</code>
+</h3>            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Whether to pack the 0/1 states into bits to reduce memory usage. Uses jnp.packbits for packing.</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.ising_bool.run_simulations(save_dir)" class="doc doc-heading doc-heading-parameter">                  <code>save_dir</code>
+</h3>            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Directory to save the simulation results.</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;IsingSimulResults&#39;</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>None. The simulation results are saved to a parquet file in save_dir within a subdirectory named after the topology file.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+        <p>Example:
+Run the synchronous simulation for a topology file:</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>run_simulations(
+...     topo_file="TOPOS/ER_1000_0.1.topo",
+...     num_initial_conditions=2<strong>10,
+...     max_steps=100,
+...     batch_size=2</strong>10,
+...     replacement_values=jnp.array([0, 1]),
+...     mode="sync",
+...     packbits=True,
+...     save_dir="IsingSimulResults",
+... )
+This will save the simulation results to a parquet file in the directory "IsingSimulResults/ER_1000_0.1/ER_1000_0.1_sync_results.parquet".</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>Similary, the asynchronous simulation can be run by setting mode="async".</p>
+<p>If the initial conditions matrix is provided, the num_initial_conditions parameter is ignored. In this case, the initial_conditions matrix should have the individual initial conditions as rows.</p>
+<h3 id="grins.ising_bool.run_simulations--if-only-specfic-inital-conditions-are-to-be-used-the-initial-conditions-matrix-can-be-provided-with-the-individual-initial-conditions-as-rows-of-the-matrix-this-provides-control-over-simulating-specific-pre-defined-initial-conditions">If only specfic inital conditions are to be used, the initial conditions matrix can be provided with the individual initial conditions as rows of the matrix. This provides control over simulating specific pre-defined initial conditions.</h3>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>initial_conditions = jnp.array([[0, 1, 0, 1], [1, 0, 1, 0], [0, 0, 1, 1]])
+run_simulations(
+...     topo_file="TOPOS/ER_1000_0.1.topo",
+...     initial_conditions=initial_conditions,
+...     max_steps=100,
+...     batch_size=2**10,
+...     replacement_values=jnp.array([0, 1]),
+...     mode="sync",
+...     packbits=True,
+...     save_dir="IsingSimulResults",
+... )</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>For cases where the replacement values are not [0, 1], the replacement values should be provided as a jax array of length 2 with the first value less than the second.</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>replacement_values = jnp.array([-1, 1]) # Replacement values are -1 for negetive and 1 for positive
+run_simulations(
+...     topo_file="TOPOS/ER_1000_0.1.topo",
+...     num_initial_conditions=2<strong>10,
+...     max_steps=100,
+...     batch_size=2</strong>10,
+...     replacement_values=replacement_values,
+...     mode="sync",
+...     packbits=True,
+...     save_dir="IsingSimulResults",
+... )
+The results for [-1, 1] replacment values will also be converted to 0 for all the -1 or 0 values in the states and 1s will remain as 1s when saving to the file. This is important as otherwise the packbits  would not work.</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>The packbits function used is jnp.packbits which packs the 0/1 states into bits to reduce memory usage. This is useful when the number of nodes is large and the number of steps is also large. The memory usase can be reduced by a factor of 8 by packing the states into bits. If packbits is not set to True, the states are saved as is.</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>run_simulations(
+...     topo_file="TOPOS/ER_1000_0.1.topo",
+...     num_initial_conditions=2<strong>10,
+...     max_steps=100,
+...     batch_size=2</strong>10,
+...     replacement_values=jnp.array([0, 1]),
+...     mode="sync",
+...     packbits=False,
+...     save_dir="IsingSimulResults",
+... )</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>The final dataframe which is written to the parquet file has the following columns for the packbits=False case:
+- Step: The step number for the simulation.
+- Node names: The names of the nodes in the network.
+If the packbits=True, the final dataframe has the following columns:
+- Step: The step number for the simulation.
+- Byte_i: The ith byte of the packed states for the simulation.
+The Byte_i columns are created based on the number of nodes in the network. For example, if there are 100 nodes, there will be 13 columns for the packed states. They can be unpacked using jnp.unpackbits to get the unpacked state values.
+The order of the nodes for the Byte_i columns is the same as the order of the nodes in the network after parsing the topology file using the parse_topo_to_matrix function. The order of the nodes is saved in a text file in the simulation directory for easy reference. The naming convention for the text file is toponame_node_names_order.csv.</p>
+
+
+    </div>
+
+</div><hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 CSB Lab, BE Dept, IISc
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "toc.integrate", "header.autohide"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,3034 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="GRiNS: Gene Regulatory Interaction Network Simulator Documentation">
+      
+      
+      
+        <link rel="canonical" href="https://MoltenEcdysone09.github.io/GRiNS/api/RACIPE/">
+      
+      
+        <link rel="prev" href="../../usage/racipe/">
+      
+      
+        <link rel="next" href="../IsingBoolean/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>RACIPE - GRiNS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#racipe-formalism" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="GRiNS" class="md-header__button md-logo" aria-label="GRiNS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            GRiNS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              RACIPE
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/MoltenEcdysone09/GRiNS" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    MoltenEcdysone09/GRiNS
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="GRiNS" class="md-nav__button md-logo" aria-label="GRiNS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    GRiNS
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/MoltenEcdysone09/GRiNS" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    MoltenEcdysone09/GRiNS
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Usage
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Usage
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/racipe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RACIPE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    API
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            API
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    RACIPE
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    RACIPE
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#grn-parsing-and-ode-generation-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      GRN Parsing and ODE Generation Functions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grins.reg_funcs.psH" class="md-nav__link">
+    <span class="md-ellipsis">
+      psH
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="psH">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grins.reg_funcs.psH(nod)" class="md-nav__link">
+    <span class="md-ellipsis">
+      nod
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.reg_funcs.psH(fld)" class="md-nav__link">
+    <span class="md-ellipsis">
+      fld
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.reg_funcs.psH(thr)" class="md-nav__link">
+    <span class="md-ellipsis">
+      thr
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.reg_funcs.psH(hill)" class="md-nav__link">
+    <span class="md-ellipsis">
+      hill
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grins.reg_funcs.nsH" class="md-nav__link">
+    <span class="md-ellipsis">
+      nsH
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="nsH">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grins.reg_funcs.nsH(nod)" class="md-nav__link">
+    <span class="md-ellipsis">
+      nod
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.reg_funcs.nsH(fld)" class="md-nav__link">
+    <span class="md-ellipsis">
+      fld
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.reg_funcs.nsH(thr)" class="md-nav__link">
+    <span class="md-ellipsis">
+      thr
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.reg_funcs.nsH(hill)" class="md-nav__link">
+    <span class="md-ellipsis">
+      hill
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grins.gen_diffrax_ode.gen_diffrax_odesys" class="md-nav__link">
+    <span class="md-ellipsis">
+      gen_diffrax_odesys
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="gen_diffrax_odesys">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grins.gen_diffrax_ode.gen_diffrax_odesys(topo_df)" class="md-nav__link">
+    <span class="md-ellipsis">
+      topo_df
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.gen_diffrax_ode.gen_diffrax_odesys(topo_name)" class="md-nav__link">
+    <span class="md-ellipsis">
+      topo_name
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.gen_diffrax_ode.gen_diffrax_odesys(save_dir)" class="md-nav__link">
+    <span class="md-ellipsis">
+      save_dir
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameters-and-intial-conditions-generation-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters and Intial Conditions Generation Functions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grins.gen_params.parse_topos" class="md-nav__link">
+    <span class="md-ellipsis">
+      parse_topos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="parse_topos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grins.gen_params.parse_topos(topofile)" class="md-nav__link">
+    <span class="md-ellipsis">
+      topofile
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.gen_params.parse_topos(save_cleaned)" class="md-nav__link">
+    <span class="md-ellipsis">
+      save_cleaned
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grins.gen_params.gen_param_names" class="md-nav__link">
+    <span class="md-ellipsis">
+      gen_param_names
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="gen_param_names">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grins.gen_params.gen_param_names(topo_df)" class="md-nav__link">
+    <span class="md-ellipsis">
+      topo_df
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grins.gen_params.sample_distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      sample_distribution
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="sample_distribution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grins.gen_params.sample_distribution(method)" class="md-nav__link">
+    <span class="md-ellipsis">
+      method
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.gen_params.sample_distribution(dimension)" class="md-nav__link">
+    <span class="md-ellipsis">
+      dimension
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.gen_params.sample_distribution(num_points)" class="md-nav__link">
+    <span class="md-ellipsis">
+      num_points
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.gen_params.sample_distribution(std_dev)" class="md-nav__link">
+    <span class="md-ellipsis">
+      std_dev
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.gen_params.sample_distribution(optimise)" class="md-nav__link">
+    <span class="md-ellipsis">
+      optimise
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grins.gen_params.gen_param_range_df" class="md-nav__link">
+    <span class="md-ellipsis">
+      gen_param_range_df
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grins.gen_params.gen_param_df" class="md-nav__link">
+    <span class="md-ellipsis">
+      gen_param_df
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="gen_param_df">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grins.gen_params.gen_param_df(prange_df)" class="md-nav__link">
+    <span class="md-ellipsis">
+      prange_df
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.gen_params.gen_param_df(num_paras)" class="md-nav__link">
+    <span class="md-ellipsis">
+      num_paras
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grins.gen_params.gen_init_cond" class="md-nav__link">
+    <span class="md-ellipsis">
+      gen_init_cond
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="gen_init_cond">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grins.gen_params.gen_init_cond(topo_df)" class="md-nav__link">
+    <span class="md-ellipsis">
+      topo_df
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.gen_params.gen_init_cond(num_init_conds)" class="md-nav__link">
+    <span class="md-ellipsis">
+      num_init_conds
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#simulation-related-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simulation Related Functions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grins.racipe_run.gen_sim_dirstruct" class="md-nav__link">
+    <span class="md-ellipsis">
+      gen_sim_dirstruct
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="gen_sim_dirstruct">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grins.racipe_run.gen_sim_dirstruct(topo_file)" class="md-nav__link">
+    <span class="md-ellipsis">
+      topo_file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.racipe_run.gen_sim_dirstruct(save_dir)" class="md-nav__link">
+    <span class="md-ellipsis">
+      save_dir
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.racipe_run.gen_sim_dirstruct(num_replicates)" class="md-nav__link">
+    <span class="md-ellipsis">
+      num_replicates
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grins.racipe_run.gen_topo_param_files" class="md-nav__link">
+    <span class="md-ellipsis">
+      gen_topo_param_files
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="gen_topo_param_files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grins.racipe_run.gen_topo_param_files(topo_file)" class="md-nav__link">
+    <span class="md-ellipsis">
+      topo_file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.racipe_run.gen_topo_param_files(save_dir)" class="md-nav__link">
+    <span class="md-ellipsis">
+      save_dir
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.racipe_run.gen_topo_param_files(num_params)" class="md-nav__link">
+    <span class="md-ellipsis">
+      num_params
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.racipe_run.gen_topo_param_files(num_init_conds)" class="md-nav__link">
+    <span class="md-ellipsis">
+      num_init_conds
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.racipe_run.gen_topo_param_files(sampling_method)" class="md-nav__link">
+    <span class="md-ellipsis">
+      sampling_method
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grins.racipe_run.load_odeterm" class="md-nav__link">
+    <span class="md-ellipsis">
+      load_odeterm
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="load_odeterm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grins.racipe_run.load_odeterm(topo_name)" class="md-nav__link">
+    <span class="md-ellipsis">
+      topo_name
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.racipe_run.load_odeterm(simdir)" class="md-nav__link">
+    <span class="md-ellipsis">
+      simdir
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grins.racipe_run.topo_simulate" class="md-nav__link">
+    <span class="md-ellipsis">
+      topo_simulate
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="topo_simulate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grins.racipe_run.topo_simulate(topo_file)" class="md-nav__link">
+    <span class="md-ellipsis">
+      topo_file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.racipe_run.topo_simulate(replicate_dir)" class="md-nav__link">
+    <span class="md-ellipsis">
+      replicate_dir
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.racipe_run.topo_simulate(initial_conditions)" class="md-nav__link">
+    <span class="md-ellipsis">
+      initial_conditions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.racipe_run.topo_simulate(parameters)" class="md-nav__link">
+    <span class="md-ellipsis">
+      parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.racipe_run.topo_simulate(t0)" class="md-nav__link">
+    <span class="md-ellipsis">
+      t0
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.racipe_run.topo_simulate(tmax)" class="md-nav__link">
+    <span class="md-ellipsis">
+      tmax
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.racipe_run.topo_simulate(dt0)" class="md-nav__link">
+    <span class="md-ellipsis">
+      dt0
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.racipe_run.topo_simulate(tsteps)" class="md-nav__link">
+    <span class="md-ellipsis">
+      tsteps
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.racipe_run.topo_simulate(rel_tol)" class="md-nav__link">
+    <span class="md-ellipsis">
+      rel_tol
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.racipe_run.topo_simulate(abs_tol)" class="md-nav__link">
+    <span class="md-ellipsis">
+      abs_tol
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.racipe_run.topo_simulate(max_steps)" class="md-nav__link">
+    <span class="md-ellipsis">
+      max_steps
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.racipe_run.topo_simulate(batch_size)" class="md-nav__link">
+    <span class="md-ellipsis">
+      batch_size
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.racipe_run.topo_simulate(ode_term_dir)" class="md-nav__link">
+    <span class="md-ellipsis">
+      ode_term_dir
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grins.racipe_run.gk_normalise_solutions" class="md-nav__link">
+    <span class="md-ellipsis">
+      gk_normalise_solutions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="gk_normalise_solutions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grins.racipe_run.gk_normalise_solutions(sol_df)" class="md-nav__link">
+    <span class="md-ellipsis">
+      sol_df
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.racipe_run.gk_normalise_solutions(param_df)" class="md-nav__link">
+    <span class="md-ellipsis">
+      param_df
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.racipe_run.gk_normalise_solutions(threshold)" class="md-nav__link">
+    <span class="md-ellipsis">
+      threshold
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grins.racipe_run.discretise_solutions" class="md-nav__link">
+    <span class="md-ellipsis">
+      discretise_solutions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="discretise_solutions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grins.racipe_run.discretise_solutions(norm_df)" class="md-nav__link">
+    <span class="md-ellipsis">
+      norm_df
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grins.racipe_run.discretise_solutions(threshold)" class="md-nav__link">
+    <span class="md-ellipsis">
+      threshold
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grins.racipe_run.run_all_replicates" class="md-nav__link">
+    <span class="md-ellipsis">
+      run_all_replicates
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../IsingBoolean/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ising Boolean
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="racipe-formalism">RACIPE Formalism</h1>
+<p>Functions related to RACIPE simulation.</p>
+<h2 id="grn-parsing-and-ode-generation-functions">GRN Parsing and ODE Generation Functions</h2>
+<hr />
+
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="grins.reg_funcs.psH" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">grins</span><span class="o">.</span><span class="n">reg_funcs</span><span class="o">.</span><span class="n">psH</span><span class="p">(</span><span class="n">nod</span><span class="p">,</span> <span class="n">fld</span><span class="p">,</span> <span class="n">thr</span><span class="p">,</span> <span class="n">hill</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+        <p>Positive Shifted Hill function.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.reg_funcs.psH(nod)" class="doc doc-heading doc-heading-parameter">                  <code>nod</code>
+</h3>            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The node expression value.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.reg_funcs.psH(fld)" class="doc doc-heading doc-heading-parameter">                  <code>fld</code>
+</h3>            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The fold change.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.reg_funcs.psH(thr)" class="doc doc-heading doc-heading-parameter">                  <code>thr</code>
+</h3>            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The half-maximal threshold value.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.reg_funcs.psH(hill)" class="doc doc-heading doc-heading-parameter">                  <code>hill</code>
+</h3>            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The hill coefficient.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The value of the Positive Shifted Hill function.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="grins.reg_funcs.nsH" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">grins</span><span class="o">.</span><span class="n">reg_funcs</span><span class="o">.</span><span class="n">nsH</span><span class="p">(</span><span class="n">nod</span><span class="p">,</span> <span class="n">fld</span><span class="p">,</span> <span class="n">thr</span><span class="p">,</span> <span class="n">hill</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+        <p>Negative Shifted Hill function.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.reg_funcs.nsH(nod)" class="doc doc-heading doc-heading-parameter">                  <code>nod</code>
+</h3>            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The node expression value.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.reg_funcs.nsH(fld)" class="doc doc-heading doc-heading-parameter">                  <code>fld</code>
+</h3>            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The fold change.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.reg_funcs.nsH(thr)" class="doc doc-heading doc-heading-parameter">                  <code>thr</code>
+</h3>            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The half-maximal threshold value.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.reg_funcs.nsH(hill)" class="doc doc-heading doc-heading-parameter">                  <code>hill</code>
+</h3>            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The hill coefficient.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The value of the Negative Shifted Hill function.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="grins.gen_diffrax_ode.gen_diffrax_odesys" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">grins</span><span class="o">.</span><span class="n">gen_diffrax_ode</span><span class="o">.</span><span class="n">gen_diffrax_odesys</span><span class="p">(</span><span class="n">topo_df</span><span class="p">,</span> <span class="n">topo_name</span><span class="p">,</span> <span class="n">save_dir</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+        <p>Generate the ODE system code for diffrax based on the given topology dataframe.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.gen_diffrax_ode.gen_diffrax_odesys(topo_df)" class="doc doc-heading doc-heading-parameter">                  <code>topo_df</code>
+</h3>            </td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The topology dataframe containing the edges information.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.gen_diffrax_ode.gen_diffrax_odesys(topo_name)" class="doc doc-heading doc-heading-parameter">                  <code>topo_name</code>
+</h3>            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The name of the topology.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.gen_diffrax_ode.gen_diffrax_odesys(save_dir)" class="doc doc-heading doc-heading-parameter">                  <code>save_dir</code>
+</h3>            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The directory to save the generated code. Defaults to ".".</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;.&#39;</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>None</code></td>            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Saves the generated file in the driectory specified by save_dir.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div><hr />
+<h2 id="parameters-and-intial-conditions-generation-functions">Parameters and Intial Conditions Generation Functions</h2>
+<hr />
+
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="grins.gen_params.parse_topos" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">grins</span><span class="o">.</span><span class="n">gen_params</span><span class="o">.</span><span class="n">parse_topos</span><span class="p">(</span><span class="n">topofile</span><span class="p">,</span> <span class="n">save_cleaned</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+        <p>Parse and cleans the given topofile and return the dataframe. It is expeced that the topo files is a tab-separated file with three columns: Source, Target, and Type. White spaces can also be used to separate the columns.</p>
+<p>For nodes that are not alphanumeric, the function will replace the non-alphanumeric characters with an underscore and prepend "Node_" if the node name does not start with an alphabet. The cleaned topology file will be saved if the save_cleaned flag is set to True.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.gen_params.parse_topos(topofile)" class="doc doc-heading doc-heading-parameter">                  <code>topofile</code>
+</h3>            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The path to the topofile.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.gen_params.parse_topos(save_cleaned)" class="doc doc-heading doc-heading-parameter">                  <code>save_cleaned</code>
+</h3>            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If True, save the cleaned topology file. Defaults to False.</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>topo_df</code></td>            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The parsed dataframe.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="grins.gen_params.gen_param_names" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">grins</span><span class="o">.</span><span class="n">gen_params</span><span class="o">.</span><span class="n">gen_param_names</span><span class="p">(</span><span class="n">topo_df</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+        <p>Generate parameter names based on the given topology dataframe.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.gen_params.gen_param_names(topo_df)" class="doc doc-heading doc-heading-parameter">                  <code>topo_df</code>
+</h3>            </td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The topology dataframe containing the information about the nodes and edges.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>tuple</code></td>            <td>
+                  <code><span title="typing.Tuple">Tuple</span>[<span title="typing.List">List</span>[<span title="str">str</span>], <span title="typing.List">List</span>[<span title="str">str</span>], <span title="typing.List">List</span>[<span title="str">str</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A tuple containing the parameter names, unique target node names, and unique source node names.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="grins.gen_params.sample_distribution" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">grins</span><span class="o">.</span><span class="n">gen_params</span><span class="o">.</span><span class="n">sample_distribution</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">dimension</span><span class="p">,</span> <span class="n">num_points</span><span class="p">,</span> <span class="n">std_dev</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">optimise</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+        <p>Generates a sample distribution based on the specified method.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.gen_params.sample_distribution(method)" class="doc doc-heading doc-heading-parameter">                  <code>method</code>
+</h3>            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The sampling method to use. Options are "Sobol", "LHS", "Uniform", "LogUniform", "Normal", "LogNormal".</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.gen_params.sample_distribution(dimension)" class="doc doc-heading doc-heading-parameter">                  <code>dimension</code>
+</h3>            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The number of dimensions for the sample points.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.gen_params.sample_distribution(num_points)" class="doc doc-heading doc-heading-parameter">                  <code>num_points</code>
+</h3>            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The number of sample points to generate.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.gen_params.sample_distribution(std_dev)" class="doc doc-heading doc-heading-parameter">                  <code>std_dev</code>
+</h3>            </td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="float">float</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The standard deviation for the "Normal" and "LogNormal" distributions. Defaults to 1.0 if not provided.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.gen_params.sample_distribution(optimise)" class="doc doc-heading doc-heading-parameter">                  <code>optimise</code>
+</h3>            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Whether to optimise the sampling process. Applicable for "Sobol" and "LHS" methods.</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="numpy.ndarray">ndarray</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>np.ndarray: An array of sample points generated according to the specified method.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="ValueError">ValueError</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If an unknown sampling method is specified.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="grins.gen_params.gen_param_range_df" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">grins</span><span class="o">.</span><span class="n">gen_params</span><span class="o">.</span><span class="n">gen_param_range_df</span><span class="p">(</span><span class="n">topo_df</span><span class="p">,</span> <span class="n">num_params</span><span class="o">=</span><span class="mi">2</span> <span class="o">**</span> <span class="mi">10</span><span class="p">,</span> <span class="n">sampling_method</span><span class="o">=</span><span class="s1">&#39;Sobol&#39;</span><span class="p">,</span> <span class="n">thr_rows</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+        <p>Generate a parameter range DataFrame from the topology DataFrame.</p>
+        <hr />
+<pre><code>topo_df (pd.DataFrame): The topology DataFrame containing the network structure.
+num_params (int, optional): The number of parameters to generate. Default is 1024.
+sampling_method (Union[str, dict], optional): The sampling method to use. Can be a string
+    specifying a single method for all parameters or a dictionary specifying methods for
+    individual parameters. Default is "Sobol".
+thr_rows (bool, optional): Whether to add threshold rows to the DataFrame. Default is True.
+</code></pre>
+        <hr />
+<pre><code>pd.DataFrame: A DataFrame containing the parameter ranges and sampling methods.
+</code></pre>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="grins.gen_params.gen_param_df" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">grins</span><span class="o">.</span><span class="n">gen_params</span><span class="o">.</span><span class="n">gen_param_df</span><span class="p">(</span><span class="n">prange_df</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num_params</span><span class="o">=</span><span class="mi">2</span> <span class="o">**</span> <span class="mi">10</span><span class="p">,</span> <span class="n">topo_df</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sampling_method</span><span class="o">=</span><span class="s1">&#39;Sobol&#39;</span><span class="p">,</span> <span class="n">thr_rows</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+        <p>Generate the final parameter DataFrame by sampling parameters.
+Parameters are grouped by their 'Sampling' (and 'StdDev' if present) to ensure
+that parameters in the same group follow the same distribution in the higher dimensions.
+The final DataFrame columns are arranged in the same order as in prange_df.
+The sampling methods can be: 'Sobol', 'LHS', 'Uniform', 'LogUniform', 'Normal', 'LogNormal'.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.gen_params.gen_param_df(prange_df)" class="doc doc-heading doc-heading-parameter">                  <code>prange_df</code>
+</h3>            </td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>DataFrame with columns ["Parameter", "Minimum", "Maximum", "Sampling", ...].</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.gen_params.gen_param_df(num_paras)" class="doc doc-heading doc-heading-parameter">                  <code>num_paras</code>
+</h3>            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Number of samples to generate per parameter.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>pd.DataFrame: DataFrame of sampled and scaled parameters.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="grins.gen_params.gen_init_cond" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">grins</span><span class="o">.</span><span class="n">gen_params</span><span class="o">.</span><span class="n">gen_init_cond</span><span class="p">(</span><span class="n">topo_df</span><span class="p">,</span> <span class="n">num_init_conds</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+        <p>Generate initial conditions for each node based on the topology.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.gen_params.gen_init_cond(topo_df)" class="doc doc-heading doc-heading-parameter">                  <code>topo_df</code>
+</h3>            </td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A DataFrame containing the topology information.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.gen_params.gen_init_cond(num_init_conds)" class="doc doc-heading doc-heading-parameter">                  <code>num_init_conds</code>
+</h3>            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The number of initial conditions to generate. Defaults to 1000.</p>
+              </div>
+            </td>
+            <td>
+                  <code>1000</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>pd.DataFrame: A DataFrame containing the generated initial conditions for each node.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div><hr />
+<h2 id="simulation-related-functions">Simulation Related Functions</h2>
+<hr />
+
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="grins.racipe_run.gen_sim_dirstruct" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">grins</span><span class="o">.</span><span class="n">racipe_run</span><span class="o">.</span><span class="n">gen_sim_dirstruct</span><span class="p">(</span><span class="n">topo_file</span><span class="p">,</span> <span class="n">save_dir</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">num_replicates</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+        <p>Generate directory structure for simulation run.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.racipe_run.gen_sim_dirstruct(topo_file)" class="doc doc-heading doc-heading-parameter">                  <code>topo_file</code>
+</h3>            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Path to the topo file.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.racipe_run.gen_sim_dirstruct(save_dir)" class="doc doc-heading doc-heading-parameter">                  <code>save_dir</code>
+</h3>            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Directory to save the generated structure. Defaults to ".".</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;.&#39;</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.racipe_run.gen_sim_dirstruct(num_replicates)" class="doc doc-heading doc-heading-parameter">                  <code>num_replicates</code>
+</h3>            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Number of replicates to generate. Defaults to 3.</p>
+              </div>
+            </td>
+            <td>
+                  <code>3</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+        <p>Returns:
+    Directory structure is created with the topo file name and three folders for the replicates.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="grins.racipe_run.gen_topo_param_files" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">grins</span><span class="o">.</span><span class="n">racipe_run</span><span class="o">.</span><span class="n">gen_topo_param_files</span><span class="p">(</span><span class="n">topo_file</span><span class="p">,</span> <span class="n">save_dir</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">num_replicates</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">num_params</span><span class="o">=</span><span class="mi">2</span> <span class="o">**</span> <span class="mi">10</span><span class="p">,</span> <span class="n">num_init_conds</span><span class="o">=</span><span class="mi">2</span> <span class="o">**</span> <span class="mi">7</span><span class="p">,</span> <span class="n">sampling_method</span><span class="o">=</span><span class="s1">&#39;Sobol&#39;</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+        <p>Generate parameter files for simulation.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.racipe_run.gen_topo_param_files(topo_file)" class="doc doc-heading doc-heading-parameter">                  <code>topo_file</code>
+</h3>            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The path to the topo file.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.racipe_run.gen_topo_param_files(save_dir)" class="doc doc-heading doc-heading-parameter">                  <code>save_dir</code>
+</h3>            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The directory where the parameter files will be saved. Defaults to ".".</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;.&#39;</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.racipe_run.gen_topo_param_files(num_params)" class="doc doc-heading doc-heading-parameter">                  <code>num_params</code>
+</h3>            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The number of parameter files to generate. Defaults to 2**10.</p>
+              </div>
+            </td>
+            <td>
+                  <code>2 ** 10</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.racipe_run.gen_topo_param_files(num_init_conds)" class="doc doc-heading doc-heading-parameter">                  <code>num_init_conds</code>
+</h3>            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The number of initial condition files to generate. Defaults to 2**7.</p>
+              </div>
+            </td>
+            <td>
+                  <code>2 ** 7</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.racipe_run.gen_topo_param_files(sampling_method)" class="doc doc-heading doc-heading-parameter">                  <code>sampling_method</code>
+</h3>            </td>
+            <td>
+                  <code><span title="typing.Union">Union</span>[<span title="str">str</span>, <span title="dict">dict</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The method to use for sampling the parameter space. Defaults to 'Sobol'. For a finer control over the parameter generation look at the documentation of the gen_param_range_df function and gen_param_df function.</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;Sobol&#39;</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+        <p>Returns:
+    The parameter files and initial conditions are generated and saved in the specified replicate directories.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="grins.racipe_run.load_odeterm" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">grins</span><span class="o">.</span><span class="n">racipe_run</span><span class="o">.</span><span class="n">load_odeterm</span><span class="p">(</span><span class="n">topo_name</span><span class="p">,</span> <span class="n">simdir</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+        <p>Loads an ODE system from a specified topology module and returns an ODETerm object.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.racipe_run.load_odeterm(topo_name)" class="doc doc-heading doc-heading-parameter">                  <code>topo_name</code>
+</h3>            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The name of the topology module to import.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.racipe_run.load_odeterm(simdir)" class="doc doc-heading doc-heading-parameter">                  <code>simdir</code>
+</h3>            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The directory path where the topology module is located.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>ODETerm</code></td>            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>An object representing the ODE system.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="ImportError">ImportError</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the specified module cannot be imported.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="AttributeError">AttributeError</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the module does not contain an attribute named 'odesys'.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="grins.racipe_run.topo_simulate" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">grins</span><span class="o">.</span><span class="n">racipe_run</span><span class="o">.</span><span class="n">topo_simulate</span><span class="p">(</span><span class="n">topo_file</span><span class="p">,</span> <span class="n">replicate_dir</span><span class="p">,</span> <span class="n">initial_conditions</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">t0</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">tmax</span><span class="o">=</span><span class="mf">200.0</span><span class="p">,</span> <span class="n">dt0</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">tsteps</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rel_tol</span><span class="o">=</span><span class="mf">1e-05</span><span class="p">,</span> <span class="n">abs_tol</span><span class="o">=</span><span class="mf">1e-06</span><span class="p">,</span> <span class="n">max_steps</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">ode_term_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+        <p>Simulates the ODE system defined by the topology file and saves the results in the replicate directory. The ode system is loaded as a diffrax ode term and the initial conditions and parameters are passed as jax arrays. The simulation is run for the specified time range and time steps and the results are saved in parquet format in the replicate directory.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.racipe_run.topo_simulate(topo_file)" class="doc doc-heading doc-heading-parameter">                  <code>topo_file</code>
+</h3>            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Path to the topology file.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.racipe_run.topo_simulate(replicate_dir)" class="doc doc-heading doc-heading-parameter">                  <code>replicate_dir</code>
+</h3>            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Directory where the replicate results will be saved.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.racipe_run.topo_simulate(initial_conditions)" class="doc doc-heading doc-heading-parameter">                  <code>initial_conditions</code>
+</h3>            </td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>DataFrame containing the initial conditions.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.racipe_run.topo_simulate(parameters)" class="doc doc-heading doc-heading-parameter">                  <code>parameters</code>
+</h3>            </td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>DataFrame containing the parameters.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.racipe_run.topo_simulate(t0)" class="doc doc-heading doc-heading-parameter">                  <code>t0</code>
+</h3>            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Initial time for the simulation. Default is 0.0.</p>
+              </div>
+            </td>
+            <td>
+                  <code>0.0</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.racipe_run.topo_simulate(tmax)" class="doc doc-heading doc-heading-parameter">                  <code>tmax</code>
+</h3>            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Maximum time for the simulation. Default is 100.0.</p>
+              </div>
+            </td>
+            <td>
+                  <code>200.0</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.racipe_run.topo_simulate(dt0)" class="doc doc-heading doc-heading-parameter">                  <code>dt0</code>
+</h3>            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Initial time step size. Default is 0.1.</p>
+              </div>
+            </td>
+            <td>
+                  <code>0.01</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.racipe_run.topo_simulate(tsteps)" class="doc doc-heading doc-heading-parameter">                  <code>tsteps</code>
+</h3>            </td>
+            <td>
+                  <code><span title="list">list</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List of time steps at which to save the results. Default is None.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.racipe_run.topo_simulate(rel_tol)" class="doc doc-heading doc-heading-parameter">                  <code>rel_tol</code>
+</h3>            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Relative tolerance for the ODE solver. Default is 1e-5.</p>
+              </div>
+            </td>
+            <td>
+                  <code>1e-05</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.racipe_run.topo_simulate(abs_tol)" class="doc doc-heading doc-heading-parameter">                  <code>abs_tol</code>
+</h3>            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Absolute tolerance for the ODE solver. Default is 1e-6.</p>
+              </div>
+            </td>
+            <td>
+                  <code>1e-06</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.racipe_run.topo_simulate(max_steps)" class="doc doc-heading doc-heading-parameter">                  <code>max_steps</code>
+</h3>            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Maximum number of steps for the ODE solver. Default is 2048.</p>
+              </div>
+            </td>
+            <td>
+                  <code>2048</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.racipe_run.topo_simulate(batch_size)" class="doc doc-heading doc-heading-parameter">                  <code>batch_size</code>
+</h3>            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Batch size for processing combinations of initial conditions and parameters. Default is 10000.</p>
+              </div>
+            </td>
+            <td>
+                  <code>10000</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.racipe_run.topo_simulate(ode_term_dir)" class="doc doc-heading doc-heading-parameter">                  <code>ode_term_dir</code>
+</h3>            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Directory where the ODE system file is located. Default is None. If None, the parent directory of the replicate directory is assumed to contain the ODE system file. The ODE system file should be named as the topo file with the .py extension.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>pd.DataFrame: DataFrame containing the solutions of the ODE system.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="grins.racipe_run.gk_normalise_solutions" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">grins</span><span class="o">.</span><span class="n">racipe_run</span><span class="o">.</span><span class="n">gk_normalise_solutions</span><span class="p">(</span><span class="n">sol_df</span><span class="p">,</span> <span class="n">param_df</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">1.01</span><span class="p">,</span> <span class="n">discretize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+        <p>Normalises the solutions in the solution dataframe using the maximum production rate (G) and degradation rate (k) parameters of the individual nodes in the parameter sets.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.racipe_run.gk_normalise_solutions(sol_df)" class="doc doc-heading doc-heading-parameter">                  <code>sol_df</code>
+</h3>            </td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>DataFrame containing the solutions with a 'ParamNum' column to join with param_df.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.racipe_run.gk_normalise_solutions(param_df)" class="doc doc-heading doc-heading-parameter">                  <code>param_df</code>
+</h3>            </td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>DataFrame containing the parameters with 'Prod_' and 'Deg_' columns for each node.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.racipe_run.gk_normalise_solutions(threshold)" class="doc doc-heading doc-heading-parameter">                  <code>threshold</code>
+</h3>            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Threshold value for discretising the solutions. Default is 1.01.</p>
+              </div>
+            </td>
+            <td>
+                  <code>1.01</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>pd.DataFrame: A DataFrame with normalised and discretized solutions.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>pd.DataFrame: A DataFrame containing the counts of each state in the normalised solutions</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+        <p>Example:
+First, run the simulation then, normalise and discretise the solutions</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>sol_df, state_counts = gk_normalise_solutions(sol_df, params)</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>Here, the 'sol_df' is the solution dataframe and 'params' is the parameter dataframe.
+The 'state_counts' dataframe contains the counts of each state in the normalised solutions. The returned 'sol_df' is the normalised and discretised solution dataframe.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="grins.racipe_run.discretise_solutions" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">grins</span><span class="o">.</span><span class="n">racipe_run</span><span class="o">.</span><span class="n">discretise_solutions</span><span class="p">(</span><span class="n">norm_df</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">1.01</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+        <p>Discretises the solutions in a g/k normalized DataFrame based on histogram peaks and minima.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.racipe_run.discretise_solutions(norm_df)" class="doc doc-heading doc-heading-parameter">                  <code>norm_df</code>
+</h3>            </td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A DataFrame containing normalized values to be discretised.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h3 id="grins.racipe_run.discretise_solutions(threshold)" class="doc doc-heading doc-heading-parameter">                  <code>threshold</code>
+</h3>            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A hard threshold value to clip the values in the DataFrame. Default is 1.01. Ih the parameter sets are in such a way that the maximum possible expression of the node is not prduction/degradation, then the threshold value needs to be adjusted accordingly.</p>
+              </div>
+            </td>
+            <td>
+                  <code>1.01</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>pd.Series: A Series containing the discrete state labels for each row in the input DataFrame.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="ValueError">ValueError</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If any value in the DataFrame exceeds the specified threshold.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+        <p>Example:
+Given a normalized DataFrame 'norm_df', discretise the values</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>lvl_df = discretise_solutions(norm_df)
+The normalised solution dataframe will have vlaues of the nodes bewteen 0 (lowest) and 1 (highest) and the returned 'lvl_df' will have the discrete state labels for each row in the input DataFrame.</p>
+</blockquote>
+</blockquote>
+</blockquote>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="grins.racipe_run.run_all_replicates" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">grins</span><span class="o">.</span><span class="n">racipe_run</span><span class="o">.</span><span class="n">run_all_replicates</span><span class="p">(</span><span class="n">topo_file</span><span class="p">,</span> <span class="n">save_dir</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">t0</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">tmax</span><span class="o">=</span><span class="mf">200.0</span><span class="p">,</span> <span class="n">dt0</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">tsteps</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rel_tol</span><span class="o">=</span><span class="mf">1e-05</span><span class="p">,</span> <span class="n">abs_tol</span><span class="o">=</span><span class="mf">1e-06</span><span class="p">,</span> <span class="n">max_steps</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">discretize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+        <p>Run simulations for all replicates of the specified topo file. The initial conditions and parameters are loaded from the replicate folders. The directory structure is assumed to be the same as that generated by the gen_topo_param_files function, with the main directory with the topo file name which has the parameter range file the ODE system file and the replicate folders with the initial conditions and parameters dataframes.</p>
+<p>Parameters:
+topo_file (str): Path to the topology file.
+save_dir (str, optional): Directory where the replicate folders are saved. Defaults to ".".
+t0 (float, optional): Initial time for the simulation. Defaults to 0.0.
+tmax (float, optional): Maximum time for the simulation. Defaults to 100.0.
+dt0 (float, optional): Initial time step for the simulation. Defaults to 0.1.
+tsteps (int, optional): Number of time steps for the simulation. Defaults to None.
+rel_tol (float, optional): Relative tolerance for the simulation. Defaults to 1e-5.
+abs_tol (float, optional): Absolute tolerance for the simulation. Defaults to 1e-6.
+max_steps (int, optional): Maximum number of steps for the simulation. Defaults to 2048.
+batch_size (int, optional): Batch size for the simulation. Defaults to 1000.
+normalize (bool, optional): Whether to normalise the solutions. Defaults to True.
+discretize (bool, optional): Whether to discretize the solutions. Defaults to True.</p>
+<p>Returns:
+None</p>
+<p>Note:
+The results of the simulation are saved in the replicate folders in the specified directory. If the simulation is time series, the results are saved as 'timeseries_solutions.parquet' and if the simulation is steady state, the results are saved as 'steadystate_solutions.parquet'.</p>
+<p>Normalisation and discretisation of the solutions are optional. But to discretise the solutions, the normalisation is required.</p>
+<p>If the discretize flag is set to True, the solutions are discretized and the state counts are saved as 'state_counts.csv', this is only applicable for steady state simulations. If the discretize flag is set to False, the solutions are normalised but not discretized.</p>
+<p>Example:
+Run the simulation for the specified topo file</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>run_all_replicates(topo_file, save_dir, t0, tmax, dt0, tsteps, rel_tol, abs_tol, max_steps, batch_size)</p>
+</blockquote>
+</blockquote>
+</blockquote>
+
+
+    </div>
+
+</div><hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 CSB Lab, BE Dept, IISc
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "toc.integrate", "header.autohide"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>
