@@ -777,8 +777,8 @@
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of cores: </span><span class="si">{</span><span class="n">numCores</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </span></code></pre></div>
 <h2 id="step-2-define-directories">Step 2: Define Directories</h2>
-<p>We define the input and output directories to organize the topology files and simulation results efficiently. The topology files, which describe the structure of gene regulatory networks, are stored in a dedicated directory ('TOPOS'). The simulation results, including generated parameter sets, initial conditions, and computed outputs, are saved in a separate directory ('SimulResults').</p>
-<p>Before proceeding, we ensure that the output directory exists by using 'os.makedirs(sim_save_dir, exist_ok=True)'. This command creates the directory if it does not already exist.</p>
+<p>We define the input and output directories to organize the topology files and simulation results efficiently. The topology files, which describe the structure of gene regulatory networks, are stored in a dedicated directory (<code>TOPOS</code>). The simulation results, including generated parameter sets, initial conditions, and computed outputs, are saved in a separate directory (<code>SimulResults</code>).</p>
+<p>Before proceeding, we ensure that the output directory exists by using <code>os.makedirs(sim_save_dir, exist_ok=True)</code>. This command creates the directory if it does not already exist.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">glob</span><span class="w"> </span><span class="kn">import</span> <span class="n">glob</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
@@ -791,7 +791,7 @@
 </span></code></pre></div>
 <h2 id="step-3-load-topology-files">Step 3: Load Topology Files</h2>
 <p>We retrieve all topology files that need to be simulated.</p>
-<p>The 'glob' function is used to search for all files with a '.topo' extension in the specified directory ('topo_dir'). The 'sorted()' function ensures that the files are processed in a the alphbetical oder, but this is not necessary.</p>
+<p>The <code>glob</code> function is used to search for all files with a <code>.topo</code> extension in the specified directory (<code>topo_dir</code>). The <code>sorted()</code> function ensures that the files are processed in a the alphbetical oder, but this is not necessary.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Get the list of all topology files which need to be simulated</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">topo_files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">topo_dir</span><span class="si">}</span><span class="s2">/*.topo&quot;</span><span class="p">))</span>
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of topology files: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">topo_files</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -875,13 +875,13 @@
 </ul>
 <h3 id="replicate-subdirectories">Replicate Subdirectories</h3>
 <p>Each topology folder will contain multiple replicate subdirectories (one per replicate). These will store:
-    -   Initial Conditions: Saved as a Parquet file ('<topo_name><em>init_conds</em><replicate_number>.parquet').
-    -   Parameter Sets: Stored in another Parquet file ('<topo_name><em>params</em><replicate_number>.parquet').
-    -   Parameter Range: A CSV file (parameter_range.csv) defining the parameter bounds before the simulation is run.</p>
+    -   Initial Conditions: Saved as a Parquet file (<code>&lt;topo_name&gt;_init_conds_&lt;replicate_number&gt;.parquet</code>).
+    -   Parameter Sets: Stored in another Parquet file (<code>&lt;topo_name&gt;_params_&lt;replicate_number&gt;.parquet</code>).
+    -   Parameter Range: A CSV file (<code>parameter_range.csv</code>) defining the parameter bounds before the simulation is run.</p>
 <h3 id="simulation-output-files">Simulation Output Files</h3>
 <p>Once the simulations are completed, the solution files will be stored in the respective replicate folders. Depending on the simulation type, the output files will follow these naming conventions:
-    -   Steady-state solutions: '<topo_file_name><em>steady_state_solutions</em><replicate_number>.parquet'
-    -   Time-series solutions: '<topo_file_name><em>time_series_solutions</em><replicate_number>.parquet'
+    -   Steady-state solutions: <code>&lt;topo_file_name&gt;_steady_state_solutions_&lt;replicate_number&gt;.parquet</code>
+    -   Time-series solutions: <code>&lt;topo_file_name&gt;_time_series_solutions_&lt;replicate_number&gt;.parquet</code>
     -   Discretized State Data (if applicable): If the user has opted to discretize the states, an additional file will be present containing the unique states and their occurrence counts.</p>
 
 

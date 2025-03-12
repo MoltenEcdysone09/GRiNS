@@ -3562,7 +3562,7 @@ The sampling methods can be: 'Sobol', 'LHS', 'Uniform', 'LogUniform', 'Normal', 
               (<code><span title="pandas.DataFrame">DataFrame</span></code>)
           –
           <div class="doc-md-description">
-            <p>DataFrame containing the solutions with a 'ParamNum' column to join with param_df.</p>
+            <p>DataFrame containing the solutions with a <code>ParamNum</code> column to join with param_df.</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
@@ -3570,7 +3570,7 @@ The sampling methods can be: 'Sobol', 'LHS', 'Uniform', 'LogUniform', 'Normal', 
               (<code><span title="pandas.DataFrame">DataFrame</span></code>)
           –
           <div class="doc-md-description">
-            <p>DataFrame containing the parameters with 'Prod_' and 'Deg_' columns for each node.</p>
+            <p>DataFrame containing the parameters with <code>Prod_</code> and <code>Deg_</code> columns for each node.</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
@@ -3620,8 +3620,8 @@ The sampling methods can be: 'Sobol', 'LHS', 'Uniform', 'LogUniform', 'Normal', 
   <p>First, run the simulation then, normalise and discretise the solutions</p>
 <div class="language-text highlight"><pre><span></span><code>&gt;&gt;&gt; sol_df, state_counts = gk_normalise_solutions(sol_df, params)
 </code></pre></div>
-<p>Here, the 'sol_df' is the solution dataframe and 'params' is the parameter dataframe.
-The 'state_counts' dataframe contains the counts of each state in the normalised solutions. The returned 'sol_df' is the normalised and discretised solution dataframe.</p>
+<p>Here, the <code>sol_df</code> is the solution dataframe and <code>params</code> is the parameter dataframe.
+The <code>state_counts</code> dataframe contains the counts of each state in the normalised solutions. The returned <code>sol_df</code> is the normalised and discretised solution dataframe.</p>
 </details>
 
             <details class="quote">
@@ -3695,9 +3695,9 @@ The 'state_counts' dataframe contains the counts of each state in the normalised
 </span><span id="__span-0-638"><a id="__codelineno-0-638" name="__codelineno-0-638"></a><span class="sd">    Parameters</span>
 </span><span id="__span-0-639"><a id="__codelineno-0-639" name="__codelineno-0-639"></a><span class="sd">    ----------</span>
 </span><span id="__span-0-640"><a id="__codelineno-0-640" name="__codelineno-0-640"></a><span class="sd">    sol_df : pd.DataFrame</span>
-</span><span id="__span-0-641"><a id="__codelineno-0-641" name="__codelineno-0-641"></a><span class="sd">        DataFrame containing the solutions with a &#39;ParamNum&#39; column to join with param_df.</span>
+</span><span id="__span-0-641"><a id="__codelineno-0-641" name="__codelineno-0-641"></a><span class="sd">        DataFrame containing the solutions with a `ParamNum` column to join with param_df.</span>
 </span><span id="__span-0-642"><a id="__codelineno-0-642" name="__codelineno-0-642"></a><span class="sd">    param_df : pd.DataFrame</span>
-</span><span id="__span-0-643"><a id="__codelineno-0-643" name="__codelineno-0-643"></a><span class="sd">        DataFrame containing the parameters with &#39;Prod_&#39; and &#39;Deg_&#39; columns for each node.</span>
+</span><span id="__span-0-643"><a id="__codelineno-0-643" name="__codelineno-0-643"></a><span class="sd">        DataFrame containing the parameters with `Prod_` and `Deg_` columns for each node.</span>
 </span><span id="__span-0-644"><a id="__codelineno-0-644" name="__codelineno-0-644"></a><span class="sd">    threshold : float, optional</span>
 </span><span id="__span-0-645"><a id="__codelineno-0-645" name="__codelineno-0-645"></a><span class="sd">        Threshold value for discretising the solutions. Default is 1.01.</span>
 </span><span id="__span-0-646"><a id="__codelineno-0-646" name="__codelineno-0-646"></a><span class="sd">    discretize : bool, optional</span>
@@ -3716,8 +3716,8 @@ The 'state_counts' dataframe contains the counts of each state in the normalised
 </span><span id="__span-0-659"><a id="__codelineno-0-659" name="__codelineno-0-659"></a>
 </span><span id="__span-0-660"><a id="__codelineno-0-660" name="__codelineno-0-660"></a><span class="sd">        &gt;&gt;&gt; sol_df, state_counts = gk_normalise_solutions(sol_df, params)</span>
 </span><span id="__span-0-661"><a id="__codelineno-0-661" name="__codelineno-0-661"></a>
-</span><span id="__span-0-662"><a id="__codelineno-0-662" name="__codelineno-0-662"></a><span class="sd">    Here, the &#39;sol_df&#39; is the solution dataframe and &#39;params&#39; is the parameter dataframe.</span>
-</span><span id="__span-0-663"><a id="__codelineno-0-663" name="__codelineno-0-663"></a><span class="sd">    The &#39;state_counts&#39; dataframe contains the counts of each state in the normalised solutions. The returned &#39;sol_df&#39; is the normalised and discretised solution dataframe.</span>
+</span><span id="__span-0-662"><a id="__codelineno-0-662" name="__codelineno-0-662"></a><span class="sd">    Here, the `sol_df` is the solution dataframe and `params` is the parameter dataframe.</span>
+</span><span id="__span-0-663"><a id="__codelineno-0-663" name="__codelineno-0-663"></a><span class="sd">    The `state_counts` dataframe contains the counts of each state in the normalised solutions. The returned `sol_df` is the normalised and discretised solution dataframe.</span>
 </span><span id="__span-0-664"><a id="__codelineno-0-664" name="__codelineno-0-664"></a><span class="sd">    &quot;&quot;&quot;</span>
 </span><span id="__span-0-665"><a id="__codelineno-0-665" name="__codelineno-0-665"></a>    <span class="c1"># Get the node columns from the solution dataframe</span>
 </span><span id="__span-0-666"><a id="__codelineno-0-666" name="__codelineno-0-666"></a>    <span class="n">node_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;Prod_&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">param_df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="s2">&quot;Prod_&quot;</span> <span class="ow">in</span> <span class="n">col</span><span class="p">]</span>
@@ -3820,7 +3820,7 @@ The 'state_counts' dataframe contains the counts of each state in the normalised
 
 <details class="example" open>
   <summary>Example</summary>
-  <p>Given a normalized DataFrame 'norm_df', discretise the values</p>
+  <p>Given a normalized DataFrame <code>norm_df</code>, discretise the values</p>
 <div class="language-text highlight"><pre><span></span><code>&gt;&gt;&gt; lvl_df = discretise_solutions(norm_df)
 </code></pre></div>
 <p>The normalized solution DataFrame contains values of the nodes between 0 (lowest) and 1 (highest).
@@ -3963,7 +3963,7 @@ The returned <code>lvl_df</code> will have discrete state labels for each row in
 </span><span id="__span-0-720"><a id="__codelineno-0-720" name="__codelineno-0-720"></a>
 </span><span id="__span-0-721"><a id="__codelineno-0-721" name="__codelineno-0-721"></a><span class="sd">    Example</span>
 </span><span id="__span-0-722"><a id="__codelineno-0-722" name="__codelineno-0-722"></a><span class="sd">    -------</span>
-</span><span id="__span-0-723"><a id="__codelineno-0-723" name="__codelineno-0-723"></a><span class="sd">    Given a normalized DataFrame &#39;norm_df&#39;, discretise the values</span>
+</span><span id="__span-0-723"><a id="__codelineno-0-723" name="__codelineno-0-723"></a><span class="sd">    Given a normalized DataFrame ```norm_df```, discretise the values</span>
 </span><span id="__span-0-724"><a id="__codelineno-0-724" name="__codelineno-0-724"></a>
 </span><span id="__span-0-725"><a id="__codelineno-0-725" name="__codelineno-0-725"></a><span class="sd">        &gt;&gt;&gt; lvl_df = discretise_solutions(norm_df)</span>
 </span><span id="__span-0-726"><a id="__codelineno-0-726" name="__codelineno-0-726"></a>
@@ -4209,9 +4209,9 @@ The returned <code>lvl_df</code> will have discrete state labels for each row in
 
 <details class="note" open>
   <summary>Note</summary>
-  <p>The results of the simulation are saved in the replicate folders in the specified directory. If the simulation is time series, the results are saved as 'timeseries_solutions.parquet' and if the simulation is steady state, the results are saved as 'steadystate_solutions.parquet'.</p>
+  <p>The results of the simulation are saved in the replicate folders in the specified directory. If the simulation is time series, the results are saved as <code>timeseries_solutions.parquet</code> and if the simulation is steady state, the results are saved as <code>steadystate_solutions.parquet</code>.</p>
 <p>Normalisation and discretisation of the solutions are optional. But to discretise the solutions, the normalisation is required.</p>
-<p>If the discretize flag is set to True, the solutions are discretized and the state counts are saved as 'state_counts.csv', this is only applicable for steady state simulations. If the discretize flag is set to False, the solutions are normalised but not discretized.</p>
+<p>If the discretize flag is set to True, the solutions are discretized and the state counts are saved as <code>state_counts.csv</code>, this is only applicable for steady state simulations. If the discretize flag is set to False, the solutions are normalised but not discretized.</p>
 </details>
 
 <details class="example" open>
@@ -4408,11 +4408,11 @@ The returned <code>lvl_df</code> will have discrete state labels for each row in
 </span><span id="__span-0-544"><a id="__codelineno-0-544" name="__codelineno-0-544"></a>
 </span><span id="__span-0-545"><a id="__codelineno-0-545" name="__codelineno-0-545"></a><span class="sd">    Note</span>
 </span><span id="__span-0-546"><a id="__codelineno-0-546" name="__codelineno-0-546"></a><span class="sd">    ----</span>
-</span><span id="__span-0-547"><a id="__codelineno-0-547" name="__codelineno-0-547"></a><span class="sd">    The results of the simulation are saved in the replicate folders in the specified directory. If the simulation is time series, the results are saved as &#39;timeseries_solutions.parquet&#39; and if the simulation is steady state, the results are saved as &#39;steadystate_solutions.parquet&#39;.</span>
+</span><span id="__span-0-547"><a id="__codelineno-0-547" name="__codelineno-0-547"></a><span class="sd">    The results of the simulation are saved in the replicate folders in the specified directory. If the simulation is time series, the results are saved as `timeseries_solutions.parquet` and if the simulation is steady state, the results are saved as `steadystate_solutions.parquet`.</span>
 </span><span id="__span-0-548"><a id="__codelineno-0-548" name="__codelineno-0-548"></a>
 </span><span id="__span-0-549"><a id="__codelineno-0-549" name="__codelineno-0-549"></a><span class="sd">    Normalisation and discretisation of the solutions are optional. But to discretise the solutions, the normalisation is required.</span>
 </span><span id="__span-0-550"><a id="__codelineno-0-550" name="__codelineno-0-550"></a>
-</span><span id="__span-0-551"><a id="__codelineno-0-551" name="__codelineno-0-551"></a><span class="sd">    If the discretize flag is set to True, the solutions are discretized and the state counts are saved as &#39;state_counts.csv&#39;, this is only applicable for steady state simulations. If the discretize flag is set to False, the solutions are normalised but not discretized.</span>
+</span><span id="__span-0-551"><a id="__codelineno-0-551" name="__codelineno-0-551"></a><span class="sd">    If the discretize flag is set to True, the solutions are discretized and the state counts are saved as `state_counts.csv`, this is only applicable for steady state simulations. If the discretize flag is set to False, the solutions are normalised but not discretized.</span>
 </span><span id="__span-0-552"><a id="__codelineno-0-552" name="__codelineno-0-552"></a>
 </span><span id="__span-0-553"><a id="__codelineno-0-553" name="__codelineno-0-553"></a><span class="sd">    Example</span>
 </span><span id="__span-0-554"><a id="__codelineno-0-554" name="__codelineno-0-554"></a><span class="sd">    --------</span>
