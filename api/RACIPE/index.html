@@ -578,13 +578,55 @@
     <div class="doc doc-contents first">
 
         <p>Positive Shifted Hill function.</p>
-<p>Parameters:
-    nod (float): The node expression value.
-    fld (float): The fold change.
-    thr (float): The half-maximal threshold value.
-    hill (float): The hill coefficient.</p>
-<p>Returns:
-    (float): The value of the Positive Shifted Hill function.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+<h2 id="grins.reg_funcs.psH(nod)" class="doc doc-heading doc-heading-parameter">              <b><code>nod</code></b>
+</h2>              (<code><span title="float">float</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The node expression value.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.reg_funcs.psH(fld)" class="doc doc-heading doc-heading-parameter">              <b><code>fld</code></b>
+</h2>              (<code><span title="float">float</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The fold change.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.reg_funcs.psH(thr)" class="doc doc-heading doc-heading-parameter">              <b><code>thr</code></b>
+</h2>              (<code><span title="float">float</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The half-maximal threshold value.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.reg_funcs.psH(hill)" class="doc doc-heading doc-heading-parameter">              <b><code>hill</code></b>
+</h2>              (<code><span title="float">float</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The hill coefficient.</p>
+          </div>
+        </li>
+    </ul>
+
+
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><span title="float">float</span></code>
+          –
+          <div class="doc-md-description">
+            <p>The value of the Positive Shifted Hill function.</p>
+          </div>
+        </li>
+    </ul>
 
 
             <details class="quote">
@@ -602,18 +644,32 @@
 <span class="normal">12</span>
 <span class="normal">13</span>
 <span class="normal">14</span>
-<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">psH</span><span class="p">(</span><span class="n">nod</span><span class="p">,</span> <span class="n">fld</span><span class="p">,</span> <span class="n">thr</span><span class="p">,</span> <span class="n">hill</span><span class="p">):</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">psH</span><span class="p">(</span><span class="n">nod</span><span class="p">,</span> <span class="n">fld</span><span class="p">,</span> <span class="n">thr</span><span class="p">,</span> <span class="n">hill</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Positive Shifted Hill function.</span>
 
-<span class="sd">    Parameters:</span>
-<span class="sd">        nod (float): The node expression value.</span>
-<span class="sd">        fld (float): The fold change.</span>
-<span class="sd">        thr (float): The half-maximal threshold value.</span>
-<span class="sd">        hill (float): The hill coefficient.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    nod : float</span>
+<span class="sd">        The node expression value.</span>
+<span class="sd">    fld : float</span>
+<span class="sd">        The fold change.</span>
+<span class="sd">    thr : float</span>
+<span class="sd">        The half-maximal threshold value.</span>
+<span class="sd">    hill : float</span>
+<span class="sd">        The hill coefficient.</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        (float): The value of the Positive Shifted Hill function.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        The value of the Positive Shifted Hill function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">fld</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">fld</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">nod</span> <span class="o">/</span> <span class="n">thr</span><span class="p">)</span> <span class="o">**</span> <span class="n">hill</span><span class="p">)))</span> <span class="o">/</span> <span class="n">fld</span>
 </code></pre></div></td></tr></table></div>
@@ -634,44 +690,100 @@
     <div class="doc doc-contents first">
 
         <p>Negative Shifted Hill function.</p>
-<p>Parameters:
-    nod (float): The node expression value.
-    fld (float): The fold change.
-    thr (float): The half-maximal threshold value.
-    hill (float): The hill coefficient.</p>
-<p>Returns:
-    (float): The value of the Negative Shifted Hill function.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+<h2 id="grins.reg_funcs.nsH(nod)" class="doc doc-heading doc-heading-parameter">              <b><code>nod</code></b>
+</h2>              (<code><span title="float">float</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The node expression value.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.reg_funcs.nsH(fld)" class="doc doc-heading doc-heading-parameter">              <b><code>fld</code></b>
+</h2>              (<code><span title="float">float</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The fold change.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.reg_funcs.nsH(thr)" class="doc doc-heading doc-heading-parameter">              <b><code>thr</code></b>
+</h2>              (<code><span title="float">float</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The half-maximal threshold value.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.reg_funcs.nsH(hill)" class="doc doc-heading doc-heading-parameter">              <b><code>hill</code></b>
+</h2>              (<code><span title="float">float</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The hill coefficient.</p>
+          </div>
+        </li>
+    </ul>
+
+
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><span title="float">float</span></code>
+          –
+          <div class="doc-md-description">
+            <p>The value of the Negative Shifted Hill function.</p>
+          </div>
+        </li>
+    </ul>
 
 
             <details class="quote">
               <summary>Source code in <code>grins/reg_funcs.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">26</span>
 <span class="normal">27</span>
 <span class="normal">28</span>
 <span class="normal">29</span>
 <span class="normal">30</span>
-<span class="normal">31</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">nsH</span><span class="p">(</span><span class="n">nod</span><span class="p">,</span> <span class="n">fld</span><span class="p">,</span> <span class="n">thr</span><span class="p">,</span> <span class="n">hill</span><span class="p">):</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">nsH</span><span class="p">(</span><span class="n">nod</span><span class="p">,</span> <span class="n">fld</span><span class="p">,</span> <span class="n">thr</span><span class="p">,</span> <span class="n">hill</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Negative Shifted Hill function.</span>
 
-<span class="sd">    Parameters:</span>
-<span class="sd">        nod (float): The node expression value.</span>
-<span class="sd">        fld (float): The fold change.</span>
-<span class="sd">        thr (float): The half-maximal threshold value.</span>
-<span class="sd">        hill (float): The hill coefficient.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    nod : float</span>
+<span class="sd">        The node expression value.</span>
+<span class="sd">    fld : float</span>
+<span class="sd">        The fold change.</span>
+<span class="sd">    thr : float</span>
+<span class="sd">        The half-maximal threshold value.</span>
+<span class="sd">    hill : float</span>
+<span class="sd">        The hill coefficient.</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        (float): The value of the Negative Shifted Hill function.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        The value of the Negative Shifted Hill function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">fld</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">fld</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">nod</span> <span class="o">/</span> <span class="n">thr</span><span class="p">)</span><span class="o">**</span> <span class="n">hill</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">fld</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">fld</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">nod</span> <span class="o">/</span> <span class="n">thr</span><span class="p">)</span> <span class="o">**</span> <span class="n">hill</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -793,11 +905,41 @@
 
         <p>Parse and cleans the given topofile and return the dataframe. It is expeced that the topo files is a tab-separated file with three columns: Source, Target, and Type. White spaces can also be used to separate the columns.</p>
 <p>For nodes that are not alphanumeric, the function will replace the non-alphanumeric characters with an underscore and prepend "Node_" if the node name does not start with an alphabet. The cleaned topology file will be saved if the save_cleaned flag is set to True.</p>
-<p>Parameters:
-    topofile (str): The path to the topofile.
-    save_cleaned (bool, optional): If True, save the cleaned topology file. Defaults to False.</p>
-<p>Returns:
-    topo_df (pandas.DataFrame): The parsed dataframe.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+<h2 id="grins.gen_params.parse_topos(topofile)" class="doc doc-heading doc-heading-parameter">              <b><code>topofile</code></b>
+</h2>              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The path to the topofile.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.gen_params.parse_topos(save_cleaned)" class="doc doc-heading doc-heading-parameter">              <b><code>save_cleaned</code></b>
+</h2>              (<code><span title="bool">bool</span></code>, default:
+                  <code>False</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>If True, save the cleaned topology file. Defaults to False.</p>
+          </div>
+        </li>
+    </ul>
+
+
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+<b><code>topo_df</code></b> (              <code><span title="pandas.DataFrame">DataFrame</span></code>
+)          –
+          <div class="doc-md-description">
+            <p>The parsed dataframe.</p>
+          </div>
+        </li>
+    </ul>
 
 
             <details class="quote">
@@ -842,18 +984,28 @@
 <span class="normal">55</span>
 <span class="normal">56</span>
 <span class="normal">57</span>
-<span class="normal">58</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">parse_topos</span><span class="p">(</span><span class="n">topofile</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">save_cleaned</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">parse_topos</span><span class="p">(</span><span class="n">topofile</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">save_cleaned</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parse and cleans the given topofile and return the dataframe. It is expeced that the topo files is a tab-separated file with three columns: Source, Target, and Type. White spaces can also be used to separate the columns.</span>
 
 <span class="sd">    For nodes that are not alphanumeric, the function will replace the non-alphanumeric characters with an underscore and prepend &quot;Node_&quot; if the node name does not start with an alphabet. The cleaned topology file will be saved if the save_cleaned flag is set to True.</span>
 
-<span class="sd">    Parameters:</span>
-<span class="sd">        topofile (str): The path to the topofile.</span>
-<span class="sd">        save_cleaned (bool, optional): If True, save the cleaned topology file. Defaults to False.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    topofile : str</span>
+<span class="sd">        The path to the topofile.</span>
+<span class="sd">    save_cleaned : bool, optional</span>
+<span class="sd">        If True, save the cleaned topology file. Defaults to False.</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        topo_df (pandas.DataFrame): The parsed dataframe.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    topo_df : pd.DataFrame</span>
+<span class="sd">        The parsed dataframe.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">topo_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">topofile</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;\s+&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">topo_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
@@ -901,26 +1053,36 @@
     <div class="doc doc-contents first">
 
         <p>Generate parameter names based on the given topology dataframe.</p>
-<p>Parameters:
-    topo_df (pandas.DataFrame): The topology dataframe containing the information about the nodes and edges.</p>
-<p>Returns:
-    tuple: A tuple containing the parameter names, unique target node names, and unique source node names.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+<h2 id="grins.gen_params.gen_param_names(topo_df)" class="doc doc-heading doc-heading-parameter">              <b><code>topo_df</code></b>
+</h2>              (<code><span title="pandas.DataFrame">DataFrame</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The topology dataframe containing the information about the nodes and edges.</p>
+          </div>
+        </li>
+    </ul>
+
+
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><span title="tuple">tuple</span></code>
+          –
+          <div class="doc-md-description">
+            <p>A tuple containing the parameter names, unique target node names, and unique source node names.</p>
+          </div>
+        </li>
+    </ul>
 
 
             <details class="quote">
               <summary>Source code in <code>grins/gen_params.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 79</span>
-<span class="normal"> 80</span>
-<span class="normal"> 81</span>
-<span class="normal"> 82</span>
-<span class="normal"> 83</span>
-<span class="normal"> 84</span>
-<span class="normal"> 85</span>
-<span class="normal"> 86</span>
-<span class="normal"> 87</span>
-<span class="normal"> 88</span>
-<span class="normal"> 89</span>
-<span class="normal"> 90</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 90</span>
 <span class="normal"> 91</span>
 <span class="normal"> 92</span>
 <span class="normal"> 93</span>
@@ -931,15 +1093,34 @@
 <span class="normal"> 98</span>
 <span class="normal"> 99</span>
 <span class="normal">100</span>
-<span class="normal">101</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">gen_param_names</span><span class="p">(</span><span class="n">topo_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">gen_param_names</span><span class="p">(</span><span class="n">topo_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generate parameter names based on the given topology dataframe.</span>
 
-<span class="sd">    Parameters:</span>
-<span class="sd">        topo_df (pandas.DataFrame): The topology dataframe containing the information about the nodes and edges.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    topo_df : pd.DataFrame</span>
+<span class="sd">        The topology dataframe containing the information about the nodes and edges.</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        tuple: A tuple containing the parameter names, unique target node names, and unique source node names.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    tuple</span>
+<span class="sd">        A tuple containing the parameter names, unique target node names, and unique source node names.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">target_nodes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">topo_df</span><span class="p">[</span><span class="s2">&quot;Target&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
     <span class="n">source_nodes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">topo_df</span><span class="p">[</span><span class="s2">&quot;Source&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
@@ -972,43 +1153,84 @@
     <div class="doc doc-contents first">
 
         <p>Generates a sample distribution based on the specified method.</p>
-<p>Parameters:
-    method (str): The sampling method to use. Options are "Sobol", "LHS", "Uniform", "LogUniform", "Normal", "LogNormal".
-    dimension (int): The number of dimensions for the sample points.
-    num_points (int): The number of sample points to generate.
-    std_dev (Optional[float]): The standard deviation for the "Normal" and "LogNormal" distributions. Defaults to 1.0 if not provided.
-    optimise (bool): Whether to optimise the sampling process. Applicable for "Sobol" and "LHS" methods.</p>
-<p>Returns:
-    np.ndarray: An array of sample points generated according to the specified method.</p>
-<p>Raises:
-    ValueError: If an unknown sampling method is specified.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+<h2 id="grins.gen_params.sample_distribution(method)" class="doc doc-heading doc-heading-parameter">              <b><code>method</code></b>
+</h2>              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The sampling method to use. Options are "Sobol", "LHS", "Uniform", "LogUniform", "Normal", "LogNormal".</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.gen_params.sample_distribution(dimension)" class="doc doc-heading doc-heading-parameter">              <b><code>dimension</code></b>
+</h2>              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The number of dimensions for the sample points.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.gen_params.sample_distribution(num_points)" class="doc doc-heading doc-heading-parameter">              <b><code>num_points</code></b>
+</h2>              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The number of sample points to generate.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.gen_params.sample_distribution(std_dev)" class="doc doc-heading doc-heading-parameter">              <b><code>std_dev</code></b>
+</h2>              (<code><span title="typing.Optional">Optional</span>[<span title="float">float</span>]</code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>The standard deviation for the "Normal" and "LogNormal" distributions. Defaults to 1.0 if not provided.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.gen_params.sample_distribution(optimise)" class="doc doc-heading doc-heading-parameter">              <b><code>optimise</code></b>
+</h2>              (<code><span title="bool">bool</span></code>, default:
+                  <code>False</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>Whether to optimise the sampling process. Applicable for "Sobol" and "LHS" methods.</p>
+          </div>
+        </li>
+    </ul>
+
+
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><span title="numpy.ndarray">ndarray</span></code>
+          –
+          <div class="doc-md-description">
+            <p>An array of sample points generated according to the specified method.</p>
+          </div>
+        </li>
+    </ul>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><span title="ValueError">ValueError</span></code>
+            –
+          <div class="doc-md-description">
+            <p>If an unknown sampling method is specified.</p>
+          </div>
+        </li>
+    </ul>
 
 
             <details class="quote">
               <summary>Source code in <code>grins/gen_params.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">234</span>
-<span class="normal">235</span>
-<span class="normal">236</span>
-<span class="normal">237</span>
-<span class="normal">238</span>
-<span class="normal">239</span>
-<span class="normal">240</span>
-<span class="normal">241</span>
-<span class="normal">242</span>
-<span class="normal">243</span>
-<span class="normal">244</span>
-<span class="normal">245</span>
-<span class="normal">246</span>
-<span class="normal">247</span>
-<span class="normal">248</span>
-<span class="normal">249</span>
-<span class="normal">250</span>
-<span class="normal">251</span>
-<span class="normal">252</span>
-<span class="normal">253</span>
-<span class="normal">254</span>
-<span class="normal">255</span>
-<span class="normal">256</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">256</span>
 <span class="normal">257</span>
 <span class="normal">258</span>
 <span class="normal">259</span>
@@ -1038,7 +1260,39 @@
 <span class="normal">283</span>
 <span class="normal">284</span>
 <span class="normal">285</span>
-<span class="normal">286</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">sample_distribution</span><span class="p">(</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span>
+<span class="normal">295</span>
+<span class="normal">296</span>
+<span class="normal">297</span>
+<span class="normal">298</span>
+<span class="normal">299</span>
+<span class="normal">300</span>
+<span class="normal">301</span>
+<span class="normal">302</span>
+<span class="normal">303</span>
+<span class="normal">304</span>
+<span class="normal">305</span>
+<span class="normal">306</span>
+<span class="normal">307</span>
+<span class="normal">308</span>
+<span class="normal">309</span>
+<span class="normal">310</span>
+<span class="normal">311</span>
+<span class="normal">312</span>
+<span class="normal">313</span>
+<span class="normal">314</span>
+<span class="normal">315</span>
+<span class="normal">316</span>
+<span class="normal">317</span>
+<span class="normal">318</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">sample_distribution</span><span class="p">(</span>
     <span class="n">method</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">dimension</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">num_points</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
@@ -1048,18 +1302,28 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generates a sample distribution based on the specified method.</span>
 
-<span class="sd">    Parameters:</span>
-<span class="sd">        method (str): The sampling method to use. Options are &quot;Sobol&quot;, &quot;LHS&quot;, &quot;Uniform&quot;, &quot;LogUniform&quot;, &quot;Normal&quot;, &quot;LogNormal&quot;.</span>
-<span class="sd">        dimension (int): The number of dimensions for the sample points.</span>
-<span class="sd">        num_points (int): The number of sample points to generate.</span>
-<span class="sd">        std_dev (Optional[float]): The standard deviation for the &quot;Normal&quot; and &quot;LogNormal&quot; distributions. Defaults to 1.0 if not provided.</span>
-<span class="sd">        optimise (bool): Whether to optimise the sampling process. Applicable for &quot;Sobol&quot; and &quot;LHS&quot; methods.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    method : str</span>
+<span class="sd">        The sampling method to use. Options are &quot;Sobol&quot;, &quot;LHS&quot;, &quot;Uniform&quot;, &quot;LogUniform&quot;, &quot;Normal&quot;, &quot;LogNormal&quot;.</span>
+<span class="sd">    dimension : int</span>
+<span class="sd">        The number of dimensions for the sample points.</span>
+<span class="sd">    num_points : int</span>
+<span class="sd">        The number of sample points to generate.</span>
+<span class="sd">    std_dev : Optional[float], optional</span>
+<span class="sd">        The standard deviation for the &quot;Normal&quot; and &quot;LogNormal&quot; distributions. Defaults to 1.0 if not provided.</span>
+<span class="sd">    optimise : bool, optional</span>
+<span class="sd">        Whether to optimise the sampling process. Applicable for &quot;Sobol&quot; and &quot;LHS&quot; methods.</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        np.ndarray: An array of sample points generated according to the specified method.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    np.ndarray</span>
+<span class="sd">        An array of sample points generated according to the specified method.</span>
 
-<span class="sd">    Raises:</span>
-<span class="sd">        ValueError: If an unknown sampling method is specified.</span>
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If an unknown sampling method is specified.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;Sobol&quot;</span><span class="p">:</span>
         <span class="n">dist_arr</span> <span class="o">=</span> <span class="n">_gen_sobol_seq</span><span class="p">(</span><span class="n">dimension</span><span class="p">,</span> <span class="n">num_points</span><span class="p">,</span> <span class="n">optimise</span><span class="p">)</span>
@@ -1100,6 +1364,214 @@
 <div class="doc doc-object doc-function">
 
 
+<h1 id="grins.gen_params.get_thr_ranges" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">grins</span><span class="o">.</span><span class="n">gen_params</span><span class="o">.</span><span class="n">get_thr_ranges</span><span class="p">(</span><span class="n">source_node</span><span class="p">,</span> <span class="n">topo_df</span><span class="p">,</span> <span class="n">prange_df</span><span class="p">,</span> <span class="n">num_params</span><span class="o">=</span><span class="mi">2</span> <span class="o">**</span> <span class="mi">10</span><span class="p">)</span></code>
+
+</h1>
+
+
+    <div class="doc doc-contents first">
+
+        <p>Calculate the median threshold range for a given source node.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+<h2 id="grins.gen_params.get_thr_ranges(source_node)" class="doc doc-heading doc-heading-parameter">              <b><code>source_node</code></b>
+</h2>              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The source node for which the threshold range is calculated.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.gen_params.get_thr_ranges(topo_df)" class="doc doc-heading doc-heading-parameter">              <b><code>topo_df</code></b>
+</h2>              (<code><span title="pandas.DataFrame">DataFrame</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>DataFrame containing the topology information.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.gen_params.get_thr_ranges(prange_df)" class="doc doc-heading doc-heading-parameter">              <b><code>prange_df</code></b>
+</h2>              (<code><span title="pandas.DataFrame">DataFrame</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>DataFrame containing the parameter ranges.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.gen_params.get_thr_ranges(num_params)" class="doc doc-heading doc-heading-parameter">              <b><code>num_params</code></b>
+</h2>              (<code><span title="int">int</span></code>, default:
+                  <code>2 ** 10</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>Number of parameters to sample. Defaults to 1024.</p>
+          </div>
+        </li>
+    </ul>
+
+
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><span title="float">float</span></code>
+          –
+          <div class="doc-md-description">
+            <p>The median threshold range for the given source node.</p>
+          </div>
+        </li>
+    </ul>
+
+
+            <details class="quote">
+              <summary>Source code in <code>grins/gen_params.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">445</span>
+<span class="normal">446</span>
+<span class="normal">447</span>
+<span class="normal">448</span>
+<span class="normal">449</span>
+<span class="normal">450</span>
+<span class="normal">451</span>
+<span class="normal">452</span>
+<span class="normal">453</span>
+<span class="normal">454</span>
+<span class="normal">455</span>
+<span class="normal">456</span>
+<span class="normal">457</span>
+<span class="normal">458</span>
+<span class="normal">459</span>
+<span class="normal">460</span>
+<span class="normal">461</span>
+<span class="normal">462</span>
+<span class="normal">463</span>
+<span class="normal">464</span>
+<span class="normal">465</span>
+<span class="normal">466</span>
+<span class="normal">467</span>
+<span class="normal">468</span>
+<span class="normal">469</span>
+<span class="normal">470</span>
+<span class="normal">471</span>
+<span class="normal">472</span>
+<span class="normal">473</span>
+<span class="normal">474</span>
+<span class="normal">475</span>
+<span class="normal">476</span>
+<span class="normal">477</span>
+<span class="normal">478</span>
+<span class="normal">479</span>
+<span class="normal">480</span>
+<span class="normal">481</span>
+<span class="normal">482</span>
+<span class="normal">483</span>
+<span class="normal">484</span>
+<span class="normal">485</span>
+<span class="normal">486</span>
+<span class="normal">487</span>
+<span class="normal">488</span>
+<span class="normal">489</span>
+<span class="normal">490</span>
+<span class="normal">491</span>
+<span class="normal">492</span>
+<span class="normal">493</span>
+<span class="normal">494</span>
+<span class="normal">495</span>
+<span class="normal">496</span>
+<span class="normal">497</span>
+<span class="normal">498</span>
+<span class="normal">499</span>
+<span class="normal">500</span>
+<span class="normal">501</span>
+<span class="normal">502</span>
+<span class="normal">503</span>
+<span class="normal">504</span>
+<span class="normal">505</span>
+<span class="normal">506</span>
+<span class="normal">507</span>
+<span class="normal">508</span>
+<span class="normal">509</span>
+<span class="normal">510</span>
+<span class="normal">511</span>
+<span class="normal">512</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_thr_ranges</span><span class="p">(</span>
+    <span class="n">source_node</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">topo_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">prange_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">num_params</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="mi">10</span><span class="p">,</span>
+    <span class="c1"># optimise: bool = False,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the median threshold range for a given source node.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    source_node : str</span>
+<span class="sd">        The source node for which the threshold range is calculated.</span>
+<span class="sd">    topo_df : pd.DataFrame</span>
+<span class="sd">        DataFrame containing the topology information.</span>
+<span class="sd">    prange_df : pd.DataFrame</span>
+<span class="sd">        DataFrame containing the parameter ranges.</span>
+<span class="sd">    num_params : int, optional</span>
+<span class="sd">        Number of parameters to sample. Defaults to 1024.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        The median threshold range for the given source node.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Get the production and degradation rates for the source node</span>
+    <span class="n">sn_params</span> <span class="o">=</span> <span class="n">prange_df</span><span class="p">[</span>
+        <span class="n">prange_df</span><span class="p">[</span><span class="s2">&quot;Parameter&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Prod_</span><span class="si">{</span><span class="n">source_node</span><span class="si">}</span><span class="s2">|Deg_</span><span class="si">{</span><span class="n">source_node</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="p">]</span>
+    <span class="c1"># Sample the production and degradation rates for the source node</span>
+    <span class="n">sn_gk</span> <span class="o">=</span> <span class="n">sample_param_df</span><span class="p">(</span><span class="n">sn_params</span><span class="p">,</span> <span class="n">num_params</span><span class="p">)</span>
+    <span class="c1"># Calculate the g/k values for the source node</span>
+    <span class="n">sn_gk_n</span> <span class="o">=</span> <span class="p">(</span><span class="n">sn_gk</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Prod_</span><span class="si">{</span><span class="n">source_node</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">sn_gk</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Deg_</span><span class="si">{</span><span class="n">source_node</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+    <span class="c1"># Get the incoming edges for the source node</span>
+    <span class="n">in_edge_topo</span> <span class="o">=</span> <span class="n">topo_df</span><span class="p">[</span><span class="n">topo_df</span><span class="p">[</span><span class="s2">&quot;Target&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">source_node</span><span class="p">]</span>
+    <span class="c1"># If there are incoming edges, calculate the updated g/k values based on the Hills equation</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">in_edge_topo</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+        <span class="n">isn</span> <span class="o">=</span> <span class="s2">&quot;|&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">in_edge_topo</span><span class="p">[</span><span class="s2">&quot;Source&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+        <span class="c1"># Get the parameters for the incoming edges</span>
+        <span class="n">in_edge_params</span> <span class="o">=</span> <span class="n">prange_df</span><span class="p">[</span>
+            <span class="n">prange_df</span><span class="p">[</span><span class="s2">&quot;Parameter&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Fld_</span><span class="si">{</span><span class="n">isn</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">source_node</span><span class="si">}</span><span class="s2">|Thr_</span><span class="si">{</span><span class="n">isn</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">source_node</span><span class="si">}</span><span class="s2">|Hill_</span><span class="si">{</span><span class="n">isn</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">source_node</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+            <span class="o">|</span> <span class="n">prange_df</span><span class="p">[</span><span class="s2">&quot;Parameter&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Prod_</span><span class="si">{</span><span class="n">isn</span><span class="si">}</span><span class="s2">|Deg_</span><span class="si">{</span><span class="n">isn</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="c1"># Sample the parameters for the incoming edges</span>
+        <span class="n">isn_gk</span> <span class="o">=</span> <span class="n">sample_param_df</span><span class="p">(</span>
+            <span class="n">in_edge_params</span><span class="p">[</span><span class="n">in_edge_params</span><span class="p">[</span><span class="s2">&quot;Parameter&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;Prod_|Deg_&quot;</span><span class="p">)],</span>
+            <span class="n">num_params</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="c1"># Calculate the updated g/k values based on the Hills equation for the incoming edges</span>
+        <span class="k">for</span> <span class="n">in_node</span> <span class="ow">in</span> <span class="n">in_edge_topo</span><span class="p">[</span><span class="s2">&quot;Source&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+            <span class="c1"># print(f&quot;Processing incoming edge from {in_node} to {source_node}&quot;)</span>
+            <span class="n">in_gk</span> <span class="o">=</span> <span class="n">isn_gk</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Prod_</span><span class="si">{</span><span class="n">in_node</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">isn_gk</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Deg_</span><span class="si">{</span><span class="n">in_node</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+            <span class="n">in_gk_median</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">in_gk</span><span class="p">)</span>
+            <span class="c1"># print(f&quot;Median g/k value for {in_node}: {in_gk_median}&quot;)</span>
+            <span class="n">in_edge_params</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+                <span class="n">in_edge_params</span><span class="p">[</span><span class="s2">&quot;Parameter&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Thr_</span><span class="si">{</span><span class="n">in_node</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">source_node</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">),</span>
+                <span class="p">[</span><span class="s2">&quot;Minimum&quot;</span><span class="p">,</span> <span class="s2">&quot;Maximum&quot;</span><span class="p">],</span>
+            <span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.02</span> <span class="o">*</span> <span class="n">in_gk_median</span><span class="p">,</span> <span class="mf">1.98</span> <span class="o">*</span> <span class="n">in_gk_median</span><span class="p">]</span>
+        <span class="c1"># Update the g/k values for the source node based on the incoming edges and return the median g/k value</span>
+        <span class="k">return</span> <span class="n">_get_updated_gkn_hills</span><span class="p">(</span><span class="n">sn_gk_n</span><span class="p">,</span> <span class="n">in_edge_params</span><span class="p">,</span> <span class="n">in_edge_topo</span><span class="p">,</span> <span class="n">num_params</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># If there are no incoming edges, return the median g/k value for the source node</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">sn_gk</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Prod_</span><span class="si">{</span><span class="n">source_node</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">sn_gk</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Deg_</span><span class="si">{</span><span class="n">source_node</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">])</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
 <h1 id="grins.gen_params.gen_param_range_df" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">grins</span><span class="o">.</span><span class="n">gen_params</span><span class="o">.</span><span class="n">gen_param_range_df</span><span class="p">(</span><span class="n">topo_df</span><span class="p">,</span> <span class="n">num_params</span><span class="o">=</span><span class="mi">2</span> <span class="o">**</span> <span class="mi">10</span><span class="p">,</span> <span class="n">sampling_method</span><span class="o">=</span><span class="s1">&#39;Sobol&#39;</span><span class="p">,</span> <span class="n">thr_rows</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
 
@@ -1111,73 +1583,64 @@
         <p>Generate a parameter range DataFrame from the topology DataFrame.</p>
 
 
-<details class="parameters:" open>
-  <summary>Parameters:</summary>
-  <pre><code>topo_df (pd.DataFrame): The topology DataFrame containing the network structure.
-num_params (int, optional): The number of parameters to generate. Default is 1024.
-sampling_method (Union[str, dict], optional): The sampling method to use. Can be a string
-    specifying a single method for all parameters or a dictionary specifying methods for
-    individual parameters. Default is "Sobol".
-thr_rows (bool, optional): Whether to add threshold rows to the DataFrame. Default is True.
-</code></pre>
-</details>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+<h2 id="grins.gen_params.gen_param_range_df(topo_df)" class="doc doc-heading doc-heading-parameter">              <b><code>topo_df</code></b>
+</h2>              (<code><span title="pandas.DataFrame">DataFrame</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The topology DataFrame containing the network structure.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.gen_params.gen_param_range_df(num_params)" class="doc doc-heading doc-heading-parameter">              <b><code>num_params</code></b>
+</h2>              (<code><span title="int">int</span></code>, default:
+                  <code>2 ** 10</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>The number of parameters to generate. Default is 1024.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.gen_params.gen_param_range_df(sampling_method)" class="doc doc-heading doc-heading-parameter">              <b><code>sampling_method</code></b>
+</h2>              (<code><span title="typing.Union">Union</span>[<span title="str">str</span>, <span title="dict">dict</span>]</code>, default:
+                  <code>&#39;Sobol&#39;</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>The sampling method to use. Can be a string specifying a single method for all parameters or a dictionary specifying methods for individual parameters. Default is "Sobol".</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.gen_params.gen_param_range_df(thr_rows)" class="doc doc-heading doc-heading-parameter">              <b><code>thr_rows</code></b>
+</h2>              (<code><span title="bool">bool</span></code>, default:
+                  <code>True</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>Whether to add threshold rows to the DataFrame. Default is True.</p>
+          </div>
+        </li>
+    </ul>
 
-<details class="returns:" open>
-  <summary>Returns:</summary>
-  <pre><code>pd.DataFrame: A DataFrame containing the parameter ranges and sampling methods.
-</code></pre>
-</details>
+
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><span title="pandas.DataFrame">DataFrame</span></code>
+          –
+          <div class="doc-md-description">
+            <p>A DataFrame containing the parameter ranges and sampling methods.</p>
+          </div>
+        </li>
+    </ul>
+
 
             <details class="quote">
               <summary>Source code in <code>grins/gen_params.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">521</span>
-<span class="normal">522</span>
-<span class="normal">523</span>
-<span class="normal">524</span>
-<span class="normal">525</span>
-<span class="normal">526</span>
-<span class="normal">527</span>
-<span class="normal">528</span>
-<span class="normal">529</span>
-<span class="normal">530</span>
-<span class="normal">531</span>
-<span class="normal">532</span>
-<span class="normal">533</span>
-<span class="normal">534</span>
-<span class="normal">535</span>
-<span class="normal">536</span>
-<span class="normal">537</span>
-<span class="normal">538</span>
-<span class="normal">539</span>
-<span class="normal">540</span>
-<span class="normal">541</span>
-<span class="normal">542</span>
-<span class="normal">543</span>
-<span class="normal">544</span>
-<span class="normal">545</span>
-<span class="normal">546</span>
-<span class="normal">547</span>
-<span class="normal">548</span>
-<span class="normal">549</span>
-<span class="normal">550</span>
-<span class="normal">551</span>
-<span class="normal">552</span>
-<span class="normal">553</span>
-<span class="normal">554</span>
-<span class="normal">555</span>
-<span class="normal">556</span>
-<span class="normal">557</span>
-<span class="normal">558</span>
-<span class="normal">559</span>
-<span class="normal">560</span>
-<span class="normal">561</span>
-<span class="normal">562</span>
-<span class="normal">563</span>
-<span class="normal">564</span>
-<span class="normal">565</span>
-<span class="normal">566</span>
-<span class="normal">567</span>
-<span class="normal">568</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">568</span>
 <span class="normal">569</span>
 <span class="normal">570</span>
 <span class="normal">571</span>
@@ -1189,7 +1652,57 @@ thr_rows (bool, optional): Whether to add threshold rows to the DataFrame. Defau
 <span class="normal">577</span>
 <span class="normal">578</span>
 <span class="normal">579</span>
-<span class="normal">580</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">gen_param_range_df</span><span class="p">(</span>
+<span class="normal">580</span>
+<span class="normal">581</span>
+<span class="normal">582</span>
+<span class="normal">583</span>
+<span class="normal">584</span>
+<span class="normal">585</span>
+<span class="normal">586</span>
+<span class="normal">587</span>
+<span class="normal">588</span>
+<span class="normal">589</span>
+<span class="normal">590</span>
+<span class="normal">591</span>
+<span class="normal">592</span>
+<span class="normal">593</span>
+<span class="normal">594</span>
+<span class="normal">595</span>
+<span class="normal">596</span>
+<span class="normal">597</span>
+<span class="normal">598</span>
+<span class="normal">599</span>
+<span class="normal">600</span>
+<span class="normal">601</span>
+<span class="normal">602</span>
+<span class="normal">603</span>
+<span class="normal">604</span>
+<span class="normal">605</span>
+<span class="normal">606</span>
+<span class="normal">607</span>
+<span class="normal">608</span>
+<span class="normal">609</span>
+<span class="normal">610</span>
+<span class="normal">611</span>
+<span class="normal">612</span>
+<span class="normal">613</span>
+<span class="normal">614</span>
+<span class="normal">615</span>
+<span class="normal">616</span>
+<span class="normal">617</span>
+<span class="normal">618</span>
+<span class="normal">619</span>
+<span class="normal">620</span>
+<span class="normal">621</span>
+<span class="normal">622</span>
+<span class="normal">623</span>
+<span class="normal">624</span>
+<span class="normal">625</span>
+<span class="normal">626</span>
+<span class="normal">627</span>
+<span class="normal">628</span>
+<span class="normal">629</span>
+<span class="normal">630</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">gen_param_range_df</span><span class="p">(</span>
     <span class="n">topo_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
     <span class="n">num_params</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="mi">10</span><span class="p">,</span>
     <span class="n">sampling_method</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Sobol&quot;</span><span class="p">,</span>
@@ -1198,18 +1711,21 @@ thr_rows (bool, optional): Whether to add threshold rows to the DataFrame. Defau
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generate a parameter range DataFrame from the topology DataFrame.</span>
 
-<span class="sd">    Parameters:</span>
-<span class="sd">    -----------</span>
-<span class="sd">        topo_df (pd.DataFrame): The topology DataFrame containing the network structure.</span>
-<span class="sd">        num_params (int, optional): The number of parameters to generate. Default is 1024.</span>
-<span class="sd">        sampling_method (Union[str, dict], optional): The sampling method to use. Can be a string</span>
-<span class="sd">            specifying a single method for all parameters or a dictionary specifying methods for</span>
-<span class="sd">            individual parameters. Default is &quot;Sobol&quot;.</span>
-<span class="sd">        thr_rows (bool, optional): Whether to add threshold rows to the DataFrame. Default is True.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    topo_df : pd.DataFrame</span>
+<span class="sd">        The topology DataFrame containing the network structure.</span>
+<span class="sd">    num_params : int, optional</span>
+<span class="sd">        The number of parameters to generate. Default is 1024.</span>
+<span class="sd">    sampling_method : Union[str, dict], optional</span>
+<span class="sd">        The sampling method to use. Can be a string specifying a single method for all parameters or a dictionary specifying methods for individual parameters. Default is &quot;Sobol&quot;.</span>
+<span class="sd">    thr_rows : bool, optional</span>
+<span class="sd">        Whether to add threshold rows to the DataFrame. Default is True.</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">    --------</span>
-<span class="sd">        pd.DataFrame: A DataFrame containing the parameter ranges and sampling methods.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pd.DataFrame</span>
+<span class="sd">        A DataFrame containing the parameter ranges and sampling methods.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Generate the parameter names, target nodes, and source nodes</span>
     <span class="n">param_names</span><span class="p">,</span> <span class="n">target_nodes</span><span class="p">,</span> <span class="n">source_nodes</span> <span class="o">=</span> <span class="n">gen_param_names</span><span class="p">(</span><span class="n">topo_df</span><span class="p">)</span>
@@ -1271,66 +1787,78 @@ Parameters are grouped by their 'Sampling' (and 'StdDev' if present) to ensure
 that parameters in the same group follow the same distribution in the higher dimensions.
 The final DataFrame columns are arranged in the same order as in prange_df.
 The sampling methods can be: 'Sobol', 'LHS', 'Uniform', 'LogUniform', 'Normal', 'LogNormal'.</p>
-<p>Parameters:
-    prange_df (pd.DataFrame): DataFrame with columns ["Parameter", "Minimum", "Maximum", "Sampling", ...].
-    num_paras (int): Number of samples to generate per parameter.</p>
-<p>Returns:
-    pd.DataFrame: DataFrame of sampled and scaled parameters.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+<h2 id="grins.gen_params.gen_param_df(prange_df)" class="doc doc-heading doc-heading-parameter">              <b><code>prange_df</code></b>
+</h2>              (<code><span title="pandas.DataFrame">DataFrame</span></code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>DataFrame with columns ["Parameter", "Minimum", "Maximum", "Sampling", ...].</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.gen_params.gen_param_df(num_params)" class="doc doc-heading doc-heading-parameter">              <b><code>num_params</code></b>
+</h2>              (<code><span title="int">int</span></code>, default:
+                  <code>2 ** 10</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>Number of samples to generate per parameter. Default is 1024.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.gen_params.gen_param_df(topo_df)" class="doc doc-heading doc-heading-parameter">              <b><code>topo_df</code></b>
+</h2>              (<code><span title="pandas.DataFrame">DataFrame</span></code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>DataFrame containing the network topology information.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.gen_params.gen_param_df(sampling_method)" class="doc doc-heading doc-heading-parameter">              <b><code>sampling_method</code></b>
+</h2>              (<code><span title="typing.Union">Union</span>[<span title="str">str</span>, <span title="dict">dict</span>]</code>, default:
+                  <code>&#39;Sobol&#39;</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>The sampling method to use. Can be a string specifying a single method for all parameters or a dictionary specifying methods for individual parameters. Default is "Sobol". The methods can be: 'Sobol', 'LHS', 'Uniform', 'LogUniform', 'Normal', 'LogNormal'.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.gen_params.gen_param_df(thr_rows)" class="doc doc-heading doc-heading-parameter">              <b><code>thr_rows</code></b>
+</h2>              (<code><span title="bool">bool</span></code>, default:
+                  <code>True</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>Whether to add threshold rows to the DataFrame. Default is True.</p>
+          </div>
+        </li>
+    </ul>
+
+
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><span title="pandas.DataFrame">DataFrame</span></code>
+          –
+          <div class="doc-md-description">
+            <p>DataFrame of sampled and scaled parameters.</p>
+          </div>
+        </li>
+    </ul>
 
 
             <details class="quote">
               <summary>Source code in <code>grins/gen_params.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">583</span>
-<span class="normal">584</span>
-<span class="normal">585</span>
-<span class="normal">586</span>
-<span class="normal">587</span>
-<span class="normal">588</span>
-<span class="normal">589</span>
-<span class="normal">590</span>
-<span class="normal">591</span>
-<span class="normal">592</span>
-<span class="normal">593</span>
-<span class="normal">594</span>
-<span class="normal">595</span>
-<span class="normal">596</span>
-<span class="normal">597</span>
-<span class="normal">598</span>
-<span class="normal">599</span>
-<span class="normal">600</span>
-<span class="normal">601</span>
-<span class="normal">602</span>
-<span class="normal">603</span>
-<span class="normal">604</span>
-<span class="normal">605</span>
-<span class="normal">606</span>
-<span class="normal">607</span>
-<span class="normal">608</span>
-<span class="normal">609</span>
-<span class="normal">610</span>
-<span class="normal">611</span>
-<span class="normal">612</span>
-<span class="normal">613</span>
-<span class="normal">614</span>
-<span class="normal">615</span>
-<span class="normal">616</span>
-<span class="normal">617</span>
-<span class="normal">618</span>
-<span class="normal">619</span>
-<span class="normal">620</span>
-<span class="normal">621</span>
-<span class="normal">622</span>
-<span class="normal">623</span>
-<span class="normal">624</span>
-<span class="normal">625</span>
-<span class="normal">626</span>
-<span class="normal">627</span>
-<span class="normal">628</span>
-<span class="normal">629</span>
-<span class="normal">630</span>
-<span class="normal">631</span>
-<span class="normal">632</span>
-<span class="normal">633</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">633</span>
 <span class="normal">634</span>
 <span class="normal">635</span>
 <span class="normal">636</span>
@@ -1350,7 +1878,68 @@ The sampling methods can be: 'Sobol', 'LHS', 'Uniform', 'LogUniform', 'Normal', 
 <span class="normal">650</span>
 <span class="normal">651</span>
 <span class="normal">652</span>
-<span class="normal">653</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">gen_param_df</span><span class="p">(</span>
+<span class="normal">653</span>
+<span class="normal">654</span>
+<span class="normal">655</span>
+<span class="normal">656</span>
+<span class="normal">657</span>
+<span class="normal">658</span>
+<span class="normal">659</span>
+<span class="normal">660</span>
+<span class="normal">661</span>
+<span class="normal">662</span>
+<span class="normal">663</span>
+<span class="normal">664</span>
+<span class="normal">665</span>
+<span class="normal">666</span>
+<span class="normal">667</span>
+<span class="normal">668</span>
+<span class="normal">669</span>
+<span class="normal">670</span>
+<span class="normal">671</span>
+<span class="normal">672</span>
+<span class="normal">673</span>
+<span class="normal">674</span>
+<span class="normal">675</span>
+<span class="normal">676</span>
+<span class="normal">677</span>
+<span class="normal">678</span>
+<span class="normal">679</span>
+<span class="normal">680</span>
+<span class="normal">681</span>
+<span class="normal">682</span>
+<span class="normal">683</span>
+<span class="normal">684</span>
+<span class="normal">685</span>
+<span class="normal">686</span>
+<span class="normal">687</span>
+<span class="normal">688</span>
+<span class="normal">689</span>
+<span class="normal">690</span>
+<span class="normal">691</span>
+<span class="normal">692</span>
+<span class="normal">693</span>
+<span class="normal">694</span>
+<span class="normal">695</span>
+<span class="normal">696</span>
+<span class="normal">697</span>
+<span class="normal">698</span>
+<span class="normal">699</span>
+<span class="normal">700</span>
+<span class="normal">701</span>
+<span class="normal">702</span>
+<span class="normal">703</span>
+<span class="normal">704</span>
+<span class="normal">705</span>
+<span class="normal">706</span>
+<span class="normal">707</span>
+<span class="normal">708</span>
+<span class="normal">709</span>
+<span class="normal">710</span>
+<span class="normal">711</span>
+<span class="normal">712</span>
+<span class="normal">713</span>
+<span class="normal">714</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">gen_param_df</span><span class="p">(</span>
     <span class="n">prange_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">num_params</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="mi">10</span><span class="p">,</span>
     <span class="n">topo_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -1364,12 +1953,23 @@ The sampling methods can be: 'Sobol', 'LHS', 'Uniform', 'LogUniform', 'Normal', 
 <span class="sd">    The final DataFrame columns are arranged in the same order as in prange_df.</span>
 <span class="sd">    The sampling methods can be: &#39;Sobol&#39;, &#39;LHS&#39;, &#39;Uniform&#39;, &#39;LogUniform&#39;, &#39;Normal&#39;, &#39;LogNormal&#39;.</span>
 
-<span class="sd">    Parameters:</span>
-<span class="sd">        prange_df (pd.DataFrame): DataFrame with columns [&quot;Parameter&quot;, &quot;Minimum&quot;, &quot;Maximum&quot;, &quot;Sampling&quot;, ...].</span>
-<span class="sd">        num_paras (int): Number of samples to generate per parameter.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    prange_df : pd.DataFrame, optional</span>
+<span class="sd">        DataFrame with columns [&quot;Parameter&quot;, &quot;Minimum&quot;, &quot;Maximum&quot;, &quot;Sampling&quot;, ...].</span>
+<span class="sd">    num_params : int, optional</span>
+<span class="sd">        Number of samples to generate per parameter. Default is 1024.</span>
+<span class="sd">    topo_df : pd.DataFrame, optional</span>
+<span class="sd">        DataFrame containing the network topology information.</span>
+<span class="sd">    sampling_method : Union[str, dict], optional</span>
+<span class="sd">        The sampling method to use. Can be a string specifying a single method for all parameters or a dictionary specifying methods for individual parameters. Default is &quot;Sobol&quot;. The methods can be: &#39;Sobol&#39;, &#39;LHS&#39;, &#39;Uniform&#39;, &#39;LogUniform&#39;, &#39;Normal&#39;, &#39;LogNormal&#39;.</span>
+<span class="sd">    thr_rows : bool, optional</span>
+<span class="sd">        Whether to add threshold rows to the DataFrame. Default is True.</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        pd.DataFrame: DataFrame of sampled and scaled parameters.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pd.DataFrame</span>
+<span class="sd">        DataFrame of sampled and scaled parameters.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># If the parameter range dataframe is not given</span>
     <span class="k">if</span> <span class="n">prange_df</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -1431,7 +2031,7 @@ The sampling methods can be: 'Sobol', 'LHS', 'Uniform', 'LogUniform', 'Normal', 
 
 
 <h1 id="grins.gen_params.gen_init_cond" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">grins</span><span class="o">.</span><span class="n">gen_params</span><span class="o">.</span><span class="n">gen_init_cond</span><span class="p">(</span><span class="n">topo_df</span><span class="p">,</span> <span class="n">num_init_conds</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">grins</span><span class="o">.</span><span class="n">gen_params</span><span class="o">.</span><span class="n">gen_init_cond</span><span class="p">(</span><span class="n">topo_df</span><span class="p">,</span> <span class="n">num_init_conds</span><span class="o">=</span><span class="mi">2</span> <span class="o">**</span> <span class="mi">10</span><span class="p">)</span></code>
 
 </h1>
 
@@ -1439,45 +2039,85 @@ The sampling methods can be: 'Sobol', 'LHS', 'Uniform', 'LogUniform', 'Normal', 
     <div class="doc doc-contents first">
 
         <p>Generate initial conditions for each node based on the topology.</p>
-<p>Parameters:
-    topo_df (pd.DataFrame): A DataFrame containing the topology information.
-    num_init_conds (int, optional): The number of initial conditions to generate. Defaults to 1000.</p>
-<p>Returns:
-    pd.DataFrame: A DataFrame containing the generated initial conditions for each node.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+<h2 id="grins.gen_params.gen_init_cond(topo_df)" class="doc doc-heading doc-heading-parameter">              <b><code>topo_df</code></b>
+</h2>              (<code><span title="pandas.DataFrame">DataFrame</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>DataFrame containing the topology information.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="grins.gen_params.gen_init_cond(num_init_conds)" class="doc doc-heading doc-heading-parameter">              <b><code>num_init_conds</code></b>
+</h2>              (<code><span title="int">int</span></code>, default:
+                  <code>2 ** 10</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>Number of initial conditions to generate. Default is 2**10.</p>
+          </div>
+        </li>
+    </ul>
+
+
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><span title="pandas.DataFrame">DataFrame</span></code>
+          –
+          <div class="doc-md-description">
+            <p>DataFrame containing the generated initial conditions for each node.</p>
+          </div>
+        </li>
+    </ul>
 
 
             <details class="quote">
               <summary>Source code in <code>grins/gen_params.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">656</span>
-<span class="normal">657</span>
-<span class="normal">658</span>
-<span class="normal">659</span>
-<span class="normal">660</span>
-<span class="normal">661</span>
-<span class="normal">662</span>
-<span class="normal">663</span>
-<span class="normal">664</span>
-<span class="normal">665</span>
-<span class="normal">666</span>
-<span class="normal">667</span>
-<span class="normal">668</span>
-<span class="normal">669</span>
-<span class="normal">670</span>
-<span class="normal">671</span>
-<span class="normal">672</span>
-<span class="normal">673</span>
-<span class="normal">674</span>
-<span class="normal">675</span>
-<span class="normal">676</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">gen_init_cond</span><span class="p">(</span><span class="n">topo_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">num_init_conds</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">717</span>
+<span class="normal">718</span>
+<span class="normal">719</span>
+<span class="normal">720</span>
+<span class="normal">721</span>
+<span class="normal">722</span>
+<span class="normal">723</span>
+<span class="normal">724</span>
+<span class="normal">725</span>
+<span class="normal">726</span>
+<span class="normal">727</span>
+<span class="normal">728</span>
+<span class="normal">729</span>
+<span class="normal">730</span>
+<span class="normal">731</span>
+<span class="normal">732</span>
+<span class="normal">733</span>
+<span class="normal">734</span>
+<span class="normal">735</span>
+<span class="normal">736</span>
+<span class="normal">737</span>
+<span class="normal">738</span>
+<span class="normal">739</span>
+<span class="normal">740</span>
+<span class="normal">741</span>
+<span class="normal">742</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">gen_init_cond</span><span class="p">(</span><span class="n">topo_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">num_init_conds</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generate initial conditions for each node based on the topology.</span>
 
-<span class="sd">    Parameters:</span>
-<span class="sd">        topo_df (pd.DataFrame): A DataFrame containing the topology information.</span>
-<span class="sd">        num_init_conds (int, optional): The number of initial conditions to generate. Defaults to 1000.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    topo_df : pd.DataFrame</span>
+<span class="sd">        DataFrame containing the topology information.</span>
+<span class="sd">    num_init_conds : int, optional</span>
+<span class="sd">        Number of initial conditions to generate. Default is 2**10.</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        pd.DataFrame: A DataFrame containing the generated initial conditions for each node.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pd.DataFrame</span>
+<span class="sd">        DataFrame containing the generated initial conditions for each node.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">_</span><span class="p">,</span> <span class="n">target_nodes</span><span class="p">,</span> <span class="n">source_nodes</span> <span class="o">=</span> <span class="n">gen_param_names</span><span class="p">(</span><span class="n">topo_df</span><span class="p">)</span>
     <span class="n">unique_nodes</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">source_nodes</span> <span class="o">+</span> <span class="n">target_nodes</span><span class="p">))</span>
