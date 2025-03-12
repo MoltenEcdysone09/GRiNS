@@ -504,27 +504,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#grins.reg_funcs.psH" class="md-nav__link">
+  <a href="#grins" class="md-nav__link">
     <span class="md-ellipsis">
-      psH
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#grins.reg_funcs.nsH" class="md-nav__link">
-    <span class="md-ellipsis">
-      nsH
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#grins.gen_diffrax_ode.gen_diffrax_odesys" class="md-nav__link">
-    <span class="md-ellipsis">
-      gen_diffrax_odesys
+      grins
     </span>
   </a>
   
@@ -736,328 +718,47 @@
 <h2 id="grn-parsing-and-ode-generation-functions">GRN Parsing and ODE Generation Functions</h2>
 
 
-<div class="doc doc-object doc-function">
+<div class="doc doc-object doc-module">
 
 
-<h2 id="grins.reg_funcs.psH" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">grins</span><span class="o">.</span><span class="n">reg_funcs</span><span class="o">.</span><span class="n">psH</span><span class="p">(</span><span class="n">nod</span><span class="p">,</span> <span class="n">fld</span><span class="p">,</span> <span class="n">thr</span><span class="p">,</span> <span class="n">hill</span><span class="p">)</span></code>
+
+<h2 id="grins" class="doc doc-heading">
+            <code>grins</code>
+
 
 </h2>
 
-
     <div class="doc doc-contents first">
 
-        <p>Positive Shifted Hill function.</p>
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
-    <ul>
-        <li class="doc-section-item field-body">
-            <b><code>nod</code></b>
-              (<code><span title="float">float</span></code>)
-          –
-          <div class="doc-md-description">
-            <p>The node expression value.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>fld</code></b>
-              (<code><span title="float">float</span></code>)
-          –
-          <div class="doc-md-description">
-            <p>The fold change.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>thr</code></b>
-              (<code><span title="float">float</span></code>)
-          –
-          <div class="doc-md-description">
-            <p>The half-maximal threshold value.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>hill</code></b>
-              (<code><span title="float">float</span></code>)
-          –
-          <div class="doc-md-description">
-            <p>The hill coefficient.</p>
-          </div>
-        </li>
-    </ul>
 
 
-<p><span class="doc-section-title">Returns:</span></p>
-    <ul>
-        <li class="doc-section-item field-body">
-              <code><span title="float">float</span></code>
-          –
-          <div class="doc-md-description">
-            <p>The value of the Positive Shifted Hill function.</p>
-          </div>
-        </li>
-    </ul>
 
 
-            <details class="quote">
-              <summary>Source code in <code>grins/reg_funcs.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">psH</span><span class="p">(</span><span class="n">nod</span><span class="p">,</span> <span class="n">fld</span><span class="p">,</span> <span class="n">thr</span><span class="p">,</span> <span class="n">hill</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Positive Shifted Hill function.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    nod : float</span>
-<span class="sd">        The node expression value.</span>
-<span class="sd">    fld : float</span>
-<span class="sd">        The fold change.</span>
-<span class="sd">    thr : float</span>
-<span class="sd">        The half-maximal threshold value.</span>
-<span class="sd">    hill : float</span>
-<span class="sd">        The hill coefficient.</span>
 
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    float</span>
-<span class="sd">        The value of the Positive Shifted Hill function.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">fld</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">fld</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">nod</span> <span class="o">/</span> <span class="n">thr</span><span class="p">)</span> <span class="o">**</span> <span class="n">hill</span><span class="p">)))</span> <span class="o">/</span> <span class="n">fld</span>
-</code></pre></div></td></tr></table></div>
-            </details>
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
     </div>
 
-</div>
+</div><!-- ::: grins.reg_funcs.psH
+::: grins.reg_funcs.nsH
+::: grins.gen_diffrax_ode.gen_diffrax_odesys -->
 
-<div class="doc doc-object doc-function">
-
-
-<h2 id="grins.reg_funcs.nsH" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">grins</span><span class="o">.</span><span class="n">reg_funcs</span><span class="o">.</span><span class="n">nsH</span><span class="p">(</span><span class="n">nod</span><span class="p">,</span> <span class="n">fld</span><span class="p">,</span> <span class="n">thr</span><span class="p">,</span> <span class="n">hill</span><span class="p">)</span></code>
-
-</h2>
-
-
-    <div class="doc doc-contents first">
-
-        <p>Negative Shifted Hill function.</p>
-
-
-<p><span class="doc-section-title">Parameters:</span></p>
-    <ul>
-        <li class="doc-section-item field-body">
-            <b><code>nod</code></b>
-              (<code><span title="float">float</span></code>)
-          –
-          <div class="doc-md-description">
-            <p>The node expression value.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>fld</code></b>
-              (<code><span title="float">float</span></code>)
-          –
-          <div class="doc-md-description">
-            <p>The fold change.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>thr</code></b>
-              (<code><span title="float">float</span></code>)
-          –
-          <div class="doc-md-description">
-            <p>The half-maximal threshold value.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>hill</code></b>
-              (<code><span title="float">float</span></code>)
-          –
-          <div class="doc-md-description">
-            <p>The hill coefficient.</p>
-          </div>
-        </li>
-    </ul>
-
-
-<p><span class="doc-section-title">Returns:</span></p>
-    <ul>
-        <li class="doc-section-item field-body">
-              <code><span title="float">float</span></code>
-          –
-          <div class="doc-md-description">
-            <p>The value of the Negative Shifted Hill function.</p>
-          </div>
-        </li>
-    </ul>
-
-
-            <details class="quote">
-              <summary>Source code in <code>grins/reg_funcs.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span>
-<span class="normal">45</span>
-<span class="normal">46</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">nsH</span><span class="p">(</span><span class="n">nod</span><span class="p">,</span> <span class="n">fld</span><span class="p">,</span> <span class="n">thr</span><span class="p">,</span> <span class="n">hill</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Negative Shifted Hill function.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    nod : float</span>
-<span class="sd">        The node expression value.</span>
-<span class="sd">    fld : float</span>
-<span class="sd">        The fold change.</span>
-<span class="sd">    thr : float</span>
-<span class="sd">        The half-maximal threshold value.</span>
-<span class="sd">    hill : float</span>
-<span class="sd">        The hill coefficient.</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    float</span>
-<span class="sd">        The value of the Negative Shifted Hill function.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">fld</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">fld</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">nod</span> <span class="o">/</span> <span class="n">thr</span><span class="p">)</span> <span class="o">**</span> <span class="n">hill</span><span class="p">))</span>
-</code></pre></div></td></tr></table></div>
-            </details>
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-<h2 id="grins.gen_diffrax_ode.gen_diffrax_odesys" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">grins</span><span class="o">.</span><span class="n">gen_diffrax_ode</span><span class="o">.</span><span class="n">gen_diffrax_odesys</span><span class="p">(</span><span class="n">topo_df</span><span class="p">,</span> <span class="n">topo_name</span><span class="p">,</span> <span class="n">save_dir</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span></code>
-
-</h2>
-
-
-    <div class="doc doc-contents first">
-
-        <p>Generate the ODE system code for diffrax based on the given topology dataframe.</p>
-<p>Args:
-    topo_df (pandas.DataFrame): The topology dataframe containing the edges information.
-    topo_name (str): The name of the topology.
-    save_dir (str, optional): The directory to save the generated code. Defaults to ".".</p>
-<p>Returns:
-    None:  Saves the generated file in the driectory specified by save_dir.</p>
-
-
-            <details class="quote">
-              <summary>Source code in <code>grins/gen_diffrax_ode.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">48</span>
-<span class="normal">49</span>
-<span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span>
-<span class="normal">53</span>
-<span class="normal">54</span>
-<span class="normal">55</span>
-<span class="normal">56</span>
-<span class="normal">57</span>
-<span class="normal">58</span>
-<span class="normal">59</span>
-<span class="normal">60</span>
-<span class="normal">61</span>
-<span class="normal">62</span>
-<span class="normal">63</span>
-<span class="normal">64</span>
-<span class="normal">65</span>
-<span class="normal">66</span>
-<span class="normal">67</span>
-<span class="normal">68</span>
-<span class="normal">69</span>
-<span class="normal">70</span>
-<span class="normal">71</span>
-<span class="normal">72</span>
-<span class="normal">73</span>
-<span class="normal">74</span>
-<span class="normal">75</span>
-<span class="normal">76</span>
-<span class="normal">77</span>
-<span class="normal">78</span>
-<span class="normal">79</span>
-<span class="normal">80</span>
-<span class="normal">81</span>
-<span class="normal">82</span>
-<span class="normal">83</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">gen_diffrax_odesys</span><span class="p">(</span><span class="n">topo_df</span><span class="p">,</span> <span class="n">topo_name</span><span class="p">,</span> <span class="n">save_dir</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Generate the ODE system code for diffrax based on the given topology dataframe.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        topo_df (pandas.DataFrame): The topology dataframe containing the edges information.</span>
-<span class="sd">        topo_name (str): The name of the topology.</span>
-<span class="sd">        save_dir (str, optional): The directory to save the generated code. Defaults to &quot;.&quot;.</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        None:  Saves the generated file in the driectory specified by save_dir.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Get the list of parameters, target nodes and source nodes</span>
-    <span class="n">param_names_list</span><span class="p">,</span> <span class="n">target_nodes</span><span class="p">,</span> <span class="n">source_nodes</span> <span class="o">=</span> <span class="n">gen_param_names</span><span class="p">(</span><span class="n">topo_df</span><span class="p">)</span>
-    <span class="c1"># List of unique nodes</span>
-    <span class="n">unique_nodes</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">target_nodes</span> <span class="o">+</span> <span class="n">source_nodes</span><span class="p">))</span>
-    <span class="c1"># Inititalise a list to store the ODE strings</span>
-    <span class="n">ode_list</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s2">&quot;import grins.reg_funcs as regfn</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;def odesys(t,y,args):&quot;</span><span class="p">,</span>
-        <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">(</span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">unique_nodes</span><span class="p">)</span><span class="si">}</span><span class="s2">) = y&quot;</span><span class="p">,</span>
-        <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">(</span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">param_names_list</span><span class="p">)</span><span class="si">}</span><span class="s2">) = args&quot;</span><span class="p">,</span>
-    <span class="p">]</span>
-    <span class="c1"># Loop through the target nodes</span>
-    <span class="k">for</span> <span class="n">ni</span><span class="p">,</span> <span class="n">nod</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">unique_nodes</span><span class="p">):</span>
-        <span class="c1"># Get the edges where n is the target node</span>
-        <span class="n">target_edges</span> <span class="o">=</span> <span class="n">topo_df</span><span class="p">[</span><span class="n">topo_df</span><span class="p">[</span><span class="s2">&quot;Target&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">nod</span><span class="p">]</span>
-        <span class="c1"># The diffrax ODE for each node is d_&lt;nod&gt; = &lt;ODE&gt;</span>
-        <span class="n">ode_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;d_</span><span class="si">{</span><span class="n">nod</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">gen_node_ode</span><span class="p">(</span><span class="n">target_edges</span><span class="p">,</span><span class="w"> </span><span class="n">nod</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="c1"># Append the d_y line</span>
-    <span class="n">ode_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">d_y = (</span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s1">&#39;d_</span><span class="si">{</span><span class="n">nod</span><span class="si">}</span><span class="s1">&#39;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">nod</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">unique_nodes</span><span class="p">])</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
-    <span class="c1"># Append the end line</span>
-    <span class="n">ode_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">return d_y</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="c1"># Write the lines to a file</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">save_dir</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">topo_name</span><span class="si">}</span><span class="s2">.py&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ode_list</span><span class="p">))</span>
-</code></pre></div></td></tr></table></div>
-            </details>
-    </div>
-
-</div><h2 id="parameters-and-intial-conditions-generation-functions">Parameters and Intial Conditions Generation Functions</h2>
+<h2 id="parameters-and-intial-conditions-generation-functions">Parameters and Intial Conditions Generation Functions</h2>
 
 
 <div class="doc doc-object doc-function">
