@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#grins" class="md-skip">
+        <a href="#gene-regulatory-interaction-network-simulator-grins" class="md-skip">
           Skip to content
         </a>
       
@@ -313,11 +313,44 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#installation" class="md-nav__link">
     <span class="md-ellipsis">
       Installation
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gpu-version-installation-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      GPU Version Installation (Recommended)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpu-version-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      CPU Version Installation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -571,11 +604,44 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#installation" class="md-nav__link">
     <span class="md-ellipsis">
       Installation
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gpu-version-installation-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      GPU Version Installation (Recommended)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpu-version-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      CPU Version Installation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -607,20 +673,27 @@
   
 
 
-<h1 id="grins">GRiNS</h1>
-<p>A python package for simulating and analysing the dynamics of Gene Regulatory Networks (GRNs). This uses <a href="https://github.com/patrick-kidger/diffrax">Diffrax</a></p>
-<p>Documentation: <a href="https://MoltenEcdysone09.github.io/GRiNS">MoltenEcdysone09.github.io/GRiNS</a></p>
+<h1 id="gene-regulatory-interaction-network-simulator-grins">Gene Regulatory Interaction Network Simulator (GRiNS)</h1>
+<p>A Python library for simulating gene regulatory networks (GRNs) using parameter-agnostic frameworks like RACIPE and Ising formalism, with GPU acceleration and efficient ODE solving.</p>
+<p>Modeling gene regulatory networks (GRNs) is essential for understanding cellular processes, but parameterizing these networks becomes increasingly difficult as they scale. This Python library provides a simulation framework that unifies <strong>parameter-agnostic</strong> approaches, including <strong>RACIPE</strong> and <strong>Ising formalism</strong>, into a single, flexible tool.  </p>
+<h2 id="key-features">Key Features</h2>
+<ul>
+<li><strong>Simulation Frameworks</strong>: Supports both <strong>ODE-based</strong> (RACIPE) and <strong>coarse-grained</strong> (Ising formalism) methods for studying GRN dynamics.  </li>
+<li><strong>Parameter-Agnostic Modeling</strong>: Translates network topology into mathematical models without requiring detailed parameter tuning.  </li>
+<li><strong>Scalable Computation</strong>: Uses the <a href="https://github.com/jax-ml/jax">Jax</a> ecosystem for GPU acceleration and <a href="https://github.com/patrick-kidger/diffrax">Diffrax</a> for efficient ODE solving.  </li>
+<li><strong>Data Processing Tools</strong>: Provides <strong>normalization and discretization</strong> functions to standardize simulation outputs for downstream analysis.  </li>
+</ul>
+<p>You can access the full documentation, including installation instructions, usage examples, and detailed explanations of the simulation frameworks, at <a href="https://MoltenEcdysone09.github.io/GRiNS">MoltenEcdysone09.github.io/GRiNS</a></p>
 <h2 id="installation">Installation</h2>
-<ul>
-<li>For cpu only:</li>
-</ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span>grins
+<h3 id="gpu-version-installation-recommended">GPU Version Installation (Recommended)</h3>
+<p>For optimal performance, it is recommended to install the GPU-accelerated version of the library. This version leverages CUDA for faster computations, making it well-suited for large-scale simulations. If you have a compatible NVIDIA GPU, install the library with:  </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span>grins<span class="o">[</span>cuda12<span class="o">]</span>
 </span></code></pre></div>
-<ul>
-<li>If you want to use gpu:</li>
-</ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>pip<span class="w"> </span>install<span class="w"> </span>grins<span class="o">[</span>cuda12<span class="o">]</span>
+<h3 id="cpu-version-installation">CPU Version Installation</h3>
+<p>If you do not have a compatible GPU, you can install the CPU version instead:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>pip<span class="w"> </span>install<span class="w"> </span>grins
 </span></code></pre></div>
+<p>Compared to the GPU version, the CPU version will be slower, especially for large simulations.</p>
 <h2 id="citation">Citation</h2>
 <!-- 
 ## Commands
