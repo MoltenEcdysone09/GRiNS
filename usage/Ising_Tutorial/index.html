@@ -235,9 +235,7 @@
 
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="GRiNS" class="md-nav__button md-logo" aria-label="GRiNS" data-md-component="logo">
       
@@ -584,6 +582,77 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-define-the-topology-file-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Define the Topology File Directory
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-retrieve-topology-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Retrieve Topology Files
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-define-simulation-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Define Simulation Parameters
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-process-topology-files-and-run-simulations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Process Topology Files and Run Simulations
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -601,15 +670,15 @@
 <p>This tutorial explains the pipeline for running Boolean simulations on gene regulatory networks (GRNs). The script processes topology files and runs simulations using different modes (synchronous and asynchronous).</p>
 <h2 id="step-1-define-the-topology-file-directory">Step 1: Define the Topology File Directory</h2>
 <p>We first specify the directory containing the topology files. These files define the network structure and interactions between genes.</p>
-<pre><code class="language-python"># Specify the path to the topo file
-topo_folder = &quot;TOPOS&quot;
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Specify the path to the topo file</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">topo_folder</span> <span class="o">=</span> <span class="s2">&quot;TOPOS&quot;</span>
+</span></code></pre></div>
 <h2 id="step-2-retrieve-topology-files">Step 2: Retrieve Topology Files</h2>
 <p>We retrieve all topology files from the specified directory using the <code>glob</code> module. The files are sorted to ensure a consistent processing order - this sorting is not necessary.</p>
-<pre><code class="language-python"># Get the list of all the topo files
-topo_files = sorted(glob.glob(f&quot;{topo_folder}/*.topo&quot;))
-print(topo_files)
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Get the list of all the topo files</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">topo_files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">topo_folder</span><span class="si">}</span><span class="s2">/*.topo&quot;</span><span class="p">))</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">topo_files</span><span class="p">)</span>
+</span></code></pre></div>
 <h2 id="step-3-define-simulation-parameters">Step 3: Define Simulation Parameters</h2>
 <p>Before running the simulations, we specify key parameters that control the simulation behavior:</p>
 <ul>
@@ -618,48 +687,48 @@ print(topo_files)
 <li><strong>Number of Initial Conditions</strong>: The number of different initial conditions to explore.</li>
 <li><strong>Batch Size</strong>: The batch size for the simualtions, depends on the VRAM of the GPU, the function uses 'vmap' of jax to run each batch.</li>
 </ul>
-<pre><code class="language-python"># Specify the replacement values
-replacement_values = jnp.array([0, 1])
-
-# Specify the number of steps to simulate
-max_steps = 100
-print(f&quot;Number of steps: {max_steps}&quot;)
-
-# Specify the number of initial conditions to simulate
-num_initial_conditions = 2**14
-print(f&quot;Number of initial conditions: {num_initial_conditions}&quot;)
-
-# Specify the batch size for parallel evaluation
-batch_size = 2**10
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Specify the replacement values</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">replacement_values</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># Specify the number of steps to simulate</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">max_steps</span> <span class="o">=</span> <span class="mi">100</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of steps: </span><span class="si">{</span><span class="n">max_steps</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="c1"># Specify the number of initial conditions to simulate</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="n">num_initial_conditions</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="mi">14</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of initial conditions: </span><span class="si">{</span><span class="n">num_initial_conditions</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="c1"># Specify the batch size for parallel evaluation</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="mi">10</span>
+</span></code></pre></div>
 <h2 id="step-4-process-topology-files-and-run-simulations">Step 4: Process Topology Files and Run Simulations</h2>
 <p>We loop through each topology file, extract the adjacency matrix, and run simulations in both synchronous and asynchronous modes.</p>
-<pre><code class="language-python"># Loop over all the topo files
-for topo_file in topo_files:
-    # Get the adjacency matrix and node names
-    topo_adj, node_names = parse_topo_to_matrix(topo_file)
-    print(f&quot;Topology: {topo_file}&quot;)
-
-    # Run the simulation in synchronous mode
-    run_simulations(
-        topo_file=topo_file,
-        num_initial_conditions=num_initial_conditions,
-        batch_size=batch_size,
-        replacement_values=replacement_values,
-        mode=&quot;sync&quot;,
-        packbits=True,
-    )
-
-    # Run the simulation in asynchronous mode
-    run_simulations(
-        topo_file=topo_file,
-        num_initial_conditions=num_initial_conditions,
-        batch_size=batch_size,
-        replacement_values=replacement_values,
-        mode=&quot;async&quot;,
-        packbits=True,
-    )
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Loop over all the topo files</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">for</span> <span class="n">topo_file</span> <span class="ow">in</span> <span class="n">topo_files</span><span class="p">:</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="c1"># Get the adjacency matrix and node names</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="n">topo_adj</span><span class="p">,</span> <span class="n">node_names</span> <span class="o">=</span> <span class="n">parse_topo_to_matrix</span><span class="p">(</span><span class="n">topo_file</span><span class="p">)</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Topology: </span><span class="si">{</span><span class="n">topo_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="c1"># Run the simulation in synchronous mode</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="n">run_simulations</span><span class="p">(</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>        <span class="n">topo_file</span><span class="o">=</span><span class="n">topo_file</span><span class="p">,</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>        <span class="n">num_initial_conditions</span><span class="o">=</span><span class="n">num_initial_conditions</span><span class="p">,</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>        <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>        <span class="n">replacement_values</span><span class="o">=</span><span class="n">replacement_values</span><span class="p">,</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>        <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;sync&quot;</span><span class="p">,</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>        <span class="n">packbits</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>    <span class="p">)</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>    <span class="c1"># Run the simulation in asynchronous mode</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>    <span class="n">run_simulations</span><span class="p">(</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>        <span class="n">topo_file</span><span class="o">=</span><span class="n">topo_file</span><span class="p">,</span>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>        <span class="n">num_initial_conditions</span><span class="o">=</span><span class="n">num_initial_conditions</span><span class="p">,</span>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>        <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>        <span class="n">replacement_values</span><span class="o">=</span><span class="n">replacement_values</span><span class="p">,</span>
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>        <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;async&quot;</span><span class="p">,</span>
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>        <span class="n">packbits</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>    <span class="p">)</span>
+</span></code></pre></div>
 <p>The simulation results will be stored in the output directory, with each topology file having its own dedicated folder within the simulation directory. This folder will contain the results saved as a Parquet file named '<topo_name>_<simulation_mode>_ising_results.parquet'. For further customization options, refer to the 'run_simulations' function.</p>
 
 
@@ -711,7 +780,7 @@ for topo_file in topo_files:
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "toc.integrate", "header.autohide"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "header.autohide", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
