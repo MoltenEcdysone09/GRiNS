@@ -523,6 +523,78 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#grins.ising_bool.parse_topo_to_matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      parse_topo_to_matrix
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grins.ising_bool.generate_intial_conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      generate_intial_conditions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ising-boolean-simulation-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ising Boolean Simulation Functions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grins.ising_bool.sync_eval_next_state" class="md-nav__link">
+    <span class="md-ellipsis">
+      sync_eval_next_state
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grins.ising_bool.simulate_sync_trajectory" class="md-nav__link">
+    <span class="md-ellipsis">
+      simulate_sync_trajectory
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grins.ising_bool.async_eval_next_state" class="md-nav__link">
+    <span class="md-ellipsis">
+      async_eval_next_state
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grins.ising_bool.simulate_async_trajectory" class="md-nav__link">
+    <span class="md-ellipsis">
+      simulate_async_trajectory
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grins.ising_bool.run_simulations" class="md-nav__link">
+    <span class="md-ellipsis">
+      run_simulations
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -567,10 +639,10 @@
 <div class="doc doc-object doc-function">
 
 
-<h1 id="grins.ising_bool.parse_topo_to_matrix" class="doc doc-heading">
+<h2 id="grins.ising_bool.parse_topo_to_matrix" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">grins</span><span class="o">.</span><span class="n">ising_bool</span><span class="o">.</span><span class="n">parse_topo_to_matrix</span><span class="p">(</span><span class="n">topofile_path</span><span class="p">)</span></code>
 
-</h1>
+</h2>
 
 
     <div class="doc doc-contents first">
@@ -743,10 +815,10 @@ node_names : list
 <div class="doc doc-object doc-function">
 
 
-<h1 id="grins.ising_bool.generate_intial_conditions" class="doc doc-heading">
+<h2 id="grins.ising_bool.generate_intial_conditions" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">grins</span><span class="o">.</span><span class="n">ising_bool</span><span class="o">.</span><span class="n">generate_intial_conditions</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">,</span> <span class="n">num_samples</span><span class="p">)</span></code>
 
-</h1>
+</h2>
 
 
     <div class="doc doc-contents first">
@@ -1006,10 +1078,10 @@ node_names : list
 <div class="doc doc-object doc-function">
 
 
-<h1 id="grins.ising_bool.sync_eval_next_state" class="doc doc-heading">
+<h2 id="grins.ising_bool.sync_eval_next_state" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">grins</span><span class="o">.</span><span class="n">ising_bool</span><span class="o">.</span><span class="n">sync_eval_next_state</span><span class="p">(</span><span class="n">prev_state</span><span class="p">,</span> <span class="n">topo_adj</span><span class="p">,</span> <span class="n">replacement_values</span><span class="p">)</span></code>
 
-</h1>
+</h2>
 
 
     <div class="doc doc-contents first">
@@ -1147,10 +1219,10 @@ prev_state (jnp.ndarray): The previous state of the system.</p>
 <div class="doc doc-object doc-function">
 
 
-<h1 id="grins.ising_bool.simulate_sync_trajectory" class="doc doc-heading">
+<h2 id="grins.ising_bool.simulate_sync_trajectory" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">grins</span><span class="o">.</span><span class="n">ising_bool</span><span class="o">.</span><span class="n">simulate_sync_trajectory</span><span class="p">(</span><span class="n">initial_condition</span><span class="p">,</span> <span class="n">topo_adj</span><span class="p">,</span> <span class="n">replacement_values</span><span class="p">,</span> <span class="n">max_steps</span><span class="p">)</span></code>
 
-</h1>
+</h2>
 
 
     <div class="doc doc-contents first">
@@ -1313,10 +1385,10 @@ prev_state (jnp.ndarray): The previous state of the system.</p>
 <div class="doc doc-object doc-function">
 
 
-<h1 id="grins.ising_bool.async_eval_next_state" class="doc doc-heading">
+<h2 id="grins.ising_bool.async_eval_next_state" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">grins</span><span class="o">.</span><span class="n">ising_bool</span><span class="o">.</span><span class="n">async_eval_next_state</span><span class="p">(</span><span class="n">prev_state</span><span class="p">,</span> <span class="n">topo_adj</span><span class="p">,</span> <span class="n">replacement_values</span><span class="p">,</span> <span class="n">update_index</span><span class="p">)</span></code>
 
-</h1>
+</h2>
 
 
     <div class="doc doc-contents first">
@@ -1467,10 +1539,10 @@ prev_state (jnp.ndarray): The previous state of the system.</p>
 <div class="doc doc-object doc-function">
 
 
-<h1 id="grins.ising_bool.simulate_async_trajectory" class="doc doc-heading">
+<h2 id="grins.ising_bool.simulate_async_trajectory" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">grins</span><span class="o">.</span><span class="n">ising_bool</span><span class="o">.</span><span class="n">simulate_async_trajectory</span><span class="p">(</span><span class="n">initial_condition</span><span class="p">,</span> <span class="n">topo_adj</span><span class="p">,</span> <span class="n">replacement_values</span><span class="p">,</span> <span class="n">update_indices</span><span class="p">)</span></code>
 
-</h1>
+</h2>
 
 
     <div class="doc doc-contents first">
@@ -1631,10 +1703,10 @@ prev_state (jnp.ndarray): The previous state of the system.</p>
 <div class="doc doc-object doc-function">
 
 
-<h1 id="grins.ising_bool.run_simulations" class="doc doc-heading">
+<h2 id="grins.ising_bool.run_simulations" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">grins</span><span class="o">.</span><span class="n">ising_bool</span><span class="o">.</span><span class="n">run_simulations</span><span class="p">(</span><span class="n">topo_file</span><span class="p">,</span> <span class="n">num_initial_conditions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">inital_conditions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_steps</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">replacement_values</span><span class="o">=</span><span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;sync&#39;</span><span class="p">,</span> <span class="n">packbits</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_dir</span><span class="o">=</span><span class="s1">&#39;IsingSimulResults&#39;</span><span class="p">)</span></code>
 
-</h1>
+</h2>
 
 
     <div class="doc doc-contents first">
