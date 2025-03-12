@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://MoltenEcdysone09.github.io/GRiNS/api/RACIPE/">
       
       
-        <link rel="prev" href="../../usage/racipe/">
+        <link rel="prev" href="../../usage/RACIPE_Tutorial/">
       
       
         <link rel="next" href="../IsingBoolean/">
@@ -336,6 +336,50 @@
   
   <span class="md-ellipsis">
     RACIPE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/IsingBoolean.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    None
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/RACIPE_Tutorial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RACIPE Simulations Tutorial
     
   </span>
   
@@ -2794,10 +2838,12 @@ The sampling methods can be: 'Sobol', 'LHS', 'Uniform', 'LogUniform', 'Normal', 
     </table>
         <p>Example:
 First, run the simulation then, normalise and discretise the solutions</p>
+<p>'''python</p>
 <blockquote>
 <blockquote>
 <blockquote>
-<p>sol_df, state_counts = gk_normalise_solutions(sol_df, params)</p>
+<p>sol_df, state_counts = gk_normalise_solutions(sol_df, params)
+'''</p>
 </blockquote>
 </blockquote>
 </blockquote>
@@ -2915,14 +2961,16 @@ The 'state_counts' dataframe contains the counts of each state in the normalised
     </table>
         <p>Example:
 Given a normalized DataFrame 'norm_df', discretise the values</p>
+<p>'''python</p>
 <blockquote>
 <blockquote>
 <blockquote>
 <p>lvl_df = discretise_solutions(norm_df)
-The normalised solution dataframe will have vlaues of the nodes bewteen 0 (lowest) and 1 (highest) and the returned 'lvl_df' will have the discrete state labels for each row in the input DataFrame.</p>
+'''</p>
 </blockquote>
 </blockquote>
 </blockquote>
+<p>The normalised solution dataframe will have vlaues of the nodes bewteen 0 (lowest) and 1 (highest) and the returned 'lvl_df' will have the discrete state labels for each row in the input DataFrame.</p>
 
 
     </div>
@@ -2962,10 +3010,12 @@ The results of the simulation are saved in the replicate folders in the specifie
 <p>If the discretize flag is set to True, the solutions are discretized and the state counts are saved as 'state_counts.csv', this is only applicable for steady state simulations. If the discretize flag is set to False, the solutions are normalised but not discretized.</p>
 <p>Example:
 Run the simulation for the specified topo file</p>
+<p>'''python</p>
 <blockquote>
 <blockquote>
 <blockquote>
-<p>run_all_replicates(topo_file, save_dir, t0, tmax, dt0, tsteps, rel_tol, abs_tol, max_steps, batch_size)</p>
+<p>run_all_replicates(topo_file, save_dir, t0, tmax, dt0, tsteps, rel_tol, abs_tol, max_steps, batch_size)
+'''</p>
 </blockquote>
 </blockquote>
 </blockquote>

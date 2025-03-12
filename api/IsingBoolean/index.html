@@ -344,6 +344,50 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/IsingBoolean.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    None
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/RACIPE_Tutorial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RACIPE Simulations Tutorial
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1709,6 +1753,7 @@ topology adjacency matrix, and replacement values.</p>
     </table>
         <p>Example:
 Run the synchronous simulation for a topology file:</p>
+<p>'''python</p>
 <blockquote>
 <blockquote>
 <blockquote>
@@ -1722,13 +1767,15 @@ Run the synchronous simulation for a topology file:</p>
 ...     packbits=True,
 ...     save_dir="IsingSimulResults",
 ... )
-This will save the simulation results to a parquet file in the directory "IsingSimulResults/ER_1000_0.1/ER_1000_0.1_sync_results.parquet".</p>
+'''</p>
 </blockquote>
 </blockquote>
 </blockquote>
+<p>This will save the simulation results to a parquet file in the directory "IsingSimulResults/ER_1000_0.1/ER_1000_0.1_sync_results.parquet".</p>
 <p>Similary, the asynchronous simulation can be run by setting mode="async".</p>
 <p>If the initial conditions matrix is provided, the num_initial_conditions parameter is ignored. In this case, the initial_conditions matrix should have the individual initial conditions as rows.</p>
 <h3 id="grins.ising_bool.run_simulations--if-only-specfic-inital-conditions-are-to-be-used-the-initial-conditions-matrix-can-be-provided-with-the-individual-initial-conditions-as-rows-of-the-matrix-this-provides-control-over-simulating-specific-pre-defined-initial-conditions">If only specfic inital conditions are to be used, the initial conditions matrix can be provided with the individual initial conditions as rows of the matrix. This provides control over simulating specific pre-defined initial conditions.</h3>
+<p>'''python</p>
 <blockquote>
 <blockquote>
 <blockquote>
@@ -1742,11 +1789,13 @@ run_simulations(
 ...     mode="sync",
 ...     packbits=True,
 ...     save_dir="IsingSimulResults",
-... )</p>
+... )
+'''</p>
 </blockquote>
 </blockquote>
 </blockquote>
 <p>For cases where the replacement values are not [0, 1], the replacement values should be provided as a jax array of length 2 with the first value less than the second.</p>
+<p>'''python</p>
 <blockquote>
 <blockquote>
 <blockquote>
@@ -1761,11 +1810,13 @@ run_simulations(
 ...     packbits=True,
 ...     save_dir="IsingSimulResults",
 ... )
-The results for [-1, 1] replacment values will also be converted to 0 for all the -1 or 0 values in the states and 1s will remain as 1s when saving to the file. This is important as otherwise the packbits  would not work.</p>
+'''</p>
 </blockquote>
 </blockquote>
 </blockquote>
+<p>The results for [-1, 1] replacment values will also be converted to 0 for all the -1 or 0 values in the states and 1s will remain as 1s when saving to the file. This is important as otherwise the packbits  would not work.</p>
 <p>The packbits function used is jnp.packbits which packs the 0/1 states into bits to reduce memory usage. This is useful when the number of nodes is large and the number of steps is also large. The memory usase can be reduced by a factor of 8 by packing the states into bits. If packbits is not set to True, the states are saved as is.</p>
+<p>'''python</p>
 <blockquote>
 <blockquote>
 <blockquote>
@@ -1778,7 +1829,8 @@ The results for [-1, 1] replacment values will also be converted to 0 for all th
 ...     mode="sync",
 ...     packbits=False,
 ...     save_dir="IsingSimulResults",
-... )</p>
+... )
+'''</p>
 </blockquote>
 </blockquote>
 </blockquote>
