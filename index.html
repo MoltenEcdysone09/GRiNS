@@ -654,12 +654,16 @@
 <h1 id="gene-regulatory-interaction-network-simulator-grins">Gene Regulatory Interaction Network Simulator (GRiNS)</h1>
 <p>A Python library for simulating gene regulatory networks (GRNs) using parameter-agnostic frameworks like RACIPE and Ising formalism, with GPU acceleration and efficient ODE solving.</p>
 <p>Modeling gene regulatory networks (GRNs) is essential for understanding cellular processes, but parameterizing these networks becomes increasingly difficult as they scale. This Python library provides a simulation framework that unifies <strong>parameter-agnostic</strong> approaches, including <strong>RACIPE</strong> and <strong>Ising formalism</strong>, into a single, flexible tool.  </p>
+<p align="center">
+  <img src="https://github.com/MoltenEcdysone09/GRiNS/blob/main/GRINS_Website_New.png?raw=true" alt="Overview of the simulation frameworks in GRiNS. GRiNS includes implementations of Random Circuit Perturbation (RACIPE) for continuous ODE-based modeling and Ising Boolean formalism for discrete-state simulations."/>
+</p>
+
 <h2 id="key-features">Key Features</h2>
 <ul>
 <li><strong>Simulation Frameworks</strong>: Supports both <strong>ODE-based</strong> (RACIPE) and <strong>coarse-grained</strong> (Ising formalism) methods for studying GRN dynamics.  </li>
 <li><strong>Parameter-Agnostic Modeling</strong>: Translates network topology into mathematical models without requiring detailed parameter tuning.  </li>
 <li><strong>Scalable Computation</strong>: Uses the <a href="https://github.com/jax-ml/jax">Jax</a> ecosystem for GPU acceleration and <a href="https://github.com/patrick-kidger/diffrax">Diffrax</a> for efficient ODE solving.  </li>
-<li><strong>Data Processing Tools</strong>: Provides <strong>normalization and discretization</strong> functions to standardize simulation outputs for downstream analysis.  </li>
+<li><strong>Data Processing Tools</strong>: Provides <strong>normalization and discretization</strong> functions to standardize simulation outputs for downstream analysis.</li>
 </ul>
 <!-- You can access the full documentation, including installation instructions, usage examples, and detailed explanations of the simulation frameworks, at [MoltenEcdysone09.github.io/GRiNS](https://MoltenEcdysone09.github.io/GRiNS) -->
 
