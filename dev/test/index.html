@@ -591,9 +591,10 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="Local testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#flake8" class="md-nav__link">
     <span class="md-ellipsis">
       Flake8
@@ -601,13 +602,18 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#pytest" class="md-nav__link">
     <span class="md-ellipsis">
       Pytest
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -662,7 +668,7 @@
         
   
   <span class="md-ellipsis">
-    Docs
+    Documentation
     
   </span>
   
@@ -713,9 +719,10 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="Local testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#flake8" class="md-nav__link">
     <span class="md-ellipsis">
       Flake8
@@ -723,13 +730,18 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#pytest" class="md-nav__link">
     <span class="md-ellipsis">
       Pytest
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -764,16 +776,23 @@
 <h1 id="testing">Testing</h1>
 <h2 id="local-testing">Local testing</h2>
 <p>Local testing requires the <code>test</code> group packages to be installed.</p>
-<h2 id="flake8">Flake8</h2>
-<p>Checks for syntax errors
+<h3 id="flake8">Flake8</h3>
+<ul>
+<li>Checks for syntax errors
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>poetry<span class="w"> </span>run<span class="w"> </span>flake8<span class="w"> </span>.<span class="w"> </span>--count<span class="w"> </span>--select<span class="o">=</span>E9,F63,F7,F82<span class="w"> </span>--show-source<span class="w"> </span>--statistics
-</span></code></pre></div></p>
-<h2 id="pytest">Pytest</h2>
-<p>Checks if the package can be imported without errors
+</span></code></pre></div></li>
+</ul>
+<h3 id="pytest">Pytest</h3>
+<ul>
+<li>Checks if the package can be imported without errors
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>poetry<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>tests/
-</span></code></pre></div></p>
+</span></code></pre></div></li>
+</ul>
 <h2 id="github-cicd">GitHub CI/CD</h2>
-<p>Refer to <a href="https://docs.github.com/en/actions/use-cases-and-examples/building-and-testing/building-and-testing-python">GitHub Documentation</a>. Custom script for project at <a href="https://github.com/MoltenEcdysone09/GRiNS/blob/main/.github/workflows/python-app.yml">python-app.yml</a></p>
+<ul>
+<li>Refer to <a href="https://docs.github.com/en/actions/use-cases-and-examples/building-and-testing/building-and-testing-python">GitHub Documentation</a>. </li>
+<li>Custom script for project at <a href="https://github.com/MoltenEcdysone09/GRiNS/blob/main/.github/workflows/python-app.yml">python-app.yml</a></li>
+</ul>
 
 
 

@@ -609,9 +609,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#pyprojecttoml-file" class="md-nav__link">
+  <a href="#manually" class="md-nav__link">
     <span class="md-ellipsis">
-      pyproject.toml file
+      Manually
     </span>
   </a>
   
@@ -619,6 +619,24 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      Further details
+    </span>
+  </a>
   
 </li>
       
@@ -686,7 +704,7 @@
         
   
   <span class="md-ellipsis">
-    Docs
+    Documentation
     
   </span>
   
@@ -777,9 +795,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#pyprojecttoml-file" class="md-nav__link">
+  <a href="#manually" class="md-nav__link">
     <span class="md-ellipsis">
-      pyproject.toml file
+      Manually
     </span>
   </a>
   
@@ -787,6 +805,24 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      Further details
+    </span>
+  </a>
   
 </li>
       
@@ -811,37 +847,52 @@
 
 <h1 id="project-setup">Project Setup</h1>
 <h2 id="clone-the-repository">Clone the repository</h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git clone https://github.com/MoltenEcdysone09/GRiNS.git
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/MoltenEcdysone09/GRiNS.git
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>GRiNS
 </span></code></pre></div>
 <h2 id="pre-requisite">Pre-requisite</h2>
-<p>Poetry &gt;2.0.0 is used to manage dependencies and virtual environments for this project. Install from package manager or refer to <a href="https://python-poetry.org/docs/#installation">Installation Guide</a></p>
+<p>Poetry is used to manage dependencies and virtual environments for this project. Ensure you have <code>python &gt;=3.12</code> and <code>poetry &gt;=2.0.0</code>. Poetry can be installed from package manager or refer to <a href="https://python-poetry.org/docs/#installation">Installation Guide</a>.</p>
 <h2 id="setting-up-dependencies-through-poetry">Setting up dependencies through poetry</h2>
 <ul>
-<li>Include (all-groups) if installing packages required for documentation and testing</li>
-<li>Include (all-extras) if installing with CUDA libraries
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>poetry<span class="w"> </span>sync<span class="w"> </span>--all-groups<span class="w"> </span>--all-extras
+<li>Make sure all other virtual environments are deactived. Otherwise poetry overwrites into the environment.
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>deactivate
+</span></code></pre></div></li>
+<li>Include (all-groups) to install packages required for documentation and testing.</li>
+<li>Include (all-extras) to install with GPU support. CUDA system libraries may need to be installed seperately.
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>poetry<span class="w"> </span>sync<span class="w"> </span>--all-groups<span class="w"> </span>--all-extras
 </span></code></pre></div></li>
 </ul>
 <h2 id="changing-dependencies">Changing dependencies</h2>
 <h3 id="interactively">Interactively</h3>
 <ul>
 <li>Add packages with
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>poetry add &lt;pacage-name&gt;
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>poetry add &lt;pacage-name&gt;
 </span></code></pre></div></li>
 <li>Remove packages with
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>poetry remove &lt;package-name&gt;
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>poetry remove &lt;package-name&gt;
 </span></code></pre></div></li>
 </ul>
-<h3 id="pyprojecttoml-file">pyproject.toml file</h3>
+<h3 id="manually">Manually</h3>
 <ul>
 <li>Edit the <code>pyproject.toml</code> file</li>
 <li>Lock the package versions
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>poetry<span class="w"> </span>lock
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>poetry<span class="w"> </span>lock
 </span></code></pre></div></li>
-<li>Sync poetry
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>poetry<span class="w"> </span>sync<span class="w"> </span>--all-groups<span class="w"> </span>--all-extras
+<li>Sync poetry dependencies
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>poetry<span class="w"> </span>sync<span class="w"> </span>--all-groups<span class="w"> </span>--all-extras
 </span></code></pre></div></li>
 </ul>
+<h2 id="running">Running</h2>
+<ul>
+<li>Running python
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>poetry<span class="w"> </span>run<span class="w"> </span>python
+</span></code></pre></div></li>
+<li>Running scripts
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>poetry<span class="w"> </span>run<span class="w"> </span>&lt;script-name&gt;
+</span></code></pre></div></li>
+</ul>
+<h2 id="further-details">Further details</h2>
+<p>Refer to <a href="https://python-poetry.org/docs/">poetry's documentation</a></p>
 
 
 

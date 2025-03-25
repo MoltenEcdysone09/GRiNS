@@ -22,7 +22,7 @@
     
     
       
-        <title>Docs - GRiNS</title>
+        <title>Documentation - GRiNS</title>
       
     
     
@@ -75,6 +75,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#documentation" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -107,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Docs
+              Documentation
             
           </span>
         </div>
@@ -580,17 +585,68 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Documentation
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
-    Docs
+    Documentation
     
   </span>
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#local-server-for-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      Local server for development
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploy-to-github-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploy to GitHub Pages
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -621,6 +677,34 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#local-server-for-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      Local server for development
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploy-to-github-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploy to GitHub Pages
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -639,9 +723,22 @@
   
 
 
-  <h1>Docs</h1>
-
-
+<h1 id="documentation">Documentation</h1>
+<p>Documentation is made using <code>mkdocs</code> with additional plugins. The <code>docs</code> group packages needs to be installed to build and deploy the documentation website.</p>
+<h2 id="local-server-for-development">Local server for development</h2>
+<ul>
+<li>Start the server
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>poetry<span class="w"> </span>run<span class="w"> </span>mkdocs<span class="w"> </span>serve
+</span></code></pre></div></li>
+<li>The website should be accessible in <a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a></li>
+</ul>
+<h2 id="deploy-to-github-pages">Deploy to GitHub Pages</h2>
+<ul>
+<li>Refer to <a href="https://www.mkdocs.org/user-guide/deploying-your-docs/#github-pages">MkDocs Documentation</a>. </li>
+<li>WARNING: Automatically pushes and deploys to GitHub when run
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>poetry<span class="w"> </span>run<span class="w"> </span>mkdocs<span class="w"> </span>gh-deploy
+</span></code></pre></div></li>
+</ul>
 
 
 

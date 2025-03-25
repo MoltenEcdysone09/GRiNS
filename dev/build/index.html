@@ -613,9 +613,19 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Local build with poetry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clean-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clean build
+    </span>
+  </a>
+  
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#install-locally-built-package" class="md-nav__link">
     <span class="md-ellipsis">
       Install locally built package
@@ -623,11 +633,16 @@
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#github-actions-for-building-and-publishing-to-pypi" class="md-nav__link">
+  <a href="#github-cicd" class="md-nav__link">
     <span class="md-ellipsis">
-      Github Actions for building and publishing to PyPI
+      Github CI/CD
     </span>
   </a>
   
@@ -653,7 +668,7 @@
         
   
   <span class="md-ellipsis">
-    Docs
+    Documentation
     
   </span>
   
@@ -704,9 +719,19 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Local build with poetry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clean-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clean build
+    </span>
+  </a>
+  
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#install-locally-built-package" class="md-nav__link">
     <span class="md-ellipsis">
       Install locally built package
@@ -714,11 +739,16 @@
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#github-actions-for-building-and-publishing-to-pypi" class="md-nav__link">
+  <a href="#github-cicd" class="md-nav__link">
     <span class="md-ellipsis">
-      Github Actions for building and publishing to PyPI
+      Github CI/CD
     </span>
   </a>
   
@@ -745,15 +775,23 @@
 
 <h1 id="building">Building</h1>
 <h2 id="local-build-with-poetry">Local build with poetry</h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>poetry build --clean
+<h3 id="clean-build">Clean build</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>poetry<span class="w"> </span>build<span class="w"> </span>--clean
 </span></code></pre></div>
-<h2 id="install-locally-built-package">Install locally built package</h2>
-<p>Local virutal environment recommended. Include <code>--force-reinstall</code> if the version number of built package isn't changed.
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>source /path/to/venv/bin/activate
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>pip install dist/&#39;grins-*.whl[cuda12]&#39; --force-reinstall
-</span></code></pre></div></p>
-<h2 id="github-actions-for-building-and-publishing-to-pypi">Github Actions for building and publishing to PyPI</h2>
-<p>Refer to [https://docs.github.com/en/actions/use-cases-and-examples/building-and-testing/building-and-testing-python#publishing-to-pypi]</p>
+<h3 id="install-locally-built-package">Install locally built package</h3>
+<ul>
+<li>Local virutal environment recommended. </li>
+<li>Include <code>--force-reinstall</code> if the version number of built package isn't changed.
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">source</span><span class="w"> </span>/path/to/venv/bin/activate
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="s1">&#39;dist/grins-x.x.x-py3-none-any.whl[cuda12]&#39;</span><span class="w"> </span>--force-reinstall
+</span></code></pre></div></li>
+</ul>
+<h2 id="github-cicd">Github CI/CD</h2>
+<ul>
+<li>Refer to <a href="https://docs.github.com/en/actions/use-cases-and-examples/building-and-testing/building-and-testing-python#publishing-to-pypi">GitHub Documentation</a>. </li>
+<li>Requires <a href="https://pypi.org/">PyPI account</a> and <a href="https://pypi.org/manage/account/publishing/">OpenID Connect configuration</a></li>
+<li>Custom script for project at <a href="https://github.com/MoltenEcdysone09/GRiNS/blob/main/.github/workflows/python-publish.yml">python-publish.yml</a>. </li>
+</ul>
 
 
 
