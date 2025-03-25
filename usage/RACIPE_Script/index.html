@@ -10,26 +10,28 @@
       
       
       
-        <link rel="canonical" href="https://MoltenEcdysone09.github.io/GRiNS/">
+        <link rel="canonical" href="https://MoltenEcdysone09.github.io/GRiNS/usage/RACIPE_Script/">
       
       
+        <link rel="prev" href="../RACIPE_Tutorial/">
       
-        <link rel="next" href="usage/Ising_Tutorial/">
+      
+        <link rel="next" href="../../api/RACIPE/">
       
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
     
     
       
-        <title>GRiNS</title>
+        <title>RACIPE Script - GRiNS</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.4af4bdda.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4af4bdda.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -48,9 +50,9 @@
       
     
     
-      <link rel="stylesheet" href="assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -76,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#gene-regulatory-interaction-network-simulator-grins" class="md-skip">
+        <a href="#racipe-script" class="md-skip">
           Skip to content
         </a>
       
@@ -92,7 +94,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="GRiNS" class="md-header__button md-logo" aria-label="GRiNS" data-md-component="logo">
+    <a href="../.." title="GRiNS" class="md-header__button md-logo" aria-label="GRiNS" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -112,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              RACIPE Script
             
           </span>
         </div>
@@ -235,7 +237,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="GRiNS" class="md-nav__button md-logo" aria-label="GRiNS" data-md-component="logo">
+    <a href="../.." title="GRiNS" class="md-nav__button md-logo" aria-label="GRiNS" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -262,6 +264,114 @@
       
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Tutorials
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Tutorials
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ising_Tutorial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ising Boolean GRN Simulation Tutorial
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RACIPE_Tutorial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RACIPE Simulation Tutorial
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -278,7 +388,7 @@
           
   
   <span class="md-ellipsis">
-    Home
+    RACIPE Script
     
   </span>
   
@@ -286,11 +396,11 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="." class="md-nav__link md-nav__link--active">
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
-    Home
+    RACIPE Script
     
   </span>
   
@@ -313,51 +423,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#key-features" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Key Features
+      Overview
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
+  <a href="#usage" class="md-nav__link">
     <span class="md-ellipsis">
-      Installation
+      Usage
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Installation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#gpu-version-installation-recommended" class="md-nav__link">
-    <span class="md-ellipsis">
-      GPU Version Installation (Recommended)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cpu-version-installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      CPU Version Installation
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#citation" class="md-nav__link">
+  <a href="#options" class="md-nav__link">
     <span class="md-ellipsis">
-      Citation
+      Options
     </span>
   </a>
   
@@ -367,112 +453,6 @@
   
 </nav>
       
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-      
-        
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
-        
-          
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
-            
-  
-  <span class="md-ellipsis">
-    Tutorials
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2">
-            <span class="md-nav__icon md-icon"></span>
-            Tutorials
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="usage/Ising_Tutorial/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Ising Boolean GRN Simulation Tutorial
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="usage/RACIPE_Tutorial/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    RACIPE Simulation Tutorial
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="usage/RACIPE_Script/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    RACIPE Script
-    
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -533,7 +513,7 @@
   
   
     <li class="md-nav__item">
-      <a href="api/RACIPE/" class="md-nav__link">
+      <a href="../../api/RACIPE/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -555,7 +535,7 @@
   
   
     <li class="md-nav__item">
-      <a href="api/IsingBoolean/" class="md-nav__link">
+      <a href="../../api/IsingBoolean/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -625,7 +605,7 @@
   
   
     <li class="md-nav__item">
-      <a href="dev/setup/" class="md-nav__link">
+      <a href="../../dev/setup/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -647,7 +627,7 @@
   
   
     <li class="md-nav__item">
-      <a href="dev/test/" class="md-nav__link">
+      <a href="../../dev/test/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -669,7 +649,7 @@
   
   
     <li class="md-nav__item">
-      <a href="dev/build/" class="md-nav__link">
+      <a href="../../dev/build/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -691,7 +671,7 @@
   
   
     <li class="md-nav__item">
-      <a href="dev/docs/" class="md-nav__link">
+      <a href="../../dev/docs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -740,51 +720,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#key-features" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Key Features
+      Overview
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
+  <a href="#usage" class="md-nav__link">
     <span class="md-ellipsis">
-      Installation
+      Usage
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Installation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#gpu-version-installation-recommended" class="md-nav__link">
-    <span class="md-ellipsis">
-      GPU Version Installation (Recommended)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cpu-version-installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      CPU Version Installation
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#citation" class="md-nav__link">
+  <a href="#options" class="md-nav__link">
     <span class="md-ellipsis">
-      Citation
+      Options
     </span>
   </a>
   
@@ -809,44 +765,37 @@
   
 
 
-<h1 id="gene-regulatory-interaction-network-simulator-grins">Gene Regulatory Interaction Network Simulator (GRiNS)</h1>
-<p>A Python library for simulating gene regulatory networks (GRNs) using parameter-agnostic frameworks like RACIPE and Ising formalism, with GPU acceleration and efficient ODE solving.</p>
-<p>Modeling gene regulatory networks (GRNs) is essential for understanding cellular processes, but parameterizing these networks becomes increasingly difficult as they scale. This Python library provides a simulation framework that unifies <strong>parameter-agnostic</strong> approaches, including <strong>RACIPE</strong> and <strong>Ising formalism</strong>, into a single, flexible tool.  </p>
-<p align="center">
-  <img src="https://raw.githubusercontent.com/MoltenEcdysone09/GRiNS/refs/heads/main/GRINS_Website_New.png" alt="Overview of the simulation frameworks in GRiNS. GRiNS includes implementations of Random Circuit Perturbation (RACIPE) for continuous ODE-based modeling and Ising Boolean formalism for discrete-state simulations."/>
-</p>
-
-<h2 id="key-features">Key Features</h2>
-<ul>
-<li><strong>Simulation Frameworks</strong>: Supports both <strong>ODE-based</strong> (RACIPE) and <strong>coarse-grained</strong> (Ising formalism) methods for studying GRN dynamics.  </li>
-<li><strong>Parameter-Agnostic Modeling</strong>: Translates network topology into mathematical models without requiring detailed parameter tuning.  </li>
-<li><strong>Scalable Computation</strong>: Uses the <a href="https://github.com/jax-ml/jax">Jax</a> ecosystem for GPU acceleration and <a href="https://github.com/patrick-kidger/diffrax">Diffrax</a> for efficient ODE solving.  </li>
-<li><strong>Data Processing Tools</strong>: Provides <strong>normalization and discretization</strong> functions to standardize simulation outputs for downstream analysis.</li>
-</ul>
-<!-- You can access the full documentation, including installation instructions, usage examples, and detailed explanations of the simulation frameworks, at [MoltenEcdysone09.github.io/GRiNS](https://MoltenEcdysone09.github.io/GRiNS) -->
-
-<h2 id="installation">Installation</h2>
-<h3 id="gpu-version-installation-recommended">GPU Version Installation (Recommended)</h3>
-<p>For optimal performance, it is recommended to install the GPU-accelerated version of the library. This version leverages CUDA for faster computations, making it well-suited for large-scale simulations. If you have a compatible NVIDIA GPU (refer to <a href="https://docs.jax.dev/en/latest/installation.html">Jax Installation</a>), install the library with:  </p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span>grins<span class="o">[</span>cuda12<span class="o">]</span>
+<h1 id="racipe-script">RACIPE Script</h1>
+<h2 id="overview">Overview</h2>
+<p>The <code>racipe</code> script provides a default implementation of the RACIPE pipeline. This script is fairly limited in customizablity. If you prefer to customize refer to the <a href="../RACIPE_Tutorial/">tutorial</a> and the <a href="../../api/RACIPE/">RACIPE API</a>.</p>
+<h2 id="usage">Usage</h2>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>racipe<span class="w"> </span><span class="o">[</span>-h<span class="o">]</span><span class="w"> </span><span class="o">[</span>--topodir<span class="w"> </span>TOPODIR<span class="o">]</span><span class="w"> </span><span class="o">[</span>--outdir<span class="w"> </span>OUTDIR<span class="o">]</span><span class="w"> </span><span class="o">[</span>--num_paras<span class="w"> </span>NUM_PARAS<span class="o">]</span><span class="w"> </span><span class="o">[</span>--num_inits<span class="w"> </span>NUM_INITS<span class="o">]</span><span class="w"> </span><span class="o">[</span>--num_reps<span class="w"> </span>NUM_REPS<span class="o">]</span><span class="w"> </span><span class="o">[</span>--num_cores<span class="w"> </span>NUM_CORES<span class="o">]</span><span class="w"> </span><span class="o">[</span>--sampling<span class="w"> </span>SAMPLING<span class="o">]</span><span class="w"> </span><span class="o">[</span>topo<span class="o">]</span>
 </span></code></pre></div>
-<h3 id="cpu-version-installation">CPU Version Installation</h3>
-<p>If you do not have a compatible GPU, you can install the CPU version instead:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>pip<span class="w"> </span>install<span class="w"> </span>grins
+- Run simulations for 100 initial conditions across 1000 parameter sets for all the topo files in the folder <code>TOPOS</code>.
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>racipe<span class="w"> </span>--topodir<span class="w"> </span>TOPOS<span class="w"> </span>--outdir<span class="w"> </span>SimulResults<span class="w"> </span>--num_inits<span class="w"> </span><span class="m">100</span><span class="w"> </span>--num_paras<span class="w"> </span><span class="m">1000</span>
 </span></code></pre></div>
-<p>Compared to the GPU version, the CPU version will be slower, especially for large simulations.</p>
-<h2 id="citation">Citation</h2>
-<p>Please cite this package if you have used it.
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>@misc{harlapur2025grinspythonlibrarysimulating,
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>      title={GRiNS: A Python Library for Simulating Gene Regulatory Network Dynamics}, 
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>      author={Pradyumna Harlapur and Harshavardhan B V and Mohit Kumar Jolly},
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>      year={2025},
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>      eprint={2503.18356},
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>      archivePrefix={arXiv},
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>      primaryClass={q-bio.QM},
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>      url={https://arxiv.org/abs/2503.18356}, 
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>}
+- Run simulation for 1000 initial conditions across 10000 parameters for the <code>TS.topo</code> file.
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>racipe<span class="w"> </span>--outdir<span class="w"> </span>SimulResults<span class="w"> </span>--num_inits<span class="w"> </span><span class="m">1000</span><span class="w"> </span>--num_paras<span class="w"> </span><span class="m">10000</span><span class="w"> </span>TS.topo
 </span></code></pre></div></p>
+<h2 id="options">Options</h2>
+<ul>
+<li><code>-h, --help</code> 
+    Shows the help message with all available options.</li>
+<li><code>--topodir TOPODIR</code> 
+    Directory containing the topology files. Useful if your topology files are stored in a specific directory. Default: <code>TOPOS</code>.</li>
+<li><code>--outdir OUTDIR</code>
+    Output directory for simulation results. Default: <code>SimulResults</code>.</li>
+<li><code>--num_paras NUM_PARAS</code>
+    Number of parameter sets to generate. This determines the size of the ensemble you want to simulate. Default: <code>10000</code>.</li>
+<li><code>--num_inits NUM_INITS</code>
+    Number of initial conditions to use for each simulation. This allows for exploring different starting points in your model. Default: <code>1000</code>.</li>
+<li><code>--num_reps NUM_REPS</code>
+    Number of replicates per topofile. Default: <code>3</code>.</li>
+<li><code>--num_cores NUM_CORES</code> 
+    Number of cores to use for parallel parameter generation. Default: <code>All available cores</code>.</li>
+<li><code>--sampling SAMPLING</code> 
+    Sampling method to generate parameter sets. Choices include: 'Sobol', 'LHS', 'Uniform', 'LogUniform', 'Normal', 'LogNormal'. Default: <code>Sobol</code>.</li>
+</ul>
 
 
 
@@ -897,10 +846,10 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.sections", "header.autohide", "content.code.copy", "content.code.annotate"], "search": "assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "header.autohide", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="assets/javascripts/bundle.c8b220af.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
       
     
   </body>

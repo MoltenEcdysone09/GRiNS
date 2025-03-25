@@ -16,7 +16,7 @@
         <link rel="prev" href="../Ising_Tutorial/">
       
       
-        <link rel="next" href="../../api/RACIPE/">
+        <link rel="next" href="../RACIPE_Script/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -505,6 +505,28 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RACIPE_Script/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RACIPE Script
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -885,6 +907,7 @@
 <h2 id="overview">Overview</h2>
 <p>This tutorial provides a comprehensive pipeline that integrates various functions for RACIPE simulations from the 'grins' library. It guides you through generating the ODE system file, parameter sets, and initial conditions, ultimately running simulations for all topology files in a specified directory containing gene regulatory network topologies.</p>
 <p>If more customization is needed, a similar pipeline can be built using the custom functions provided in the package—this tutorial serves as a guide for structuring such workflows.</p>
+<p>For the default implementation of this pipeline, refer to <a href="../RACIPE_Script/">racipe</a>.</p>
 <h2 id="step-1-define-the-number-if-parallel-cores-to-use">Step 1: Define the number if parallel cores to use</h2>
 <p>We first specify the number of CPU cores to use for parallel execution. While this step is not mandatory, it significantly speeds up the parameter and initial condition generation process, making the pipeline more efficient if one is simulating a large number of networks.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">numCores</span> <span class="o">=</span> <span class="mi">15</span>
