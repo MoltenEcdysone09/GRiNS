@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://MoltenEcdysone09.github.io/GRiNS/usage/RACIPE_Script/">
+        <link rel="canonical" href="https://MoltenEcdysone09.github.io/GRiNS/usage/Ising_Script/">
       
       
-        <link rel="prev" href="../RACIPE_Tutorial/">
+        <link rel="prev" href="../Ising_Tutorial/">
       
       
-        <link rel="next" href="../Ising_Tutorial/">
+        <link rel="next" href="../../api/RACIPE/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>RACIPE Script - GRiNS</title>
+        <title>Ising Boolean Script - GRiNS</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#racipe-script" class="md-skip">
+        <a href="#ising-boolean-script" class="md-skip">
           Skip to content
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              RACIPE Script
+              Ising Boolean Script
             
           </span>
         </div>
@@ -350,6 +350,50 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../RACIPE_Script/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RACIPE Script
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ising_Tutorial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ising Boolean GRN Simulation Tutorial
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -366,7 +410,7 @@
           
   
   <span class="md-ellipsis">
-    RACIPE Script
+    Ising Boolean Script
     
   </span>
   
@@ -378,7 +422,7 @@
         
   
   <span class="md-ellipsis">
-    RACIPE Script
+    Ising Boolean Script
     
   </span>
   
@@ -431,50 +475,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Ising_Tutorial/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Ising Boolean GRN Simulation Tutorial
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Ising_Script/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Ising Boolean Script
-    
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -787,17 +787,17 @@
   
 
 
-<h1 id="racipe-script">RACIPE Script</h1>
+<h1 id="ising-boolean-script">Ising Boolean Script</h1>
 <h2 id="overview">Overview</h2>
-<p>The <code>racipe</code> script provides a default implementation of the RACIPE pipeline. This script is fairly limited in customizablity. If you prefer to customize refer to the <a href="../RACIPE_Tutorial/">tutorial</a> and the <a href="../../api/RACIPE/">RACIPE API</a>.</p>
+<p>The <code>boolise</code> script provides a default implementation of the Ising Boolean pipeline. This script is fairly limited in customizablity. If you prefer to customize refer to the <a href="../Ising_Tutorial/">tutorial</a> and the <a href="../../api/IsingBoolean/">Ising API</a>.</p>
 <h2 id="usage">Usage</h2>
-<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>racipe<span class="w"> </span><span class="o">[</span>-h<span class="o">]</span><span class="w"> </span><span class="o">[</span>--topodir<span class="w"> </span>TOPODIR<span class="o">]</span><span class="w"> </span><span class="o">[</span>--outdir<span class="w"> </span>OUTDIR<span class="o">]</span><span class="w"> </span><span class="o">[</span>--num_paras<span class="w"> </span>NUM_PARAS<span class="o">]</span><span class="w"> </span><span class="o">[</span>--num_inits<span class="w"> </span>NUM_INITS<span class="o">]</span><span class="w"> </span><span class="o">[</span>--num_reps<span class="w"> </span>NUM_REPS<span class="o">]</span><span class="w"> </span><span class="o">[</span>--num_cores<span class="w"> </span>NUM_CORES<span class="o">]</span><span class="w"> </span><span class="o">[</span>--sampling<span class="w"> </span>SAMPLING<span class="o">]</span><span class="w"> </span><span class="o">[</span>topo<span class="o">]</span>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>boolise<span class="w"> </span><span class="o">[</span>-h<span class="o">]</span><span class="w"> </span><span class="o">[</span>--topodir<span class="w"> </span>TOPODIR<span class="o">]</span><span class="w"> </span><span class="o">[</span>--outdir<span class="w"> </span>OUTDIR<span class="o">]</span><span class="w"> </span><span class="o">[</span>--max_steps<span class="w"> </span>MAX_STEPS<span class="o">]</span><span class="w"> </span><span class="o">[</span>--num_inits<span class="w"> </span>NUM_INITS<span class="o">]</span><span class="w"> </span><span class="o">[</span>--batch_size<span class="w"> </span>BATCH_SIZE<span class="o">]</span><span class="w"> </span><span class="o">[</span>--mode<span class="w"> </span>MODE<span class="o">]</span><span class="w"> </span><span class="o">[</span>--flipvalue<span class="w"> </span>FLIPVALUE<span class="o">]</span><span class="w"> </span><span class="o">[</span>topo<span class="o">]</span>
 </span></code></pre></div>
-- Run simulations for 100 initial conditions across 1000 parameter sets for all the topo files in the folder <code>TOPOS</code>.
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>racipe<span class="w"> </span>--topodir<span class="w"> </span>TOPOS<span class="w"> </span>--outdir<span class="w"> </span>SimulResults<span class="w"> </span>--num_inits<span class="w"> </span><span class="m">100</span><span class="w"> </span>--num_paras<span class="w"> </span><span class="m">1000</span>
+- Run asynchronous boolean simulations with [0,1] formalism for all the topo files in the folder <code>TOPOS</code>.
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>boolise<span class="w"> </span>--topodir<span class="w"> </span>TOPOS<span class="w"> </span>--outdir<span class="w"> </span>IsingSimulResults<span class="w"> </span>--mode<span class="w"> </span>async<span class="w"> </span>--flipvalue<span class="w"> </span><span class="m">0</span>
 </span></code></pre></div>
-- Run simulation for 1000 initial conditions across 10000 parameters for the <code>TS.topo</code> file.
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>racipe<span class="w"> </span>--outdir<span class="w"> </span>SimulResults<span class="w"> </span>--num_inits<span class="w"> </span><span class="m">1000</span><span class="w"> </span>--num_paras<span class="w"> </span><span class="m">10000</span><span class="w"> </span>TS.topo
+- Run synchoronous simulation with [-1,1] formalism for the <code>TS.topo</code> file.
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>boolise<span class="w"> </span>--outdir<span class="w"> </span>IsingSimulResults<span class="w"> </span>--mode<span class="w"> </span>sync<span class="w"> </span>--flipvalue<span class="w"> </span>-1<span class="w"> </span>TS.topo
 </span></code></pre></div></p>
 <h2 id="options">Options</h2>
 <ul>
@@ -806,17 +806,17 @@
 <li><code>--topodir TOPODIR</code> 
     Directory containing the topology files. Useful if your topology files are stored in a specific directory. Default: <code>TOPOS</code>.</li>
 <li><code>--outdir OUTDIR</code>
-    Output directory for simulation results. Default: <code>SimulResults</code>.</li>
-<li><code>--num_paras NUM_PARAS</code>
-    Number of parameter sets to generate. This determines the size of the ensemble you want to simulate. Default: <code>10000</code>.</li>
+    Output directory for simulation results. Default: <code>IsingSimulResults</code>.</li>
 <li><code>--num_inits NUM_INITS</code>
-    Number of initial conditions to use for each simulation. This allows for exploring different starting points in your model. Default: <code>1000</code>.</li>
-<li><code>--num_reps NUM_REPS</code>
-    Number of replicates per topofile. Default: <code>3</code>.</li>
-<li><code>--num_cores NUM_CORES</code> 
-    Number of cores to use for parallel parameter generation. Default: <code>All available cores</code>.</li>
-<li><code>--sampling SAMPLING</code> 
-    Sampling method to generate parameter sets. Choices include: 'Sobol', 'LHS', 'Uniform', 'LogUniform', 'Normal', 'LogNormal'. Default: <code>Sobol</code>.</li>
+    Number of initial conditions to use for each simulation. This allows for exploring different starting points in your model. Default: <code>16384</code>.</li>
+<li><code>--max_steps MAX_STEPS</code>
+    Maximum number of steps to simulate. Default: <code>100</code>.</li>
+<li><code>--batch_size BATCH_SIZE</code> 
+    Batch size to parallelize over. Optimize based on available VRAM. Default: <code>1024</code></li>
+<li><code>--mode MODE</code>
+    Mode of simulation. Choose between: async: Asynchronous mode (one node updated per step), sync: Synchronous mode (all nodes updates per step). Default: <code>async</code></li>
+<li><code>--flipvalue FLIPVALUE</code> 
+    Replacement values set for flip operations during the simulation. Choose between 0 where [Low=0, High=1] or 1 where [Low=-1, High=1]. Default: <code>0</code></li>
 </ul>
 
 
