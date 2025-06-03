@@ -1,29 +1,27 @@
 [project]
 name = "grins"
-version = "0.1.1"
+version = "0.1.2"
 description = "Gene Regulatory Interaction Network Simulator - GRiNS"
 authors = [
-    {name = "MoltenEcdysone09",email = "pradyumnah@iisc.ac.in"},
-    {name = "Harshavardhan-BV",email = "bharshavardh@iisc.ac.in"},
+  { name = "MoltenEcdysone09", email = "pradyumnah@iisc.ac.in" },
+  { name = "Harshavardhan-BV", email = "bharshavardh@iisc.ac.in" },
 ]
-license = {text = "GPL-3.0-or-later"}
+license = { text = "GPL-3.0-or-later" }
 readme = "README.md"
 requires-python = ">=3.12,<4.0"
-dynamic = [ "classifiers" ]
+dynamic = ["classifiers"]
 dependencies = [
-    "numpy (>=2.2.3,<3.0.0)",
-    "pandas (>=2.2.3,<3.0.0)",
-    "jax (>=0.5.3) ; extra != 'cuda12'",
-    "diffrax (>=0.6.2,<0.7.0)",
-    "networkx (>=3.4.2,<4.0.0)",
-    "scipy (>=1.15.2,<2.0.0)",
-    "pyarrow (>=19.0.1,<20.0.0)",
+  "numpy (>=2.2.3,<3.0.0)",
+  "pandas (>=2.2.3,<3.0.0)",
+  "jax (>=0.5.3) ; extra != 'cuda12'",
+  "diffrax (>=0.6.2,<0.7.0)",
+  "networkx (>=3.4.2,<4.0.0)",
+  "scipy (>=1.15.2,<2.0.0)",
+  "pyarrow (>=19.0.1,<20.0.0)",
 ]
 
 [project.optional-dependencies]
-cuda12 = [
-    "jax[cuda12] (>=0.5.3)",
-]
+cuda12 = ["jax[cuda12] (>=0.5.3)"]
 
 [project.urls]
 homepage = "https://github.com/MoltenEcdysone09/GRiNS"
@@ -37,9 +35,9 @@ boolise = "grins.boolise:main"
 
 [tool.poetry]
 classifiers = [
-    "Operating System :: OS Independent",
-    "Intended Audience :: Science/Research",
-    "Topic :: Scientific/Engineering",
+  "Operating System :: OS Independent",
+  "Intended Audience :: Science/Research",
+  "Topic :: Scientific/Engineering",
 ]
 
 [tool.poetry.group.docs]
