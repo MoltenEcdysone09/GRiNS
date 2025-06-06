@@ -141,4 +141,5 @@ input/*_RawData.xlsx
 TOPOS
 SimulResults/
 IsingSimulResults/
-CaseStudies/
+CaseStudies/casestudies/
+*_steadystate_*.parquet
