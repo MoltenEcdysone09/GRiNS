@@ -21,7 +21,7 @@ You can access the full documentation, including installation instructions, usag
 
 ## Case Studies
 
-The code to reproduce the analysis done in the manuscript can been accessed in the [Case Studies](/CaseStudies) folder.
+The code to reproduce the analysis done in the manuscript can been accessed in the [Case Studies](/CaseStudies) folder. [CS1](/CaseStudies/CS1) folder has the simulation and analysis reproduction scripts along with the raw and processed data for the first case study and [CS2](/CaseStudies/CS2) has the same but for the second case study.
 
 ## Installation  
 
