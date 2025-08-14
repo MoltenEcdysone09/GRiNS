@@ -21,7 +21,7 @@ You can access the full documentation, including installation instructions, usag
 
 ## Case Studies
 
-The code to reproduce the analysis done in the manuscript can been accessed in the [Case Studies]("./CaseStudies/") folder.
+The code to reproduce the analysis done in the manuscript can been accessed in the [Case Studies]("/CaseStudies/") folder.
 
 ## Installation  
 
