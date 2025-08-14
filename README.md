@@ -19,6 +19,10 @@ Modeling gene regulatory networks (GRNs) is essential for understanding cellular
 
 You can access the full documentation, including installation instructions, usage examples, and detailed explanations of the simulation frameworks, at [MoltenEcdysone09.github.io/GRiNS](https://MoltenEcdysone09.github.io/GRiNS)
 
+## Case Studies
+
+The code to reproduce the analysis done in the manuscript can been accessed in the [Case Studies]("./CaseStudies/") folder.
+
 ## Installation  
 
 ### GPU Version Installation (Recommended)  

@@ -343,7 +343,7 @@ def topo_simulate(
     topo_file : str
         Path to the topology file.
     replicate_dir : str
-        Directory where the replicate results will be saved.
+        Directory where the replicate results will be saved. The ODETerm file will be checked in the parent directory of this directory.
     initial_conditions : pd.DataFrame
         DataFrame containing the initial conditions.
     parameters : pd.DataFrame
