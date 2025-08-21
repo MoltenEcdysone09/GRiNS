@@ -67,6 +67,18 @@ def run_and_plot_pca(sol_df, gene_columns, n_components=5):
         "ZEB1",
         "ZEB2",
     ]
+    epi_list = ["miR141", "miR101", "miR34a", "miR200a", "miR200c", "miR200b"]
+    mes_list = [
+        "GSC",
+        "TWIST1",
+        "TWIST2",
+        "FOXC2",
+        "TGFbeta",
+        "SNAI1",
+        "SNAI2",
+        "ZEB1",
+        "ZEB2",
+    ]
     print(sol_df)
     print(sol_df.columns)
     # Get the non signalling node columns
@@ -85,24 +97,41 @@ def run_and_plot_pca(sol_df, gene_columns, n_components=5):
     X_pca = pca.fit_transform(X_scaled)
     explained_var = pca.explained_variance_ratio_ * 100  # in %
 
+    # Getting the Scores of the states
+    epi_mean = sol_df[["gk_" + cl for cl in epi_list]].mean(axis=1)
+    mes_mean = sol_df[["gk_" + cl for cl in mes_list]].mean(axis=1)
+    em_score = mes_mean - epi_mean
+    em_score = (em_score - em_score.min()) / (em_score.max() - em_score.min())
+
     # 3. Plot 2D PCA with explained variance
     fig, ax = plt.subplots(figsize=(6, 6))
-    # scatter = ax.scatter(X_pca[:, 0], X_pca[:, 1], alpha=0.4, edgecolor="k", s=0.4)
-    ax.scatter(
+    scatter = ax.scatter(
         X_pca[:, 0],
         X_pca[:, 1],
-        alpha=0.2,
-        color=sns.color_palette("deep")[1],
-        s=25,
-        linewidth=0.3,
+        alpha=0.8,
+        # color=sns.color_palette("deep")[1],
+        c=em_score,
+        cmap="coolwarm_r",
+        s=12,
+        linewidth=0.1,
         edgecolor="k",
         # edgecolor="#3b4252",
+        vmin=em_score.min(),
+        vmax=em_score.max(),
     )
     ax.axhline(0, linestyle="--", color="grey", linewidth=1.5)
     ax.axvline(0, linestyle="--", color="grey", linewidth=1.5)
     ax.set_xlabel(f"PC1 ({explained_var[0]:.2f}%)")
     ax.set_ylabel(f"PC2 ({explained_var[1]:.2f}%)")
     # ax.set_title("PCA: PC1 vs PC2")
+    #
+    # Plotting Colorbar
+    cbar = plt.colorbar(
+        scatter, ax=ax, fraction=0.046, pad=0.04
+    )  # fraction & pad control size/spacing
+    cbar.set_ticks([0, 0.5, 1])
+    cbar.set_ticklabels(["0 (Epi)", "0.5", "1 (Mes)"])
+    cbar.set_label("Normalized EMT Score (Mes - Epi)", fontsize=19)
 
     # # Plot loading vectors (axes)
     # loadings = pca.components_.T
@@ -129,7 +158,7 @@ def run_and_plot_pca(sol_df, gene_columns, n_components=5):
     # ax.grid(True)
     plt.tight_layout()
     # plt.savefig("./CS2_SimulationResults/EMT22N/PCA.svg")
-    plt.savefig("./CS2_SimulationResults/EMT22N/PCA.png", dpi=300)
+    plt.savefig("./CS2_SimulationResults/EMT22N/PCA.png", dpi=400)
     # plt.savefig("./CS2_SimulationResults/EMT22N/PCA.svg", dpi=300)
     # plt.savefig()
     # plt.show()
@@ -189,8 +218,8 @@ def run_and_plot_pca(sol_df, gene_columns, n_components=5):
     ax3.tick_params(axis="both", which="major")
     plt.gca().invert_yaxis()  # So that top genes are at the top
     plt.tight_layout()
-    plt.savefig("./CS2_SimulationResults/EMT22N/PCA_PC1Loadings.png", dpi=300)
-    plt.savefig("./CS2_SimulationResults/EMT22N/PCA_PC1Loadings.svg", dpi=300)
+    plt.savefig("./CS2_SimulationResults/EMT22N/PCA_PC1Loadings.png", dpi=400)
+    plt.savefig("./CS2_SimulationResults/EMT22N/PCA_PC1Loadings.svg", dpi=400)
     plt.clf()
 
 
