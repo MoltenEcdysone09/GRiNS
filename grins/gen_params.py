@@ -1,11 +1,11 @@
 import pandas as pd
 import numpy as np
 from glob import glob
-from scipy.stats import qmc, truncnorm
+from scipy.stats import qmc, truncnorm, loguniform, lognorm
 import itertools as it
 import warnings
 from grins.reg_funcs import psH, nsH
-from typing import Tuple, List, Union, Optional
+from typing import Tuple, List, Union
 
 # Suppress the specific warning
 warnings.filterwarnings(
@@ -141,8 +141,8 @@ def scale_array(
     """
     scaled = min_val + (max_val - min_val) * (arr - arr.min()) / (arr.max() - arr.min())
     if round_int:
-        scaled = np.ceil(scaled)
-        scaled = np.clip(scaled, min_val + 1, max_val)
+        scaled = np.round(scaled)
+        scaled = np.clip(scaled, min_val, max_val)
     return scaled
 
 
@@ -212,7 +212,7 @@ def _gen_uniform_seq(
     Returns:
         np.ndarray: A 2D array of shape (num_points, dimension) containing the generated points.
     """
-    rng = _get_rng(rng)
+    # rng = _get_rng(rng)
     return rng.uniform(low=0, high=1, size=(num_points, dimension))
 
 
@@ -230,8 +230,8 @@ def _gen_loguniform_seq(
     Returns:
         np.ndarray: An array of shape (num_points, dimension) containing the generated points.
     """
-    rng = _get_rng(rng)
-    return np.exp(_gen_uniform_seq(dimension=dimension, num_points=num_points, rng=rng))
+    # rng = _get_rng(rng)
+    return _gen_uniform_seq(dimension=dimension, num_points=num_points, rng=rng)
 
 
 def _gen_latin_hypercube(
@@ -281,7 +281,7 @@ def _gen_normal(
     Returns:
         np.ndarray: A NumPy array of shape (num_points, dimension) containing the generated points.
     """
-    rng = _get_rng(rng)
+    # rng = _get_rng(rng)
     lower, upper = -3, 3
     # Use truncated normal to avoid extreme values (±3 std deviations)
     return truncnorm.rvs(
@@ -312,14 +312,16 @@ def _gen_lognormal(
     Returns:
         np.ndarray: An array of shape (num_points, dimension) containing the generated log-normal points.
     """
-    return np.exp(_gen_normal(dimension, num_points, std_dev, rng=rng))
+    # The log scalign will be handled afterwards
+    # return np.exp(_gen_normal(dimension, num_points, std_dev, rng=rng))
+    return _gen_uniform_seq(dimension=dimension, num_points=num_points, rng=rng)
 
 
 def sample_distribution(
     method: str,
     dimension: int,
     num_points: int,
-    std_dev: Optional[float] = None,
+    std_dev: float | None = None,
     optimise: bool = False,
     rng: int | np.random.Generator | None = None,
 ) -> np.ndarray:
@@ -434,7 +436,7 @@ def sample_param_df(
 
     # Group by sampling settings (including StdDev if available)
     group_cols = ["Sampling"] + (["StdDev"] if "StdDev" in prange_df.columns else [])
-    for _, group in prange_df.groupby(group_cols, sort=False):
+    for _, group in prange_df.groupby(group_cols, sort=False, dropna=False):
         method = group["Sampling"].iloc[0]
         std_val = group["StdDev"].iloc[0] if "StdDev" in group.columns else None
         dims = group.shape[0]
@@ -450,20 +452,43 @@ def sample_param_df(
     # Scale the sampled values to the specified range
     def scale_col(col: pd.Series, param_name: str) -> pd.Series:
         row = prange_df[prange_df["Parameter"] == param_name].iloc[0]
-        # The InhFld parameter is scaled differently and then inverted
+        min_val, max_val = row["Minimum"], row["Maximum"]
+        std_val = row.get("StdDev", 1.0)
+        # Determine the target range for sampling.
+        # For InhFld sample in reciprocal space [1/max, 1/min]
         if "InhFld" in param_name:
-            # Change the min and max values to the reciprocal
-            row_min, row_max = 1 / row["Maximum"], 1 / row["Minimum"]
-            # Invert the scaled values and return the series
-            return pd.Series(1 / scale_array(col.values, row_min, row_max))
-        return pd.Series(
-            scale_array(
-                col.values,
-                row["Minimum"],
-                row["Maximum"],
-                round_int=("Hill" in param_name),
+            target_min, target_max = 1 / max_val, 1 / min_val
+        else:
+            target_min, target_max = min_val, max_val
+        # Handling LogUniform scaling
+        if row["Sampling"] == "LogUniform":
+            sample_vals = pd.Series(loguniform.ppf(col.values, target_min, target_max))
+        # Handling LogNormal scaling
+        elif row["Sampling"] == "LogNormal":
+            # For LogNormal, mu is the mean of log-space
+            log_m, log_M = np.log(target_min), np.log(target_max)
+            mu = (log_m + log_M) / 2
+            sample_vals = pd.Series(
+                lognorm.ppf(col.values, s=std_val, scale=np.exp(mu))
             )
-        )
+        # Handling all other non-log scaling
+        else:
+            sample_vals = pd.Series(
+                scale_array(
+                    col.values,
+                    target_min,
+                    target_max,
+                )
+            )
+        # Rounding the hill values
+        if "Hill" in param_name:
+            sample_vals = np.round(sample_vals)
+            # Ensure it stays within [min+1, max] like scale_array does
+            sample_vals = np.clip(sample_vals, target_min, target_max)
+        if "InhFld" in param_name:
+            # Invert the scaled values and return the series
+            sample_vals = 1 / sample_vals
+        return sample_vals
 
     # Scale the sampled values for each parameter
     for col in sampled_df.columns:
@@ -566,14 +591,20 @@ def get_thr_ranges(
     in_edge_topo = topo_df[topo_df["Target"] == source_node]
     # If there are incoming edges, calculate the updated g/k values based on the Hills equation
     if not in_edge_topo.empty:
-        isn = "|".join(in_edge_topo["Source"].unique())
+        sources = in_edge_topo["Source"].unique()
+        isn = "|".join(sources)
         # Get the parameters for the incoming edges
-        in_edge_params = prange_df[
-            prange_df["Parameter"].str.contains(
-                f"Fld_{isn}_{source_node}|Thr_{isn}_{source_node}|Hill_{isn}_{source_node}"
-            )
-            | prange_df["Parameter"].str.contains(f"Prod_{isn}|Deg_{isn}")
-        ]
+        # Regex pattern to match the parameters
+        pattern = (
+            rf"^((ActFld|InhFld|Thr|Hill)_({isn})_{source_node}|(Prod|Deg)_({isn}))$"
+        )
+        in_edge_params = prange_df[prange_df["Parameter"].str.contains(pattern)].copy()
+        # in_edge_params = prange_df[
+        #     prange_df["Parameter"].str.contains(
+        #         f"Fld_{isn}_{source_node}|Thr_{isn}_{source_node}|Hill_{isn}_{source_node}"
+        #     )
+        #     | prange_df["Parameter"].str.contains(f"Prod_{isn}|Deg_{isn}")
+        # ]
         # Sample the parameters for the incoming edges
         isn_gk = sample_param_df(
             in_edge_params[in_edge_params["Parameter"].str.contains("Prod_|Deg_")],
@@ -719,7 +750,7 @@ def gen_param_range_df(
             )
         # If the sampling method is not specified for a parameter, set it to "Sobol"
         prange_df["Sampling"] = prange_df["Sampling"].fillna("Sobol")
-        if any(prange_df["Sampling"].isin(["Normal", "LogNormal"])):
+        if "StdDev" in prange_df.columns:
             prange_df["StdDev"] = 1.0
     # Fill the threshold rows of the parameter range DataFrame
     if thr_rows:
@@ -772,45 +803,9 @@ def gen_param_df(
             thr_rows=thr_rows,
             rng=rng,
         )
-    # # Get the ordered parameter names
-    # ordered_params = prange_df["Parameter"].tolist()
-    # # Dictionary to store sampled values for each parameter
-    # sampled_dict = {}
-
-    # # Group by 'Sampling' and 'StdDev' columns
-    # grouping_cols = ["Sampling"]
-    # if "StdDev" in prange_df.columns:
-    #     grouping_cols.append("StdDev")
-
-    # # Iterate over the groups and sample the parameters
-    # for _, group in prange_df.groupby(grouping_cols, sort=False):
-    #     method = group["Sampling"].iloc[0]
-    #     std_val = group["StdDev"].iloc[0] if "StdDev" in group.columns else None
-    #     dims = group.shape[0]
-    #     samples = sample_distribution(method, dims, num_paras, std_dev=std_val)
-    #     group_sorted = group.sort_index().reset_index(drop=True)
-    #     for i, row in group_sorted.iterrows():
-    #         param_name = row["Parameter"]
-    #         min_val = row["Minimum"]
-    #         max_val = row["Maximum"]
-    #         col_samples = samples[:, i]
-    #         if "Hill" in param_name:
-    #             scaled = np.ceil(max_val * col_samples)
-    #         elif "InhFld" in param_name:
-    #             inv_min = 1 / max_val
-    #             inv_max = 1 / min_val
-    #             scaled = 1 / (inv_min + (inv_max - inv_min) * col_samples)
-    #         else:
-    #             scaled = min_val + (max_val - min_val) * col_samples
-    #         sampled_dict[param_name] = scaled
-    # # Create a DataFrame from the sampled values
-    # data = {param: sampled_dict[param] for param in ordered_params}
-    # # Return the DataFrame with the original parameter order
-    # return pd.DataFrame(data, columns=ordered_params)
     # Use the sample_param_df function to sample the parameters
     param_df = sample_param_df(prange_df, num_params, rng=rng)
     # Add the ParamNum column to the DataFrame
-    # param_df["ParamNum"] = param_df.index + 1
     param_df = param_df.assign(ParamNum=param_df.index + 1)
     return param_df
 
