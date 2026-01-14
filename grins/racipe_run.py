@@ -7,6 +7,7 @@ from grins.gen_params import (
     gen_init_cond,
     gen_param_range_df,
     parse_topos,
+    _get_rng,
 )
 from importlib import import_module
 from diffrax import (
@@ -77,7 +78,8 @@ def gen_topo_param_files(
     num_replicates: int = 3,
     num_params: int = 2**10,
     num_init_conds: int = 2**7,
-    sampling_method: Union[str, dict] = "Sobol",
+    sampling_method: str | dict = "Sobol",
+    rng: int | np.random.Generator | None = None,
 ):
     """
     Generate parameter files for simulation.
@@ -94,6 +96,16 @@ def gen_topo_param_files(
         The number of initial condition files to generate. Defaults to 2**7.
     sampling_method : Union[str, dict], optional
         The method to use for sampling the parameter space. Defaults to 'Sobol'. For a finer control over the parameter generation look at the documentation of the gen_param_range_df function and gen_param_df function.
+    rng : int, np.random.Generator, or None, optional
+        The master random seed or Generator for the entire generation process.
+        - If `int`, it acts as the master seed to ensure all replicates are
+          deterministic and reproducible across different runs.
+        - If `np.random.Generator`, it is used directly to derive replicate seeds.
+        - If `None`, entropy is pulled from the OS, resulting in non-reproducible
+          unique replicates.
+        Each replicate (e.g., 001, 002) is assigned a unique sub-generator derived
+        from this master state to ensure intra-run variability but inter-run
+        reproducibility.
 
     Returns
     -------
@@ -104,6 +116,8 @@ def gen_topo_param_files(
     topo_name = topo_file.split("/")[-1].split(".")[0]
     # Parse the topo file
     topo_df = parse_topos(topo_file)
+    # Initialising the main random generator
+    main_rng = _get_rng(rng)
     # # Generate the parameter names
     # param_names = gen_param_names(topo_df)
     # Get the unique nodes in the topo file
@@ -111,14 +125,17 @@ def gen_topo_param_files(
     # Generate the required directory structure
     gen_sim_dirstruct(topo_file, save_dir, num_replicates)
     # Specify directory where all the generated ode system file will be saved
-    sim_dir = f"{save_dir}/{topo_file.split('/')[-1].split('.')[0]}"
+    sim_dir = f"{save_dir}/{topo_name}"
     # Generate the ODE system for diffrax
     gen_diffrax_odesys(topo_df, topo_name, sim_dir)
     # Generate the parameter dataframe and save in each of the replicate folders
     for rep in range(1, num_replicates + 1):
+        # Derive a deterministic seed for this specific replicate
+        rep_seed = main_rng.integers(0, 2**32)
+        rep_rng = np.random.default_rng(rep_seed)
         # Generate the parameter range dataframe
         param_range_df = gen_param_range_df(
-            topo_df, num_params, sampling_method=sampling_method
+            topo_df, num_params, sampling_method=sampling_method, rng=rep_rng
         )
         # Save the parameter range dataframe
         param_range_df.to_csv(
@@ -127,13 +144,15 @@ def gen_topo_param_files(
             sep="\t",
         )
         # # Generate the parameter dataframe with the default values
-        param_df = gen_param_df(param_range_df, num_params)
+        param_df = gen_param_df(param_range_df, num_params, rng=rep_rng)
         # print(param_df)
         param_df.to_parquet(
             f"{sim_dir}/{rep:03}/{topo_name}_params_{rep:03}.parquet", index=False
         )
         # Generate the initial conditions dataframe
-        initcond_df = gen_init_cond(topo_df=topo_df, num_init_conds=num_init_conds)
+        initcond_df = gen_init_cond(
+            topo_df=topo_df, num_init_conds=num_init_conds, rng=rep_rng
+        )
         # print(initcond_df)
         initcond_df.to_parquet(
             f"{sim_dir}/{rep:03}/{topo_name}_init_conds_{rep:03}.parquet",
