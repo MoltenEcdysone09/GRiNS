@@ -146,8 +146,36 @@ def scale_array(
     return scaled
 
 
+def _get_rng(rng: int | np.random.Generator | None) -> np.random.Generator:
+    """
+    Ensure the input is a valid NumPy Generator.
+
+    This helper standardizes the way random states are handled, supporting
+    seed integers, existing Generator instances, or None.
+
+    Parameters
+    ----------
+    rng : int, np.random.Generator, or None
+        The seed or generator to use.
+        - If `int`, it's used as a seed to create a new `Generator`.
+        - If `np.random.Generator`, it is returned as-is.
+        - If `None`, a new `Generator` is created using entropy from the OS.
+
+    Returns
+    -------
+    np.random.Generator
+        A validated or newly initialized NumPy random number generator.
+    """
+    if isinstance(rng, np.random.Generator):
+        return rng
+    return np.random.default_rng(rng)
+
+
 def _gen_sobol_seq(
-    dimensions: int, num_points: int, optimise: bool = False
+    dimensions: int,
+    num_points: int,
+    optimise: bool = False,
+    rng: int | np.random.Generator | None = None,
 ) -> np.ndarray:
     """
     Generate a Sobol sequence.
@@ -156,46 +184,61 @@ def _gen_sobol_seq(
         dimensions (int): The number of dimensions for the Sobol sequence.
         num_points (int): The number of points to generate in the sequence.
         optimise (bool, optional): If True, apply Lloyd's optimization to the sequence. Default is False.
+        rng (int, Generator, optional): Seed or RNG for scrambling. Default is None.
 
     Returns:
         np.ndarray: An array containing the generated Sobol sequence.
     """
     sampler = qmc.Sobol(
-        d=dimensions, scramble=True, optimization="lloyd" if optimise else None
+        d=dimensions,
+        scramble=True,
+        seed=rng,
+        optimization="lloyd" if optimise else None,
     )
     return sampler.random(num_points)
 
 
-def _gen_uniform_seq(dimension: int, num_points: int) -> np.ndarray:
+def _gen_uniform_seq(
+    dimension: int, num_points: int, rng: int | np.random.Generator | None = None
+) -> np.ndarray:
     """
     Generate a sequence of uniformly distributed random points.
 
     Parameters:
         dimension (int): The number of dimensions for each point.
         num_points (int): The number of points to generate.
+        rng (int, Generator, optional): Seed or RNG for scrambling. Default is None.
 
     Returns:
         np.ndarray: A 2D array of shape (num_points, dimension) containing the generated points.
     """
-    return np.random.uniform(low=0, high=1, size=(num_points, dimension))
+    rng = _get_rng(rng)
+    return rng.uniform(low=0, high=1, size=(num_points, dimension))
 
 
-def _gen_loguniform_seq(dimension: int, num_points: int) -> np.ndarray:
+def _gen_loguniform_seq(
+    dimension: int, num_points: int, rng: int | np.random.Generator | None = None
+) -> np.ndarray:
     """
     Generate a sequence of points sampled from a log-uniform distribution.
 
     Parameters:
         dimension (int): The dimensionality of the points.
         num_points (int): The number of points to generate.
+        rng (int, Generator, optional): Seed or RNG for scrambling. Default is None.
 
     Returns:
         np.ndarray: An array of shape (num_points, dimension) containing the generated points.
     """
-    return np.exp(_gen_uniform_seq(dimension, num_points))
+    rng = _get_rng(rng)
+    return np.exp(_gen_uniform_seq(dimension=dimension, num_points=num_points, rng=rng))
 
 
 def _gen_latin_hypercube(
-    dimension: int, num_points: int, optimise: bool = False
+    dimension: int,
+    num_points: int,
+    optimise: bool = False,
+    rng: int | np.random.Generator | None = None,
 ) -> np.ndarray:
     """
     Generate a Latin Hypercube sample.
@@ -204,17 +247,23 @@ def _gen_latin_hypercube(
         dimension (int): The number of dimensions for the sample.
         num_points (int): The number of points to generate.
         optimise (bool, optional): Whether to use Lloyd's algorithm for optimization. Defaults to False.
+        rng (int, Generator, optional): Seed or RNG for scrambling. Default is None.
 
     Returns:
         np.ndarray: A numpy array containing the generated Latin Hypercube sample.
     """
     sampler = qmc.LatinHypercube(
-        d=dimension, scramble=True, optimization="lloyd" if optimise else None
+        d=dimension, scramble=True, seed=rng, optimization="lloyd" if optimise else None
     )
     return sampler.random(num_points)
 
 
-def _gen_normal(dimension: int, num_points: int, std_dev: float = 1) -> np.ndarray:
+def _gen_normal(
+    dimension: int,
+    num_points: int,
+    std_dev: float = 1,
+    rng: int | np.random.Generator | None = None,
+) -> np.ndarray:
     """
     Generate a set of points from a truncated normal distribution.
 
@@ -227,18 +276,30 @@ def _gen_normal(dimension: int, num_points: int, std_dev: float = 1) -> np.ndarr
         dimension (int): The number of dimensions for each point.
         num_points (int): The number of points to generate.
         std_dev (float, optional): The standard deviation of the normal distribution. Default is 1.
+        rng (int, Generator, optional): Seed or RNG for reproducibility. Default is None.
 
     Returns:
         np.ndarray: A NumPy array of shape (num_points, dimension) containing the generated points.
     """
-    # Use truncated normal to avoid extreme values (±3 std deviations)
+    rng = _get_rng(rng)
     lower, upper = -3, 3
+    # Use truncated normal to avoid extreme values (±3 std deviations)
     return truncnorm.rvs(
-        a=lower, b=upper, loc=0, scale=std_dev, size=(num_points, dimension)
+        a=lower,
+        b=upper,
+        loc=0,
+        scale=std_dev,
+        size=(num_points, dimension),
+        random_state=rng,
     )
 
 
-def _gen_lognormal(dimension: int, num_points: int, std_dev: float = 1) -> np.ndarray:
+def _gen_lognormal(
+    dimension: int,
+    num_points: int,
+    std_dev: float = 1,
+    rng: int | np.random.Generator | None = None,
+) -> np.ndarray:
     """
     Generate a log-normal distribution.
 
@@ -246,11 +307,12 @@ def _gen_lognormal(dimension: int, num_points: int, std_dev: float = 1) -> np.nd
         dimension (int): The number of dimensions for each point.
         num_points (int): The number of points to generate.
         std_dev (float, optional): The standard deviation of the underlying normal distribution. Default is 1.
+        rng (int, Generator, optional): Seed or RNG for reproducibility. Default is None.
 
     Returns:
         np.ndarray: An array of shape (num_points, dimension) containing the generated log-normal points.
     """
-    return np.exp(_gen_normal(dimension, num_points, std_dev))
+    return np.exp(_gen_normal(dimension, num_points, std_dev, rng=rng))
 
 
 def sample_distribution(
@@ -259,6 +321,7 @@ def sample_distribution(
     num_points: int,
     std_dev: Optional[float] = None,
     optimise: bool = False,
+    rng: int | np.random.Generator | None = None,
 ) -> np.ndarray:
     """
     Generates a sample distribution based on the specified method.
@@ -275,6 +338,10 @@ def sample_distribution(
         The standard deviation for the "Normal" and "LogNormal" distributions. Defaults to 1.0 if not provided.
     optimise : bool, optional
         Whether to optimise the sampling process. Applicable for "Sobol" and "LHS" methods.
+    rng : int, np.random.Generator, or None, optional
+        The seed or NumPy Generator to use for scrambling and shuffling.
+        If None, the global random state is not used; a new Generator
+        is initialized.
 
     Returns
     -------
@@ -286,28 +353,30 @@ def sample_distribution(
     ValueError
         If an unknown sampling method is specified.
     """
+    # Initialise the random number generator
+    rng_obj = _get_rng(rng)
     if method == "Sobol":
-        dist_arr = _gen_sobol_seq(dimension, num_points, optimise)
+        dist_arr = _gen_sobol_seq(dimension, num_points, optimise, rng_obj)
         # return _gen_sobol_seq(dimension, num_points, optimise)
     elif method == "LHS":
-        dist_arr = _gen_latin_hypercube(dimension, num_points, optimise)
+        dist_arr = _gen_latin_hypercube(dimension, num_points, optimise, rng_obj)
         # return _gen_latin_hypercube(dimension, num_points, optimise)
     elif method == "Uniform":
-        dist_arr = _gen_uniform_seq(dimension, num_points)
+        dist_arr = _gen_uniform_seq(dimension, num_points, rng_obj)
         # return _gen_uniform_seq(dimension, num_points)
     elif method == "LogUniform":
-        dist_arr = _gen_loguniform_seq(dimension, num_points)
+        dist_arr = _gen_loguniform_seq(dimension, num_points, rng_obj)
         # return _gen_loguniform_seq(dimension, num_points)
     elif method == "Normal":
         dist_arr = _gen_normal(
-            dimension, num_points, std_dev if std_dev is not None else 1.0
+            dimension, num_points, std_dev if std_dev is not None else 1.0, rng_obj
         )
         # return _gen_normal(
         #     dimension, num_points, std_dev if std_dev is not None else 1.0
         # )
     elif method == "LogNormal":
         dist_arr = _gen_lognormal(
-            dimension, num_points, std_dev if std_dev is not None else 1.0
+            dimension, num_points, std_dev if std_dev is not None else 1.0, rng_obj
         )
         # return _gen_lognormal(
         #     dimension, num_points, std_dev if std_dev is not None else 1.0
@@ -315,10 +384,18 @@ def sample_distribution(
     else:
         raise ValueError(f"Unknown sampling method: {method}")
     # Shuffle the array to avoid the correlation between the parameters
-    return np.random.permutation(dist_arr.flatten()).reshape(dist_arr.shape)
+    # Use the generator for the final shuffle to maintain isolation
+    flat_arr = dist_arr.flatten()
+    rng_obj.shuffle(flat_arr)
+    return flat_arr.reshape(dist_arr.shape)
+    # return np.random.permutation(dist_arr.flatten()).reshape(dist_arr.shape)
 
 
-def sample_param_df(prange_df: pd.DataFrame, num_params: int = 2**10) -> pd.DataFrame:
+def sample_param_df(
+    prange_df: pd.DataFrame,
+    num_params: int = 2**10,
+    rng: int | np.random.Generator | None = None,
+) -> pd.DataFrame:
     """
     Samples parameter values based on the provided parameter range DataFrame.
 
@@ -336,6 +413,8 @@ def sample_param_df(prange_df: pd.DataFrame, num_params: int = 2**10) -> pd.Data
     num_params : int, optional
         The number of parameter samples to generate for each parameter. Default
         is 1024 (2**10).
+    rng: int, Generator, optional
+        Seed or RNG for reproducibility. Default is None.
 
     Returns
     -------
@@ -359,7 +438,9 @@ def sample_param_df(prange_df: pd.DataFrame, num_params: int = 2**10) -> pd.Data
         method = group["Sampling"].iloc[0]
         std_val = group["StdDev"].iloc[0] if "StdDev" in group.columns else None
         dims = group.shape[0]
-        samples = sample_distribution(method, dims, num_params, std_dev=std_val)
+        samples = sample_distribution(
+            method, dims, num_params, std_dev=std_val, rng=rng
+        )
         # Assign each sampled column to its corresponding parameter name.
         for i, param in enumerate(group["Parameter"]):
             sampled_values[param] = samples[:, i]
@@ -397,6 +478,7 @@ def _get_updated_gkn_hills(
     in_edge_params: pd.DataFrame,
     in_edge_topo: pd.DataFrame,
     num_params: int = 2**10,
+    rng: int | np.random.Generator | None = None,
 ) -> float:
     """
     Update the g/k values for a node using incoming edges and their Hills equations. Used by the get_thr_ranges function to generate threshold ranges which follow half functional rule.
@@ -406,6 +488,7 @@ def _get_updated_gkn_hills(
         in_edge_params (pd.DataFrame): DataFrame containing parameters for incoming edges.
         in_edge_topo (pd.DataFrame): DataFrame containing the topology of incoming edges.
         num_params (int, optional): Number of parameter samples to generate. Default is 1024.
+        rng (int, Generator, optional): Seed or RNG for reproducibility. Default is None.
 
     Returns:
         float: The median of the product of updated g/k values across all incoming edges.
@@ -414,7 +497,7 @@ def _get_updated_gkn_hills(
     # Create a DataFrame to store the updated g/k values
     gk_hills = pd.DataFrame({"src_gk_n": gk_n})
     # Sample parameters for incoming edges
-    inedg_param_samples = sample_param_df(in_edge_params, num_params)
+    inedg_param_samples = sample_param_df(in_edge_params, num_params, rng=rng)
     # Calculate the updated g/k values based on the Hills equation for each incoming edge
     for _, row in in_edge_topo.iterrows():
         # Get the source and target nodes, and the regulation type
@@ -448,6 +531,7 @@ def get_thr_ranges(
     prange_df: pd.DataFrame,
     num_params: int = 2**10,
     # optimise: bool = False,
+    rng: int | np.random.Generator | None = None,
 ) -> float:
     """
     Calculate the median threshold range for a given source node.
@@ -462,6 +546,8 @@ def get_thr_ranges(
         DataFrame containing the parameter ranges.
     num_params : int, optional
         Number of parameters to sample. Defaults to 1024.
+    rng: int, Generator, optional
+        Seed or RNG for reproducibility. Default is None.
 
     Returns
     -------
@@ -473,7 +559,7 @@ def get_thr_ranges(
         prange_df["Parameter"].str.contains(f"Prod_{source_node}|Deg_{source_node}")
     ]
     # Sample the production and degradation rates for the source node
-    sn_gk = sample_param_df(sn_params, num_params)
+    sn_gk = sample_param_df(sn_params, num_params, rng=rng)
     # Calculate the g/k values for the source node
     sn_gk_n = (sn_gk[f"Prod_{source_node}"] / sn_gk[f"Deg_{source_node}"]).to_numpy()
     # Get the incoming edges for the source node
@@ -492,6 +578,7 @@ def get_thr_ranges(
         isn_gk = sample_param_df(
             in_edge_params[in_edge_params["Parameter"].str.contains("Prod_|Deg_")],
             num_params,
+            rng=rng,
         )
         # Calculate the updated g/k values based on the Hills equation for the incoming edges
         for in_node in in_edge_topo["Source"].unique():
@@ -506,7 +593,9 @@ def get_thr_ranges(
                 ["Minimum", "Maximum"],
             ] = [0.02 * in_gk_median, 1.98 * in_gk_median]
         # Update the g/k values for the source node based on the incoming edges and return the median g/k value
-        return _get_updated_gkn_hills(sn_gk_n, in_edge_params, in_edge_topo, num_params)
+        return _get_updated_gkn_hills(
+            sn_gk_n, in_edge_params, in_edge_topo, num_params, rng=rng
+        )
     else:
         # If there are no incoming edges, return the median g/k value for the source node
         return np.median(sn_gk[f"Prod_{source_node}"] / sn_gk[f"Deg_{source_node}"])
@@ -514,7 +603,10 @@ def get_thr_ranges(
 
 # Function to add threshold-related rows to the parameter range DataFrame. This function will be used by the get_param_range_df function to generate a parameter range DataFrame from the topology DataFrame.
 def add_thr_rows(
-    prange_df: pd.DataFrame, topo_df: pd.DataFrame, num_params: int = 2**10
+    prange_df: pd.DataFrame,
+    topo_df: pd.DataFrame,
+    num_params: int = 2**10,
+    rng: int | np.random.Generator | None = None,
 ) -> pd.DataFrame:
     """
     This function modifies the given parameter range DataFrame (`prange_df`) by adding
@@ -531,6 +623,8 @@ def add_thr_rows(
         The DataFrame containing the network topology.
     num_params : int, optional
         The number of parameters to consider. Default is 1024.
+    rng: int, Generator, optional
+        Seed or RNG for reproducibility. Default is None.
 
     Returns
     -------
@@ -544,7 +638,7 @@ def add_thr_rows(
         # print(f"Processing node: {sn}")
         # If the node is a source node, its aplification factor is calculated if the median threshold value is less than 0.01
         if sn in source_nodes:
-            median_thr_val = get_thr_ranges(sn, topo_df, prange_df, num_params)
+            median_thr_val = get_thr_ranges(sn, topo_df, prange_df, num_params, rng=rng)
             # print(f"Median threshold value for {sn}: {median_thr_val}")
             amplify_val = 1.0
             # Calculate the amplification factor if the median threshold value is less than 0.01
@@ -570,6 +664,7 @@ def gen_param_range_df(
     num_params: int = 2**10,
     sampling_method: Union[str, dict] = "Sobol",
     thr_rows: bool = True,
+    rng: int | np.random.Generator | None = None,
 ) -> pd.DataFrame:
     """
     Generate a parameter range DataFrame from the topology DataFrame.
@@ -584,6 +679,8 @@ def gen_param_range_df(
         The sampling method to use. Can be a string specifying a single method for all parameters or a dictionary specifying methods for individual parameters. Default is "Sobol".
     thr_rows : bool, optional
         Whether to add threshold rows to the DataFrame. Default is True.
+    rng: int, Generator, optional
+        Seed or RNG for reproducibility. Default is None.
 
     Returns
     -------
@@ -626,7 +723,7 @@ def gen_param_range_df(
             prange_df["StdDev"] = 1.0
     # Fill the threshold rows of the parameter range DataFrame
     if thr_rows:
-        prange_df = add_thr_rows(prange_df, topo_df, num_params)
+        prange_df = add_thr_rows(prange_df, topo_df, num_params, rng=rng)
     return prange_df
 
 
@@ -636,6 +733,7 @@ def gen_param_df(
     topo_df: pd.DataFrame = None,
     sampling_method: Union[str, dict] = "Sobol",
     thr_rows: bool = True,
+    rng: int | np.random.Generator | None = None,
 ) -> pd.DataFrame:
     """
     Generate the final parameter DataFrame by sampling parameters.
@@ -656,6 +754,8 @@ def gen_param_df(
         The sampling method to use. Can be a string specifying a single method for all parameters or a dictionary specifying methods for individual parameters. Default is "Sobol". The methods can be: 'Sobol', 'LHS', 'Uniform', 'LogUniform', 'Normal', 'LogNormal'.
     thr_rows : bool, optional
         Whether to add threshold rows to the DataFrame. Default is True.
+    rng: int, Generator, optional
+        Seed or RNG for reproducibility. Default is None.
 
     Returns
     -------
@@ -670,6 +770,7 @@ def gen_param_df(
             num_params=num_params,
             sampling_method=sampling_method,
             thr_rows=thr_rows,
+            rng=rng,
         )
     # # Get the ordered parameter names
     # ordered_params = prange_df["Parameter"].tolist()
@@ -707,14 +808,18 @@ def gen_param_df(
     # # Return the DataFrame with the original parameter order
     # return pd.DataFrame(data, columns=ordered_params)
     # Use the sample_param_df function to sample the parameters
-    param_df = sample_param_df(prange_df, num_params)
+    param_df = sample_param_df(prange_df, num_params, rng=rng)
     # Add the ParamNum column to the DataFrame
     # param_df["ParamNum"] = param_df.index + 1
     param_df = param_df.assign(ParamNum=param_df.index + 1)
     return param_df
 
 
-def gen_init_cond(topo_df: pd.DataFrame, num_init_conds: int = 2**10) -> pd.DataFrame:
+def gen_init_cond(
+    topo_df: pd.DataFrame,
+    num_init_conds: int = 2**10,
+    rng: int | np.random.Generator | None = None,
+) -> pd.DataFrame:
     """
     Generate initial conditions for each node based on the topology.
 
@@ -724,6 +829,8 @@ def gen_init_cond(topo_df: pd.DataFrame, num_init_conds: int = 2**10) -> pd.Data
         DataFrame containing the topology information.
     num_init_conds : int, optional
         Number of initial conditions to generate. Default is 2**10.
+    rng: int, Generator, optional
+        Seed or RNG for reproducibility. Default is None.
 
     Returns
     -------
@@ -732,7 +839,7 @@ def gen_init_cond(topo_df: pd.DataFrame, num_init_conds: int = 2**10) -> pd.Data
     """
     _, target_nodes, source_nodes = gen_param_names(topo_df)
     unique_nodes = sorted(set(source_nodes + target_nodes))
-    init_conds = _gen_sobol_seq(len(unique_nodes), num_init_conds)
+    init_conds = _gen_sobol_seq(len(unique_nodes), num_init_conds, rng=rng)
     # Scale initial conditions between 1 and 100
     init_conds = 1 + init_conds * (100 - 1)
     initcond_df = pd.DataFrame(init_conds, columns=unique_nodes)
