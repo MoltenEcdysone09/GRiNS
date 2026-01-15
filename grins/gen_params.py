@@ -14,6 +14,8 @@ warnings.filterwarnings(
     category=UserWarning,
 )
 
+warnings.filterwarnings("ignore", "This pattern has match groups", category=UserWarning)
+
 
 def parse_topos(topofile: str, save_cleaned: bool = False) -> pd.DataFrame:
     """
@@ -595,9 +597,10 @@ def get_thr_ranges(
         isn = "|".join(sources)
         # Get the parameters for the incoming edges
         # Regex pattern to match the parameters
-        pattern = (
-            rf"^((ActFld|InhFld|Thr|Hill)_({isn})_{source_node}|(Prod|Deg)_({isn}))$"
-        )
+        # pattern = (
+        #     rf"^((ActFld|InhFld|Thr|Hill)_({isn})_{source_node}|(Prod|Deg)_({isn}))$"
+        # )
+        pattern = rf"^(?:(?:ActFld|InhFld|Thr|Hill)_(?:{isn})_{source_node}|(?:Prod|Deg)_(?:{isn}))$"
         in_edge_params = prange_df[prange_df["Parameter"].str.contains(pattern)].copy()
         # in_edge_params = prange_df[
         #     prange_df["Parameter"].str.contains(
@@ -607,7 +610,7 @@ def get_thr_ranges(
         # ]
         # Sample the parameters for the incoming edges
         isn_gk = sample_param_df(
-            in_edge_params[in_edge_params["Parameter"].str.contains("Prod_|Deg_")],
+            in_edge_params[in_edge_params["Parameter"].str.contains(r"^(?:Prod|Deg)_")],
             num_params,
             rng=rng,
         )
