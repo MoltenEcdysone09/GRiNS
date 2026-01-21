@@ -29,6 +29,7 @@ import time
 from typing import Union
 from scipy.signal import find_peaks
 import warnings
+import ast
 
 
 # Function to generate the required directory structure
@@ -404,6 +405,38 @@ def topo_simulate(
     else:
         # Making sure to remove the trailing slash from the ode term directory path if it exists
         simul_dir = ode_term_dir.rstrip("/")
+    # Getting the node and paramter order from the ODE system file
+    node_order, param_order = get_node_param_order(
+        os.path.join(simul_dir, f"{topo_name}.py")
+    )
+    # Validating and reordering the node and parameters to align with the unpacking in the odesys function
+    if node_order:
+        actual_nodes = set(initial_conditions.columns) - {"InitCondNum"}
+        expected_nodes = set(node_order)
+        if actual_nodes != expected_nodes:
+            raise ValueError(
+                f"Node mismatch in {replicate_dir}.\n"
+                f"Missing: {expected_nodes - actual_nodes}\n"
+                f"Extra: {actual_nodes - expected_nodes}"
+            )
+        # Force the exact order for y unpacking
+        ic_cols = node_order + (
+            ["InitCondNum"] if "InitCondNum" in initial_conditions.columns else []
+        )
+        initial_conditions = initial_conditions[ic_cols]
+    if param_order:
+        actual_params = set(parameters.columns) - {"ParamNum"}
+        expected_params = set(param_order)
+        if actual_params != expected_params:
+            raise ValueError(
+                f"Parameter mismatch in {replicate_dir}.\n"
+                f"Missing: {expected_params - actual_params}\n"
+                f"Extra: {actual_params - expected_params}"
+            )
+        p_cols = param_order + (
+            ["ParamNum"] if "ParamNum" in parameters.columns else []
+        )
+        parameters = parameters[p_cols]
     # Load the ODE system as a diffrax ode term
     ode_term = load_odeterm(topo_name, simul_dir)
     # Getting the intial conditions dataframe column names
@@ -679,6 +712,63 @@ def run_all_replicates(
         print(f"Simulation completed for replicate: {replicate_base}\n")
         # # break  ##################################
     return None
+
+
+def get_node_param_order(file_path):
+    """Parses an ODE system file to extract node and parameter order.
+
+    Using Python's Abstract Syntax Tree (AST), this function locates the 'odesys'
+    definition and extracts the names of variables unpacked from the 'y' and 'args'
+    inputs. The logic is optimized for performance, terminating as soon as both
+    variable sets are identified.
+
+    Note:
+        This function specifically expects the 'odesys' function to contain
+        direct tuple assignments from the names 'y' and 'args'. Renaming these
+        inputs or changing the assignment structure within 'odesys' will
+        prevent this function from identifying the correct order.
+
+    Args:
+        file_path (str): The path to the Python file containing the 'odesys' function.
+
+    Returns:
+        tuple[list[str], list[str]]: A tuple containing:
+            - node_order: A list of variable names unpacked from 'y'.
+            - param_order: A list of variable names unpacked from 'args'.
+            If either is not found, an empty list is returned for the entry.
+
+    Example:
+        >>> nodes, params = get_node_param_order("model.py")
+        >>> print(nodes)
+        ['CDH1', 'FOXC2', 'GSC', ...]
+    """
+    with open(file_path, "r") as f:
+        tree = ast.parse(f.read())
+    node_order = []
+    param_order = []
+    for node in tree.body:
+        if isinstance(node, ast.FunctionDef) and node.name == "odesys":
+            for stmt in node.body:
+                # We are looking for: (tuple) = Name(y or args)
+                if isinstance(stmt, ast.Assign) and isinstance(stmt.value, ast.Name):
+                    source_name = stmt.value.id
+                    if source_name in ["y", "args"]:
+                        # Extract variable names from the left-hand side tuple
+                        target = stmt.targets[0]
+                        if isinstance(target, ast.Tuple):
+                            names = [
+                                elt.id
+                                for elt in target.elts
+                                if isinstance(elt, ast.Name)
+                            ]
+                            if source_name == "y":
+                                node_order = names
+                            else:
+                                param_order = names
+                # 3. STOP immediately once both are found
+                if node_order and param_order:
+                    return node_order, param_order
+    return node_order, param_order
 
 
 # Function to g/k normalise the solution dataframe
